@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-landing-page',
+  selector: 'app-login-page',
   standalone: true,
   imports: [],
   templateUrl: './login-page.component.html',
