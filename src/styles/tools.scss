@@ -1,0 +1,97 @@
+@use "variables" as *;
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.col-gap-1 {
+  column-gap: 10px;
+}
+
+.col-gap-2 {
+  column-gap: 20px;
+}
+
+.render-fixed {
+  display: block;
+  position: fixed;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.space-between-items {
+  justify-content: space-between;
+}
+
+.stretch-items {
+  justify-content: stretch;
+}
+
+.align-items-flex-start {
+  align-items: flex-start;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.vw-70 {
+  width: 70vw;
+}
+
+.vw-90 {
+  width: 90vw;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ml-1 {
+  margin-left: 10px;
+}
+
+.mr-2 {
+  margin-right: 20px;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+
+.mt-1 {
+  margin-top: 10px;
+}
+
+.mt-2 {
+  margin-top: 20px;
+}
+
+.mt-3 {
+  margin-top: 30px;
+}
+
+.mt-4 {
+  margin-top: 40px;
+}
+
+.mt-5 {
+  margin-top: 50px;
+}

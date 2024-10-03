@@ -1,0 +1,18 @@
+@use 'variables' as *;
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  font-family: $font-family;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $body-background-color;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}

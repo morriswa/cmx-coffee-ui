@@ -1,0 +1,40 @@
+
+
+// specify props available within ts after view init
+//:root {
+//  --prop-goes-here: att;
+//}
+
+// font settings
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+sans-serif;
+
+$font-weight: 400;
+$bold-font-weight: 700;
+
+$font-size-xxl: 60px;
+$font-size-xl: 55px;
+$font-size-lg: 32px;
+$font-size-subtitle: 24px;
+$font-size-landing-page: 15px;
+$font-size-med: 18px;
+$font-size: 14px;
+$font-size-sm: 10px;
+$font-size-xs: 8px;
+
+// colors
+$primary-color: #a82121;
+$secondary-color: #050559;
+$tertiary-color: #efa145;
+
+$neutral-color: #8f8f8f;
+$neutral-variant-color: #575757;
+
+$body-background-color: #A8BDD8;
+$surface-color: #eac8a8ff;
+$error-color: #ff3636;
+
+$black: rgba(0,0,0,1);
+$white: rgba(255,255,255,1);
+$clear: rgba(0,0,0,0);
