@@ -14,8 +14,7 @@ export const AUTH0_CONFIG = {
   // Specify configuration for the interceptor
   httpInterceptor: {
     allowedList: [
-      { uri: `${environment.APP_API_ENDPOINT}/s/*` },
-      { uri: `${environment.APP_API_ENDPOINT}/a/*` },
+      { uri: `${environment.APP_API_ENDPOINT}/*` },
     ]
   },
   cacheLocation: "localstorage" as const

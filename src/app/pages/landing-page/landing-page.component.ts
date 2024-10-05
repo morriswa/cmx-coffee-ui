@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {LoginService} from "../../services/login.service";
 
 @Component({
   selector: 'app-landing-page',
@@ -9,4 +10,13 @@ import { Component } from '@angular/core';
 })
 export class LandingPageComponent {
 
+  login = inject(LoginService);
+
+  handleLogin() {
+    this.login.login();
+  }
+
+  handleLogout() {
+    this.login.logout()
+  }
 }

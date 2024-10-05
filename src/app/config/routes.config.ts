@@ -1,5 +1,6 @@
 import {provideRouter, Routes} from "@angular/router";
 import {EnvironmentProviders} from "@angular/core";
+import {DeveloperGuard} from "../guards/developer.guard";
 
 const routesConfig: Routes = [
   {
@@ -23,6 +24,12 @@ const routesConfig: Routes = [
         redirectTo: ""
       }
     ]
+  },
+  {
+    path: "developer",
+    canActivate: [DeveloperGuard],
+    loadComponent: ()=>import('src/app/pages/developer-portal/pages/developer-landing-page/developer-landing-page.component')
+      .then(m=>m.DeveloperLandingPageComponent)
   },
   {
     path: "admin",
