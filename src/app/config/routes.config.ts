@@ -1,6 +1,6 @@
 import {provideRouter, Routes} from "@angular/router";
 import {EnvironmentProviders} from "@angular/core";
-import {DeveloperGuard} from "../guards/developer.guard";
+import {HasPermission} from "src/app/guards/permission.guard";
 
 const routesConfig: Routes = [
   {
@@ -10,6 +10,7 @@ const routesConfig: Routes = [
   },
   {
     path: "vendor",
+    canActivate: [HasPermission('cmx_coffee:vendor')],
     loadComponent: ()=>import('src/app/pages/vendor-portal/vendor-portal.component')
       .then(m=>m.VendorPortalComponent),
     children: [
@@ -27,12 +28,13 @@ const routesConfig: Routes = [
   },
   {
     path: "developer",
-    canActivate: [DeveloperGuard],
+    canActivate: [HasPermission('cmx_coffee:admin')],
     loadComponent: ()=>import('src/app/pages/developer-portal/pages/developer-landing-page/developer-landing-page.component')
       .then(m=>m.DeveloperLandingPageComponent)
   },
   {
     path: "admin",
+    canActivate: [HasPermission('cmx_coffee:admin')],
     loadComponent: ()=>import('src/app/pages/admin-portal/admin-portal.component')
       .then(m=>m.AdminPortalComponent),
     children: [

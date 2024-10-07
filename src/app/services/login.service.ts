@@ -1,8 +1,8 @@
 import {inject, Injectable, signal, WritableSignal} from "@angular/core";
 import {AuthService} from "@auth0/auth0-angular";
-import {firstValueFrom, Subscription} from "rxjs";
+import {firstValueFrom} from "rxjs";
 import {ApiClient} from "./api-client.service";
-import {sleep} from "../utils";
+
 
 @Injectable()
 export class LoginService {
@@ -11,41 +11,40 @@ export class LoginService {
   private auth0 = inject(AuthService)
   private apiClient = inject(ApiClient);
 
-  private permissions: WritableSignal<string[]|undefined> = signal(undefined);
-  private loggedIn: WritableSignal<boolean|undefined> = signal(undefined);
+  private permissions: WritableSignal<string[]> = signal([]);
+  private ready: WritableSignal<boolean> = signal(false);
 
   constructor() {
-    this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
-      if (isAuthenticated) {
-        const perms = (await this.apiClient.login()).permissions
-        this.permissions.set(perms);
-        this.loggedIn.set(true);
-      } else {
-        this.permissions.set([]);
-        this.loggedIn.set(false);
-      }
+    const authCheck = this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
+      if (isAuthenticated) await this.refreshPerms();
+      else this.permissions.set([]);
+
+      this.ready.set(true);
+      authCheck.unsubscribe();
     });
   }
 
-  async login(): Promise<void> {
-    let loginActionSubscription: Subscription | undefined = undefined;
+  private async refreshPerms() {
+    const perms = (await this.apiClient.login()).permissions
+    this.permissions.set(perms);
+  }
 
-    await new Promise((resolve, reject)=>{
-      loginActionSubscription = this.auth0.loginWithRedirect().subscribe(()=>{
-        loginActionSubscription?.unsubscribe();
-        resolve('');
+  async login(dest: string = ''): Promise<void> {
+    await new Promise((resolve)=>{
+      const loginActionSubscription = this.auth0.loginWithRedirect({
+        appState: {target: dest}
+      }).subscribe(()=>{
+        loginActionSubscription.unsubscribe();
+        resolve("completed login");
       });
     });
 
-
+    await this.refreshPerms();
   }
 
   logout() {
-    let logoutActionSubscription: Subscription | undefined = undefined;
-
-    logoutActionSubscription = this.auth0.logout().subscribe(()=>{
-      logoutActionSubscription?.unsubscribe();
-    })
+    const logoutActionSubscription = this.auth0.logout()
+      .subscribe(()=>logoutActionSubscription.unsubscribe());
   }
 
   isAuthenticated(): Promise<boolean> {
@@ -53,13 +52,8 @@ export class LoginService {
   }
 
   async hasPermission(permission: string): Promise<boolean> {
+    if (!this.ready()) throw new Error('login-service is not ready :(')
     const perms = this.permissions();
-    if (!perms) {
-      await sleep(500)
-      return this.hasPermission(permission)
-    }
-
-    console.log(perms)
     return perms.includes(permission)
   }
 }
