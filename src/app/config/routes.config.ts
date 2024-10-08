@@ -39,14 +39,23 @@ const routesConfig: Routes = [
       .then(m=>m.AdminPortalComponent),
     children: [
       {
-        path: "",
-        pathMatch: "full",
-        loadComponent: ()=>import('src/app/pages/admin-portal/pages/admin-landing-page/admin-landing-page.component')
-          .then(m=>m.AdminLandingPageComponent),
+        path: "sales",
+        loadComponent: ()=>import('src/app/pages/admin-portal/pages/admin-sales-dashboard/admin-sales-dashboard.component')
+          .then(m=>m.AdminSalesDashboardComponent),
+      },
+      {
+        path: "vendors",
+        loadComponent: ()=>import('src/app/pages/admin-portal/pages/vendor-management/vendor-management.component')
+          .then(m=>m.VendorManagementComponent),
+      },
+      {
+        path: "applicants",
+        loadComponent: ()=>import('src/app/pages/admin-portal/pages/vendor-applicants/vendor-applicants.component')
+          .then(m=>m.VendorApplicantsComponent),
       },
       {
         path: "**",
-        redirectTo: ""
+        redirectTo: "sales"
       }
     ]
   },

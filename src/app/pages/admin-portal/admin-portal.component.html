@@ -1,1 +1,12 @@
+<div class="app-header">
+  <div class="app-button-group">
+    <button class="app-button" routerLink="/admin/sales">Sales</button>
+    <button class="app-button" routerLink="/admin/vendors">Vendors</button>
+    <button class="app-button" routerLink="/admin/applicants">Applicants</button>
+  </div>
+  <span>Product Name Administration</span>
+  <div class="app-button-group">
+    <button class="app-button" (click)="handleLogout()">Logout</button>
+  </div>
+</div>
 <router-outlet/>

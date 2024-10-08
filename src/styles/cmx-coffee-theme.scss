@@ -1,2 +1,30 @@
 @use "variables" as *;
 @use "tools" as *;
+
+
+.app-header {
+  @extend .flex-row, .space-between-items, .align-items-center;
+
+  background-color: $surface-color;
+  padding: 10px;
+}
+
+.app-button-group {
+  @extend .flex-row;
+
+  > button {
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    :last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.app-button {
+  padding: 10px 20px;
+  border: none;
+}
+
