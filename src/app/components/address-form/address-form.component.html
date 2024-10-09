@@ -1,0 +1,38 @@
+
+<div class="flex-col">
+  <div class="flex-row mb-1">
+    <div class="flex-col mr-2">
+      <span>Address Line 1</span>
+      <input [formControl]="addressLineOneForm">
+    </div>
+
+    <div class="flex-col">
+      <span>Address Line 2</span>
+      <input [formControl]="addressLineTwoForm">
+    </div>
+  </div>
+
+  <div class="flex-row mb-1">
+    <div class="flex-col mr-2">
+      <span>City</span>
+      <input [formControl]="cityForm">
+    </div>
+
+    <div class="flex-col">
+      <span>State</span>
+      <input (keyup)="stateForm.set($any($event.target).value)">
+    </div>
+  </div>
+
+  <div class="flex-row mb-1">
+    <div class="flex-col mr-2">
+      <span>Zip</span>
+      <input [formControl]="zipForm">
+    </div>
+
+    <div class="flex-col">
+      <span>Country</span>
+      <input (keyup)="countryForm.set($any($event.target).value)">
+    </div>
+  </div>
+</div>

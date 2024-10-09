@@ -5,8 +5,13 @@ import {HasPermission} from "src/app/guards/permission.guard";
 const routesConfig: Routes = [
   {
     path: "login",
-    loadComponent: ()=>import('src/app/pages/login-page/login-page.component')
+    loadComponent: ()=>import('src/app/pages/login/login-page.component')
       .then(m=>m.LoginPageComponent)
+  },
+  {
+    path: "forms/vendor-application",
+    loadComponent: () => import('src/app/pages/vendor-application/vendor-application-page.component')
+      .then(m=>m.VendorApplicationPageComponent)
   },
   {
     path: "vendor",
@@ -62,7 +67,7 @@ const routesConfig: Routes = [
   {
     path: "",
     pathMatch: "full",
-    loadComponent: ()=>import('src/app/pages/landing-page/landing-page.component')
+    loadComponent: ()=>import('src/app/pages/landing/landing-page.component')
       .then(m=>m.LandingPageComponent),
   },
   {
