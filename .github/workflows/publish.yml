@@ -1,0 +1,46 @@
+name: Build and Publish with Docker
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - uses: aws-actions/configure-aws-credentials@v4.0.2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+
+    - name: Get Package Version
+      id: package-version
+      uses: martinbeentjes/npm-get-version-action@main
+
+    - name: Build, Test
+      run: |
+        npm ci
+        npm run test
+        npm run build:www
+
+    - name: Publish
+      run: |
+        cd ./dist
+        tar -czvf cmx-coffee-dist.tar.gz ./cmx-coffee
+        export ASSET_SHA256=$(sha256sum cmx-coffee-dist.tar.gz | awk '{print $1;}')
+        aws codeartifact publish-package-version \
+          --domain morriswa-org --repository morriswa-central \
+          --format generic --namespace org.morriswa --package cmx-coffee-dist \
+          --package-version ${{ steps.package-version.outputs.current-version}} \
+          --asset-content cmx-coffee-dist.tar.gz \
+          --asset-name cmx-coffee-dist.tar.gz \
+          --asset-sha256 "$ASSET_SHA256" --unfinished
