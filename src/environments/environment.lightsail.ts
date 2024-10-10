@@ -1,5 +1,5 @@
 export const environment = {
-  APP_API_ENDPOINT:'https://www.morriswa.org/cmx/api/battleship',
+  APP_API_ENDPOINT:'https://www.morriswa.org/cmx/api/coffee',
   RUNTIME:'local'
 };
 
@@ -9,7 +9,7 @@ export const AUTH0_CONFIG = {
   authorizationParams: {
     audience: 'api://localhost',
     scope: 'openid email cmx_coffee:admin',
-    redirect_uri: window.location.origin
+    redirect_uri: window.location.href
   },
   // Specify configuration for the interceptor
   httpInterceptor: {
