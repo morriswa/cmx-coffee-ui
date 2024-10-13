@@ -1,6 +1,6 @@
 import {inject, Injectable, signal, WritableSignal} from "@angular/core";
 import {AuthService} from "@auth0/auth0-angular";
-import {firstValueFrom} from "rxjs";
+import {firstValueFrom, Observable} from "rxjs";
 import {ApiClient} from "./api-client.service";
 import {Router} from "@angular/router";
 
@@ -57,7 +57,11 @@ export class LoginService {
       .subscribe(()=>logoutActionSubscription.unsubscribe());
   }
 
-  isAuthenticated(): Promise<boolean> {
+  get isAuthenticated$(): Observable<boolean> {
+    return this.auth0.isAuthenticated$
+  }
+
+  get isAuthenticated(): Promise<boolean> {
     return firstValueFrom(this.auth0.isAuthenticated$)
   }
 

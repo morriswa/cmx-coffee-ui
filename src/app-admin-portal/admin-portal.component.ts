@@ -1,9 +1,9 @@
 import {Component, inject} from '@angular/core';
 import {RouterLink, RouterOutlet} from "@angular/router";
-import {LoginService} from "../../services/login.service";
+import {LoginService} from "../app/services/login.service";
 
 @Component({
-  selector: 'app-admin-portal',
+  selector: 'app-app-admin-portal',
   standalone: true,
   imports: [
     RouterOutlet,

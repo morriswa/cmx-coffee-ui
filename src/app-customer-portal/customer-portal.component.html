@@ -1,0 +1,21 @@
+
+<div class="app-header">
+  <div class="app-button-group">
+    <button class="app-button" routerLink="/">Home</button>
+    <button class="app-button" routerLink="/shop">Shop</button>
+
+  </div>
+
+  <p>Product Name</p>
+
+  <div class="app-button-group">
+    @if (isLoggedIn()) {
+      <button class="app-button" (click)="handleLogout()">Logout</button>
+    }
+    @else {
+      <button class="app-button" (click)="handleLogin()">Login</button>
+    }
+  </div>
+</div>
+
+<router-outlet/>

@@ -2,6 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {LoginService} from "../../services/login.service";
 import {AsyncPipe, NgIf} from "@angular/common";
+import {firstValueFrom} from "rxjs";
 
 @Component({
   selector: 'app-logout-page',
@@ -16,7 +17,7 @@ import {AsyncPipe, NgIf} from "@angular/common";
 export class LogoutComponent implements OnInit {
   router = inject(Router);
   login = inject(LoginService);
-  loginStatus = this.login.isAuthenticated();
+  loginStatus = firstValueFrom(this.login.isAuthenticated$);
 
   async ngOnInit() {
     if (await this.loginStatus) {

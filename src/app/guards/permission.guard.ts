@@ -1,7 +1,7 @@
 import {CanActivateFn, Router} from "@angular/router";
 import {inject} from "@angular/core";
 import {LoginService} from "../services/login.service";
-import {tryTimes} from "src/app/utils";
+import {tryTimes} from "src/utils";
 
 
 export const HasPermission = (permission: string): CanActivateFn => {
@@ -9,7 +9,7 @@ export const HasPermission = (permission: string): CanActivateFn => {
     const login = inject(LoginService);
     const router = inject(Router);
 
-    if (!await login.isAuthenticated()) {
+    if (!await login.isAuthenticated) {
       await login.login([state.url]);
       return false;
     }
