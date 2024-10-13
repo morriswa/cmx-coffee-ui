@@ -9,7 +9,7 @@ export const AUTH0_CONFIG = {
   authorizationParams: {
     audience: 'api://localhost',
     scope: 'openid email cmx_coffee:admin',
-    redirect_uri: window.location.href
+    redirect_uri: window.location.origin + '/callback'
   },
   // Specify configuration for the interceptor
   httpInterceptor: {

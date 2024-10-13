@@ -1,6 +1,7 @@
 import {provideRouter, Routes} from "@angular/router";
 import {EnvironmentProviders} from "@angular/core";
 import {HasPermission} from "src/app/guards/permission.guard";
+import {Auth0CallbackComponent} from "../components/auth0-callback/auth0-callback.component";
 
 const routesConfig: Routes = [
   {
@@ -65,10 +66,24 @@ const routesConfig: Routes = [
     ]
   },
   {
+    path: "forbidden",
+    loadComponent: ()=>import('src/app/pages/access-denied/access-denied.component')
+      .then(m=>m.AccessDeniedComponent),
+  },
+  {
+    path: "logout",
+    loadComponent: ()=>import('src/app/pages/logout/logout.component')
+      .then(m=>m.LogoutComponent),
+  },
+  {
     path: "",
     pathMatch: "full",
     loadComponent: ()=>import('src/app/pages/landing/landing-page.component')
       .then(m=>m.LandingPageComponent),
+  },
+  {
+    path: "callback",
+    component: Auth0CallbackComponent
   },
   {
     path: "**",
