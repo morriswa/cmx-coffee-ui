@@ -15,4 +15,4 @@
       npm install
 - Compile angular project and run on local machine http://localhost:4200
       
-      npm run start:development
+      npm run start

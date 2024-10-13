@@ -1,9 +1,9 @@
 import {provideRouter, Routes} from "@angular/router";
 import {EnvironmentProviders} from "@angular/core";
 import {HasPermission} from "src/app/guards/permission.guard";
-import {Auth0CallbackComponent} from "../components/auth0-callback/auth0-callback.component";
-import {AccessDeniedComponent} from "../pages/access-denied/access-denied.component";
-import {AdminService} from "../../app-admin-portal/services/admin.service";
+import {Auth0CallbackComponent} from "../app/components/auth0-callback/auth0-callback.component";
+import {AccessDeniedComponent} from "../app/pages/access-denied/access-denied.component";
+import {AdminService} from "../app-admin-portal/services/admin.service";
 
 
 const routesConfig: Routes = [

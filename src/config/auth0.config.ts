@@ -1,7 +1,7 @@
 import {Provider} from "@angular/core";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {AuthHttpInterceptor, provideAuth0} from "@auth0/auth0-angular";
-import {AUTH0_CONFIG} from "../../environments/environment";
+import {AUTH0_CONFIG} from "../environments/environment";
 
 /**
  * provides application authentication config
