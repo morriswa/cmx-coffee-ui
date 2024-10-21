@@ -4,14 +4,15 @@
 .app-viewport {
   height: 100vh !important;
   width: 100vw !important;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-body {
-  max-height: 100%;
-  max-width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  display: block;
+  position: relative;
+  padding: 10px 20px 200px 20px;
 }
 
 .flex-row {
