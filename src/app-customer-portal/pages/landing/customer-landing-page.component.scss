@@ -20,7 +20,26 @@
   font-size: 25px;
 }
 
-.get-started-btns {
+.home-page-btns {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  height: 48px;
+  width:170px;
+  margin-top: 50px;
+
+}
+.get-started-btn{
+  margin-right: 10px;
+  background-color: #EC5F46;
+  color: #FFFFFF;
+  width: 128px;
+  height: 48px;
+}
+
+.learn-more-btn{
+  background-color: #FFFFFF;
+  color: #000000;
+  margin-left: 10px;
+  width: 128px;
+  height: 48px;
 }
