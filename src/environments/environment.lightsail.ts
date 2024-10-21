@@ -11,6 +11,7 @@ export const AUTH0_CONFIG = {
     scope: 'openid email cmx_coffee:admin',
     redirect_uri: window.location.origin + '/callback'
   },
+  logoutUrl: window.location.origin + '/logout',
   // Specify configuration for the interceptor
   httpInterceptor: {
     allowedList: [

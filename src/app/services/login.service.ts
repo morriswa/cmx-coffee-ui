@@ -3,6 +3,7 @@ import {AuthService} from "@auth0/auth0-angular";
 import {firstValueFrom, Observable} from "rxjs";
 import {ApiClient} from "./api-client.service";
 import {Router} from "@angular/router";
+import {AUTH0_CONFIG} from "../../environments/environment";
 
 
 @Injectable()
@@ -53,7 +54,7 @@ export class LoginService {
   }
 
   logout() {
-    const logoutActionSubscription = this.auth0.logout()
+    const logoutActionSubscription = this.auth0.logout({logoutParams: {returnTo: AUTH0_CONFIG.logoutUrl}})
       .subscribe(()=>logoutActionSubscription.unsubscribe());
   }
 
