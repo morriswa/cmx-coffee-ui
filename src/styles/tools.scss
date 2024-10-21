@@ -1,5 +1,19 @@
 @use "variables" as *;
 
+
+.app-viewport {
+  height: 100vh !important;
+  width: 100vw !important;
+}
+
+.app-body {
+  max-height: 100%;
+  max-width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: block;
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;
