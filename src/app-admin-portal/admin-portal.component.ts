@@ -10,7 +10,8 @@ import {LoginService} from "../app/services/login.service";
     RouterLink
   ],
   templateUrl: './admin-portal.component.html',
-  styleUrl: './admin-portal.component.scss'
+  styleUrl: './admin-portal.component.scss',
+  host: {'class': 'flex-child'},
 })
 export class AdminPortalComponent {
 

@@ -1,14 +1,16 @@
 @use "variables" as *;
 
 
-.app-viewport {
-  height: 100vh !important;
-  width: 100vw !important;
+.flex-child {
   display: flex;
-  flex-direction: column;
+  flex-direction: inherit;
+  height: 100%;
+  width: 100%;
 }
 
 .app-body {
+  @extend .flex-child;
+
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;

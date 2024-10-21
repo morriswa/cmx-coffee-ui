@@ -14,7 +14,8 @@ import {RouterLink, RouterOutlet} from "@angular/router";
     RouterOutlet
   ],
   templateUrl: './customer-portal.component.html',
-  styleUrl: './customer-portal.component.scss'
+  styleUrl: './customer-portal.component.scss',
+  host: {'class': 'flex-child'}
 })
 export class CustomerPortalComponent implements OnInit, OnDestroy {
 

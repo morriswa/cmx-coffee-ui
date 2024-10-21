@@ -29,7 +29,8 @@ import {Subscription} from "rxjs";
   standalone: true,
   imports: [
     RouterOutlet
-  ]
+  ],
+  host: {'class': 'flex-child'}
 })
 export class AppComponent implements OnInit, OnDestroy {
 
