@@ -1,37 +1,34 @@
-body{
-  background-color: #ECEAE5;
-}
 
-#landing-h1{
+.landing-h1{
   display: flex;
   flex-direction: column;
 }
 
-#landing-h1 h1{
+.landing-h1{
   color: #EC5F46;
   font-size: 126px;
   padding-right: 300px;
   text-align: left;
 }
 
-#coffee-image1{
+.coffee-image1{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-content: flex-end;
 }
 
-#coffee-image1 img{
+.coffee-image1 img{
   height: 449px;
   width: 447px;
 }
 
-#opening-pitch p{
+.opening-pitch p{
   font-size: 25px;
 }
 
 
-#get-started-btns button{
+.get-started-btns button{
   display: flex;
   flex-direction: column;
 }
