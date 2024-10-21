@@ -6,6 +6,25 @@
   font-size: 50px;
   padding-right: 300px;
   text-align: left;
+  text-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+}
+.landing-h2{
+  color: #EC5F46;
+  text-align: center;
+  font-size: 40px;
+}
+
+.landing2{
+  background-color: #FFFFFF;
+  text-align: center;
+  color: #54524E
+}
+
+.fun-facts{
+  width: 1269px;
+  height: 438px;
+  background-color: #ECEAE5;
+  
 }
 
 .coffee-image1{
@@ -13,11 +32,12 @@
   height: 449px;
   width: 447px;
   top: 200px;
-  right: 5vh;
+  left: 900px;
 }
 
 .opening-pitch {
   font-size: 25px;
+  color: #21201F
 }
 
 .home-page-btns {
