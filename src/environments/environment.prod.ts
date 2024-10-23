@@ -8,10 +8,10 @@ export const AUTH0_CONFIG = {
   clientId: 'JDy3gRSPBVcmJmlXKsMBaMwwIV7if2c3',
   authorizationParams: {
     audience: 'api://localhost',
-    scope: 'openid email cmx_coffee:admin',
+    scope: 'openid email profile cmx_coffee:admin',
     redirect_uri: window.location.origin + '/cmx/coffee/callback'
   },
-  logoutUrl: window.location.origin + '/logout',
+  logoutUrl: window.location.origin + '/cmx/coffee/logout',
   // Specify configuration for the interceptor
   httpInterceptor: {
     allowedList: [
