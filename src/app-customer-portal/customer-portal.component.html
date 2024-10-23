@@ -1,10 +1,10 @@
 
 <div class="app-header">
   <div class="app-button-group">
-    <img src="../static/comapny_logo.png" alt="The company logo" width="84px" height="36px">
-    <button class="app-button" routerLink="/shop">Browse Coffee</button>
-    <button class="app-button" routerLink="/shop">Subscription Plans</button>
-    <button class="app-button" routerLink="/shop">About Us</button>
+    <img src="static/comapny_logo.png" alt="The company logo" routerLink="/" width="84px" height="36px">
+    <a class="app-link" routerLink="/shop">Browse Coffee</a>
+    <a class="app-link" routerLink="/not-implemented">Subscription Plans</a>
+    <a class="app-link" routerLink="/not-implemented">About Us</a>
   </div>
 
   <div class="app-search-bar">
@@ -20,7 +20,31 @@
   <div class="app-button-group">
     <img src="../static/shopping_cart.png" alt="Your shopping cart" width="40px" height="40px">
     @if (isLoggedIn()) {
-      <button class="app-button" (click)="handleLogout()">Logout</button>
+      <!-- This button triggers the overlay and is it's origin -->
+      <a
+        class="app-link"
+        (click)="accountMenuOpen.set(!accountMenuOpen())"
+        cdkOverlayOrigin
+        #accountMenu="cdkOverlayOrigin"
+      >
+        Account
+      </a>
+
+      <!-- This template displays the overlay content and is connected to the button -->
+      <ng-template
+        cdkConnectedOverlay
+        cdkConnectedOverlayWidth="10%"
+        [cdkConnectedOverlayOrigin]="accountMenu"
+        [cdkConnectedOverlayOpen]="accountMenuOpen()"
+        [cdkConnectedOverlayPositions]="accountMenuPosition"
+      >
+        <div class="app-account-menu-popup">
+          <a class="app-link" routerLink="/not-implemented">Profile</a>
+          <a class="app-link" routerLink="/not-implemented">Orders</a>
+          <hr>
+          <a class="app-link" (click)="handleLogout()">Logout</a>
+        </div>
+      </ng-template>
     }
     @else {
       <button class="app-button" (click)="handleLogin()">Login</button>
@@ -31,3 +55,5 @@
 <div class="app-body">
   <router-outlet/>
 </div>
+
+
