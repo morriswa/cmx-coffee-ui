@@ -3,6 +3,7 @@ import {LoginService} from "../app/services/login.service";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {Subscription} from "rxjs";
 import {RouterLink, RouterOutlet} from "@angular/router";
+import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition} from "@angular/cdk/overlay";
 
 @Component({
   selector: 'app-customer-portal',
@@ -11,7 +12,9 @@ import {RouterLink, RouterOutlet} from "@angular/router";
     NgIf,
     AsyncPipe,
     RouterLink,
-    RouterOutlet
+    RouterOutlet,
+    CdkConnectedOverlay,
+    CdkOverlayOrigin
   ],
   templateUrl: './customer-portal.component.html',
   styleUrl: './customer-portal.component.scss',
@@ -22,6 +25,17 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
   login = inject(LoginService);
   isLoggedIn: WritableSignal<boolean> = signal(false);
   private _authenticatedSubscription?: Subscription;
+  accountMenuOpen: WritableSignal<boolean> = signal(false);
+
+  readonly accountMenuPosition: ConnectedPosition[] = [
+    {
+      offsetY: 35,
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'end',
+      overlayY: 'top',
+    },
+  ];
 
   ngOnInit(): void {
     this._authenticatedSubscription = this.login.isAuthenticated$.subscribe(

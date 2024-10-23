@@ -52,8 +52,8 @@ export class ApiClient {
     return this.request<any>("GET", 'a/health');
   }
 
-  public login(): Promise<any> {
-    return this.request<any>("GET", 'login');
+  public permissions(): Promise<any> {
+    return this.request<any>("GET", 'permissions');
   }
 
 }

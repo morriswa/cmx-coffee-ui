@@ -4,6 +4,7 @@ import {HasPermission} from "src/app/guards/permission.guard";
 import {Auth0CallbackComponent} from "../app/components/auth0-callback/auth0-callback.component";
 import {AccessDeniedComponent} from "../app/pages/access-denied/access-denied.component";
 import {AdminService} from "../app-admin-portal/services/admin.service";
+import {NotImplementedComponent} from "../app/pages/not-implemented/not-implemented.component";
 
 
 const routesConfig: Routes = [
@@ -102,6 +103,10 @@ const routesConfig: Routes = [
   {
     path: "forbidden",
     component: AccessDeniedComponent,
+  },
+  {
+    path: "not-implemented",
+    component: NotImplementedComponent,
   },
   {
     path: "**",

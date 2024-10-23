@@ -28,7 +28,7 @@ export class LoginService {
   }
 
   private async refreshPerms() {
-    const perms = (await this.apiClient.login()).permissions
+    const perms = await this.apiClient.permissions()
     this.permissions.set(perms);
   }
 
