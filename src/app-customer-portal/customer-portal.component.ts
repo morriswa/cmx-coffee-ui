@@ -26,6 +26,7 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
   isLoggedIn: WritableSignal<boolean> = signal(false);
   private _authenticatedSubscription?: Subscription;
   accountMenuOpen: WritableSignal<boolean> = signal(false);
+  accountName: WritableSignal<string|undefined> = signal(undefined);
 
   readonly accountMenuPosition: ConnectedPosition[] = [
     {
@@ -37,10 +38,12 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
     },
   ];
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this._authenticatedSubscription = this.login.isAuthenticated$.subscribe(
       (res)=>this.isLoggedIn.set(res)
     );
+    const user = await this.login.getUser()
+    this.accountName.set(user.name)
   }
 
   ngOnDestroy(): void {
@@ -54,6 +57,5 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
   handleLogout() {
     this.login.logout()
   }
-
 
 }

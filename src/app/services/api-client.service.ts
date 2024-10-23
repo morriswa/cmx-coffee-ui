@@ -56,4 +56,7 @@ export class ApiClient {
     return this.request<any>("GET", 'permissions');
   }
 
+  public profile() {
+    return this.request<any>("GET", 'profile');
+  }
 }

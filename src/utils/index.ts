@@ -23,3 +23,12 @@ export async function tryTimes<T>(action: ()=>any, times: number, timeout: numbe
   }
   return undefined;
 }
+
+export async function until(cond: boolean, timeout: number=60): Promise<void> {
+  const start = Date.now();
+  let now = Date.now();
+  while (!cond&&now - start > timeout) {
+    await sleep(500);
+    now = Date.now();
+  }
+}

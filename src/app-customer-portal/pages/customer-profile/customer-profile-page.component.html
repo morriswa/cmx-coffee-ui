@@ -1,0 +1,13 @@
+
+@if (user(); as user) {
+  <h1>Hello {{ user.name.split(' ')[0] }}</h1>
+  <br>
+
+  <img [src]="user.picture">
+  <p>Name: {{ user.name }}</p>
+  <p>Email: {{ user.email }}</p>
+
+  <br>
+  <h2>{{ !accountComplete()? 'Complete taste profile' : 'Edit taste profile' }}</h2>
+  <input placeholder="implement me">
+}

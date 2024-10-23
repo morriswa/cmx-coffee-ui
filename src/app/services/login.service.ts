@@ -1,9 +1,10 @@
 import {inject, Injectable, signal, WritableSignal} from "@angular/core";
-import {AuthService} from "@auth0/auth0-angular";
+import {AuthService, User} from "@auth0/auth0-angular";
 import {firstValueFrom, Observable} from "rxjs";
 import {ApiClient} from "./api-client.service";
 import {Router} from "@angular/router";
 import {AUTH0_CONFIG} from "../../environments/environment";
+import {until} from "../../utils";
 
 
 @Injectable()
@@ -67,8 +68,13 @@ export class LoginService {
   }
 
   async hasPermission(permission: string): Promise<boolean> {
-    if (!this.ready()) throw new Error('login-service is not ready :(')
+    await until(this.ready())
     const perms = this.permissions();
     return perms.includes(permission)
+  }
+
+  async getUser() {
+    await until(this.ready())
+    return await firstValueFrom(this.auth0.user$) as User
   }
 }

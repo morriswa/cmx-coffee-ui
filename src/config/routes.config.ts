@@ -10,7 +10,7 @@ import {NotImplementedComponent} from "../app/pages/not-implemented/not-implemen
 const routesConfig: Routes = [
   // declare portal routes
   {
-    title: "customer-portal",
+    title: "Product Name",
     path: "",
     loadComponent: ()=>import('src/app-customer-portal/customer-portal.component')
       .then(m=>m.CustomerPortalComponent),
@@ -25,11 +25,16 @@ const routesConfig: Routes = [
         path: "shop",
         loadComponent: () => import('src/app-customer-portal/pages/shop/shop-page.component')
           .then(m=>m.ShopPageComponent)
+      },
+      {
+        path: "profile",
+        loadComponent: () => import('src/app-customer-portal/pages/customer-profile/customer-profile-page.component')
+          .then(m=>m.CustomerProfilePageComponent)
       }
     ]
   },
   {
-    title: "vendor-portal",
+    title: "Vendor Settings",
     path: "vendor",
     canActivate: [HasPermission('cmx_coffee:vendor')],
     loadComponent: ()=>import('src/app-vendor-portal/vendor-portal.component')
@@ -48,14 +53,14 @@ const routesConfig: Routes = [
     ]
   },
   {
-    title: "developer-portal",
+    title: "CMX Developer",
     path: "developer",
     canActivate: [HasPermission('cmx_coffee:admin')],
     loadComponent: ()=>import('src/app-developer-portal/pages/developer-landing-page/developer-landing-page.component')
       .then(m=>m.DeveloperLandingPageComponent)
   },
   {
-    title: "admin-portal",
+    title: "Admin",
     path: "admin",
     canActivate: [HasPermission('cmx_coffee:admin')],
     providers: [AdminService],
