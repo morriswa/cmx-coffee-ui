@@ -1,5 +1,5 @@
 import {Component, inject, OnInit, signal, WritableSignal} from "@angular/core";
-import {LoginService} from "../../../app/services/login.service";
+import {LoginService} from "src/services/login.service";
 
 @Component({
   selector: 'customer-landing-page',

@@ -1,11 +1,11 @@
 import {provideRouter, Routes} from "@angular/router";
 import {EnvironmentProviders} from "@angular/core";
-import {HasPermission} from "src/app/guards/permission.guard";
-import {Auth0CallbackComponent} from "../app/components/auth0-callback/auth0-callback.component";
-import {AccessDeniedComponent} from "../app/pages/access-denied/access-denied.component";
+import {HasPermission} from "src/guards/permission.guard";
+import {Auth0CallbackComponent} from "src/components/auth0-callback/auth0-callback.component";
+import {AccessDeniedComponent} from "src/pages/access-denied/access-denied.component";
 import {AdminService} from "../app-admin-portal/services/admin.service";
-import {NotImplementedComponent} from "../app/pages/not-implemented/not-implemented.component";
-import {LogoutComponent} from "../app/pages/logout/logout.component";
+import {NotImplementedComponent} from "src/pages/not-implemented/not-implemented.component";
+import {LogoutComponent} from "src/pages/logout/logout.component";
 
 
 const routesConfig: Routes = [
@@ -35,7 +35,7 @@ const routesConfig: Routes = [
       {
         path: "forms/vendor-application",
         canActivate: [HasPermission('cmx_coffee:appuser')],
-        loadComponent: () => import('src/app/pages/vendor-application/vendor-application-page.component')
+        loadComponent: () => import('src/pages/vendor-application/vendor-application-page.component')
           .then(m=>m.VendorApplicationPageComponent)
       },
     ]

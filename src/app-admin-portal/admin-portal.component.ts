@@ -1,6 +1,6 @@
 import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {RouterLink, RouterOutlet} from "@angular/router";
-import {LoginService} from "../app/services/login.service";
+import {LoginService} from "src/services/login.service";
 import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition} from "@angular/cdk/overlay";
 import {NgIf} from "@angular/common";
 

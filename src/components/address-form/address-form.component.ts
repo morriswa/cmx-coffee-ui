@@ -1,6 +1,6 @@
 import {Component, signal} from "@angular/core";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Address} from "../../types/address.type";
+import {Address} from "src/types/address.type";
 
 @Component({
   selector: "app-address-form",

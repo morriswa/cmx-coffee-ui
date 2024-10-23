@@ -2,7 +2,7 @@ import {Component, inject, signal, ViewChild, WritableSignal} from "@angular/cor
 import {AddressFormComponent} from "../../components/address-form/address-form.component";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ApiClient} from "../../services/api-client.service";
-import {VendorApplication} from "../../types/vendor.type";
+import {VendorApplication} from "src/types/vendor.type";
 
 
 @Component({

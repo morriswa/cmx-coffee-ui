@@ -3,8 +3,8 @@ import {AuthService, User} from "@auth0/auth0-angular";
 import {firstValueFrom, Observable} from "rxjs";
 import {ApiClient} from "./api-client.service";
 import {Router} from "@angular/router";
-import {AUTH0_CONFIG} from "../../environments/environment";
-import {until} from "../../utils";
+import {AUTH0_CONFIG} from "src/environments/environment";
+import {until} from "src/utils";
 
 
 @Injectable()

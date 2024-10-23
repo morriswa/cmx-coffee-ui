@@ -1,5 +1,5 @@
 import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
-import {LoginService} from "../app/services/login.service";
+import {LoginService} from "src/services/login.service";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {Subscription} from "rxjs";
 import {RouterLink, RouterOutlet} from "@angular/router";
