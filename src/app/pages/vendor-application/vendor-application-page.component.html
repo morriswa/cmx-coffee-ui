@@ -1,23 +1,35 @@
 
 <h1 style="text-align: center">Vendor Application Form</h1>
 
-<div style="max-width: 400px">
-  <div class="flex-col mb-1">
-    <span>Business Name</span>
-    <input [formControl]="businessNameForm">
-  </div>
+@switch (pageState()) {
+  @case ('form') {
+    <div style="max-width: 400px">
+      <div class="flex-col mb-1">
+        <span>Business Name</span>
+        <input [formControl]="businessNameForm">
+      </div>
 
-  <div class="flex-col mb-1">
-    <span>Business Email</span>
-    <input [formControl]="businessEmailForm">
-  </div>
+      <div class="flex-col mb-1">
+        <span>Business Email</span>
+        <input [formControl]="businessEmailForm">
+      </div>
 
-  <div class="flex-col mb-1">
-    <span>Phone</span>
-    <input [formControl]="businessPhoneForm">
-  </div>
-</div>
+      <div class="flex-col mb-1">
+        <span>Phone</span>
+        <input [formControl]="businessPhoneForm">
+      </div>
+    </div>
 
-<app-address-form #addressForm></app-address-form>
+    <app-address-form #addressForm></app-address-form>
 
-<button (click)="handleConsolePrint()">Console Print</button>
+    <button (click)="handleConsolePrint()">Console Print</button>
+    <button (click)="handleSubmit()">Submit</button>
+  }
+  @case ('success') {
+    <h1>Successfully submitted application!</h1>
+  }
+  @case ('error') {
+    <p>Could not submit your vendor application!</p>
+    <button class="app-button" (click)="pageState.set('form')">Try again</button>
+  }
+}

@@ -59,4 +59,8 @@ export class ApiClient {
   public profile() {
     return this.request<any>("GET", 'profile');
   }
+
+  applyForVendorship(vendor_application: any) {
+    return this.request('POST', 's/forms/vendor-application', vendor_application);
+  }
 }

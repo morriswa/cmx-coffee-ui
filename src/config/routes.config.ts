@@ -5,6 +5,7 @@ import {Auth0CallbackComponent} from "../app/components/auth0-callback/auth0-cal
 import {AccessDeniedComponent} from "../app/pages/access-denied/access-denied.component";
 import {AdminService} from "../app-admin-portal/services/admin.service";
 import {NotImplementedComponent} from "../app/pages/not-implemented/not-implemented.component";
+import {LogoutComponent} from "../app/pages/logout/logout.component";
 
 
 const routesConfig: Routes = [
@@ -30,7 +31,13 @@ const routesConfig: Routes = [
         path: "profile",
         loadComponent: () => import('src/app-customer-portal/pages/customer-profile/customer-profile-page.component')
           .then(m=>m.CustomerProfilePageComponent)
-      }
+      },
+      {
+        path: "forms/vendor-application",
+        canActivate: [HasPermission('cmx_coffee:appuser')],
+        loadComponent: () => import('src/app/pages/vendor-application/vendor-application-page.component')
+          .then(m=>m.VendorApplicationPageComponent)
+      },
     ]
   },
   {
@@ -90,17 +97,9 @@ const routesConfig: Routes = [
   },
   // declare core application routes
   {
-    path: "forms/vendor-application",
-    loadComponent: () => import('src/app/pages/vendor-application/vendor-application-page.component')
-      .then(m=>m.VendorApplicationPageComponent)
-  },
-  {
     path: "logout",
-    loadComponent: ()=>import('src/app/pages/logout/logout.component')
-      .then(m=>m.LogoutComponent),
+    component: LogoutComponent
   },
-
-  // declare core application utility routes
   {
     path: "callback",
     component: Auth0CallbackComponent

@@ -1,16 +1,44 @@
-
 <div class="app-header">
   <div class="app-button-group">
-    <button class="app-button" routerLink="/admin/sales">Sales</button>
-    <button class="app-button" routerLink="/admin/vendors">Vendors</button>
-    <button class="app-button" routerLink="/admin/applicants">Applicants</button>
+    <img src="static/comapny_logo.png" alt="The company logo" routerLink="/" width="84px" height="36px">
+    <a class="app-link" routerLink="/admin/sales">Sales</a>
+    <a class="app-link" routerLink="/admin/vendors">Vendors</a>
+    <a class="app-link" routerLink="/admin/applicants">Applicants</a>
   </div>
   <span>Product Name Administration</span>
   <div class="app-button-group">
-    <button class="app-button" (click)="handleLogout()">Logout</button>
+    <!-- This button triggers the overlay and is it's origin -->
+    <a
+      class="app-link"
+      (click)="accountMenuOpen.set(!accountMenuOpen())"
+      cdkOverlayOrigin
+      #accountMenu="cdkOverlayOrigin"
+    >
+      Account
+    </a>
+
+    <!-- This template displays the overlay content and is connected to the button -->
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOrigin]="accountMenu"
+      [cdkConnectedOverlayOpen]="accountMenuOpen()"
+      [cdkConnectedOverlayPositions]="accountMenuPosition"
+      (overlayOutsideClick)="accountMenuOpen.set(false)"
+    >
+      <div class="app-account-menu-popup" (click)="accountMenuOpen.set(false)">
+        <h4>Good afternoon</h4>
+        <h4>{{ accountName() }}</h4>
+        <hr>
+        <a class="app-link" routerLink="/">Customer Page</a>
+        <a *ngIf="login.permissions.includes('cmx_coffee:vendor')" class="app-link" routerLink="/admin">Vendor Portal</a>
+        <hr>
+        <a class="app-link" (click)="handleLogout()">Logout</a>
+      </div>
+    </ng-template>
   </div>
 </div>
 
 <div class="app-body">
   <router-outlet/>
 </div>
+

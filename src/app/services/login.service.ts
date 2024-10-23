@@ -1,4 +1,4 @@
-import {inject, Injectable, signal, WritableSignal} from "@angular/core";
+import {inject, Injectable, Signal, signal, WritableSignal} from "@angular/core";
 import {AuthService, User} from "@auth0/auth0-angular";
 import {firstValueFrom, Observable} from "rxjs";
 import {ApiClient} from "./api-client.service";
@@ -15,22 +15,24 @@ export class LoginService {
   private apiClient = inject(ApiClient);
   private router = inject(Router);
 
-  private permissions: WritableSignal<string[]> = signal([]);
-  private ready: WritableSignal<boolean> = signal(false);
+  private _permissions: WritableSignal<string[]> = signal([]);
+  private _ready: WritableSignal<boolean> = signal(false);
 
   constructor() {
     const authCheck = this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
-      if (isAuthenticated) await this.refreshPerms();
-      else this.permissions.set([]);
+      console.log("was authenticated", isAuthenticated);
+      if (isAuthenticated) {
+        await this.refreshPerms();
+      }
 
-      this.ready.set(true);
+      this._ready.set(true);
       authCheck.unsubscribe();
     });
   }
 
   private async refreshPerms() {
     const perms = await this.apiClient.permissions()
-    this.permissions.set(perms);
+    this._permissions.set(perms);
   }
 
   async login(dest: string[] = ['/']): Promise<void> {
@@ -67,14 +69,25 @@ export class LoginService {
     return firstValueFrom(this.auth0.isAuthenticated$)
   }
 
+  get permissions(): string[] {
+    if (!this._ready()) return []
+    else return this._permissions();
+  }
+
+  get ready(): Signal<boolean> {
+    return this._ready;
+  }
+
   async hasPermission(permission: string): Promise<boolean> {
-    await until(this.ready())
-    const perms = this.permissions();
+    await until(this._ready)
+    console.log('ready')
+    const perms = this._permissions();
+    console.log(perms)
     return perms.includes(permission)
   }
 
   async getUser() {
-    await until(this.ready())
+    await until(this._ready)
     return await firstValueFrom(this.auth0.user$) as User
   }
 }
