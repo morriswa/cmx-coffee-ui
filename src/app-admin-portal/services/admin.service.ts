@@ -10,4 +10,8 @@ export class AdminService {
   async getApplicants() {
     return this.api.getApplicants()
   }
+
+  async processApplicant(application_id: number, action: 'approve' | 'reject') {
+    return this.api.processApplicant(application_id, action);
+  }
 }

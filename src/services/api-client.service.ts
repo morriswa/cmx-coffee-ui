@@ -40,23 +40,15 @@ export class ApiClient {
 
 
   // publics
-  public health(): Promise<any> {
+  health(): Promise<any> {
     return this.request<any>("GET", 'health');
   }
 
-  public secure_health(): Promise<any> {
-    return this.request<any>("GET", 's/health');
-  }
-
-  public admin_health(): Promise<any> {
-    return this.request<any>("GET", 'a/health');
-  }
-
-  public permissions(): Promise<any> {
+  permissions(): Promise<any> {
     return this.request<any>("GET", 'permissions');
   }
 
-  public profile() {
+  profile() {
     return this.request<any>("GET", 'profile');
   }
 
@@ -66,5 +58,9 @@ export class ApiClient {
 
   getApplicants() {
     return this.request<any[]>('GET', 'a/vendor-applications')
+  }
+
+  processApplicant(application_id: number, action: "approve" | "reject"): Promise<void> {
+    return this.request('PUT', `a/vendor-application/${application_id}?action=${action}`)
   }
 }

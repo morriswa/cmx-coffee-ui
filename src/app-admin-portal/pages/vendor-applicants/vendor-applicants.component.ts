@@ -5,13 +5,15 @@ import {Dialog} from "@angular/cdk/dialog";
 import {
   VendorApplicantActionDialogComponent
 } from "./vendor-applicant-action-dialog/vendor-applicant-action-dialog.component";
+import {NgIf} from "@angular/common";
 
 
 @Component({
   selector: 'app-vendor-applicants',
   standalone: true,
   imports: [
-    LoaderComponent
+    LoaderComponent,
+    NgIf
   ],
   templateUrl: './vendor-applicants.component.html',
   styleUrl: './vendor-applicants.component.scss'
@@ -42,10 +44,10 @@ export class VendorApplicantsComponent implements OnInit{
       },
     });
 
-    const ref$ = ref.closed.subscribe((result: any)=>{
+    const ref$ = ref.closed.subscribe(async (result: any)=>{
       if (result?.action==='confirm') {
-        if (action === 'approve') this.approveApplication(application);
-        else if (action === 'reject') this.rejectApplication(application);
+        if (action === 'approve') await this.approveApplication(application.application_id);
+        else if (action === 'reject') await this.rejectApplication(application);
       } else {
         console.log(`no action on application ${application.application_id}`);
       }
@@ -54,11 +56,12 @@ export class VendorApplicantsComponent implements OnInit{
     });
   }
 
-  approveApplication(application: any) {
-    console.log(`implement me, approve application ${application.application_id}`);
+  async approveApplication(application_id: number) {
+    await this.administration.processApplicant(application_id, 'approve')
+    this.applicants.update(apps=>apps?.filter(app=>app.application_id!==application_id))
   }
 
-  rejectApplication(application: any) {
-    console.log(`implement me, reject application ${application.application_id}`);
+  async rejectApplication(application_id: number) {
+    await this.administration.processApplicant(application_id, 'approve')
   }
 }

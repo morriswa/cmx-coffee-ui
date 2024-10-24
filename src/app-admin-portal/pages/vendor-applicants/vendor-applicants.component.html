@@ -14,7 +14,7 @@
       </thead>
       <tbody>
         @for (applicant of applicants; track applicant.application_id) {
-          <tr>
+          <tr *ngIf="applicant.status==='N'">
             <td>{{applicant.business_name}}</td>
             <td><a [href]="'mailto:'+applicant.business_email">{{applicant.business_email}}</a></td>
             <td>{{applicant.phone}}</td>

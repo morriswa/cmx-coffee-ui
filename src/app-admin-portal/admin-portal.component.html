@@ -30,7 +30,7 @@
         <h4>{{ accountName() }}</h4>
         <hr>
         <a class="app-link" routerLink="/">Customer Page</a>
-        <a *ngIf="login.permissions.includes('cmx_coffee:vendor')" class="app-link" routerLink="/admin">Vendor Portal</a>
+        <a *ngIf="login.permissions.includes('cmx_coffee:vendor')" class="app-link" routerLink="/vendor">Vendor Portal</a>
         <hr>
         <a class="app-link" (click)="handleLogout()">Logout</a>
       </div>

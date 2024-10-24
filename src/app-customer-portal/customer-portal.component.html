@@ -50,10 +50,11 @@
           <h4>{{ accountName() }}</h4>
           <hr>
           <a class="app-link" routerLink="/profile">Profile</a>
-          <a *ngIf="login.permissions.includes('cmx_coffee:admin')" class="app-link" routerLink="/admin">Admin Portal</a>
-          <a *ngIf="login.permissions.includes('cmx_coffee:vendor')" class="app-link" routerLink="/admin">Vendor Portal</a>
-          <a class="app-link" routerLink="/forms/vendor-application">vendorapp</a>
           <a class="app-link" routerLink="/not-implemented">Orders</a>
+          <hr>
+          <a *ngIf="login.permissions.includes('cmx_coffee:admin')" class="app-link" routerLink="/admin">Admin Portal</a>
+          <a *ngIf="login.permissions.includes('cmx_coffee:vendor')" class="app-link" routerLink="/vendor">Vendor Portal</a>
+          <a class="app-link" routerLink="/forms/vendor-application">vendorapp</a>
           <hr>
           <a class="app-link" (click)="handleLogout()">Logout</a>
         </div>
