@@ -36,7 +36,7 @@
 }
 
 .app-button-group {
-  @extend .flex-row, .space-between-items, .align-items-center;
+  @extend .flex-row, .align-items-center;
 
   > * {
     &:not(:last-child) {
@@ -58,3 +58,14 @@
   font-family: $header-font-family;
 }
 
+.app-table {
+  text-align: left;
+
+  th, td {
+    padding: 5px 10px;
+  }
+}
+
+.surface {
+  background-color: $white;
+}

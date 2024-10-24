@@ -63,4 +63,8 @@ export class ApiClient {
   applyForVendorship(vendor_application: any) {
     return this.request('POST', 's/forms/vendor-application', vendor_application);
   }
+
+  getApplicants() {
+    return this.request<any[]>('GET', 'a/vendor-applications')
+  }
 }

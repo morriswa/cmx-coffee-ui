@@ -1,1 +1,34 @@
-<h1 style="text-align: center">Vendor Applicants</h1>
+
+<div class="flex-col align-items-center">
+
+  <h1 class="mb-3">Vendor Applicants</h1>
+
+  @if (applicants(); as applicants) {
+    <table class="app-table">
+      <thead>
+      <th>BIZ NAME</th>
+      <th>EMAIL</th>
+      <th>PHONE</th>
+      <th>ADDRESS</th>
+      <th>ACTION</th>
+      </thead>
+      <tbody>
+        @for (applicant of applicants; track applicant.application_id) {
+          <tr>
+            <td>{{applicant.business_name}}</td>
+            <td>{{applicant.business_email}}</td>
+            <td>{{applicant.phone}}</td>
+            <td>{{applicant.formatted_address}}</td>
+            <td>
+              <a class="app-link" (click)="handleApprovePopup(applicant)">Approve</a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+  @else {
+    <app-loader/>
+  }
+
+</div>
