@@ -23,7 +23,6 @@ export class LoginService {
 
   constructor() {
     const authCheck = this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
-      console.log("was authenticated", isAuthenticated);
       if (isAuthenticated) {
         await this.refreshPerms();
       }

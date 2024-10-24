@@ -6,7 +6,7 @@
 
   <br>
   <p>Name: {{ application.business_name }}</p>
-  <p>Email: {{ application.business_email }}</p>
+  <span>Email: <a [href]="'mailto:'+application.business_email">{{application.business_email}}</a></span>
   <p>Phone: {{ application.phone }}</p>
   <p>Address: {{ application.formatted_address }}</p>
 

@@ -16,7 +16,7 @@
         @for (applicant of applicants; track applicant.application_id) {
           <tr>
             <td>{{applicant.business_name}}</td>
-            <td>{{applicant.business_email}}</td>
+            <td><a [href]="'mailto:'+applicant.business_email">{{applicant.business_email}}</a></td>
             <td>{{applicant.phone}}</td>
             <td>{{applicant.formatted_address}}</td>
             <td>
