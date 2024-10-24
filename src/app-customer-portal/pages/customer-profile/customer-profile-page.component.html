@@ -1,6 +1,6 @@
 
 @if (user(); as user) {
-  <h1>Hello {{ user.name.split(' ')[0] }}</h1>
+  <h1>Hello {{ firstName() }}</h1>
   <br>
 
   <img [src]="user.picture">

@@ -1,4 +1,4 @@
-import {Component, inject, OnInit, signal, WritableSignal} from "@angular/core";
+import {Component, computed, inject, OnInit, signal, WritableSignal} from "@angular/core";
 import {LoginService} from "src/services/login.service";
 
 @Component({
@@ -10,6 +10,15 @@ export class CustomerProfilePageComponent implements OnInit {
   login = inject(LoginService);
   user: WritableSignal<any> = signal(undefined);
   accountComplete: WritableSignal<boolean> = signal(false);
+  firstName = computed(()=>{
+    const user = this.user();
+    if (user?.name) {
+      const fullName = user.name;
+      const names = fullName.split(' ');
+      return names[0];
+    }
+    return ''
+  })
 
   async ngOnInit() {
 
