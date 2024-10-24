@@ -15,8 +15,11 @@ export class LoginService {
   private apiClient = inject(ApiClient);
   private router = inject(Router);
 
+
+  // state
   private _permissions: WritableSignal<string[]> = signal([]);
   private _ready: WritableSignal<boolean> = signal(false);
+
 
   constructor() {
     const authCheck = this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
@@ -30,11 +33,8 @@ export class LoginService {
     });
   }
 
-  private async refreshPerms() {
-    const perms = await this.apiClient.permissions()
-    this._permissions.set(perms);
-  }
 
+  // publics
   async login(dest: string[] = ['/']): Promise<void> {
     localStorage.setItem('login-service.login.dest', JSON.stringify(dest))
 
@@ -80,9 +80,7 @@ export class LoginService {
 
   async hasPermission(permission: string): Promise<boolean> {
     await until(this._ready)
-    console.log('ready')
     const perms = this._permissions();
-    console.log(perms)
     return perms.includes(permission)
   }
 
@@ -90,4 +88,12 @@ export class LoginService {
     await until(this._ready)
     return await firstValueFrom(this.auth0.user$) as User
   }
+
+
+  // logic
+  private async refreshPerms() {
+    const perms = await this.apiClient.permissions()
+    this._permissions.set(perms);
+  }
+
 }

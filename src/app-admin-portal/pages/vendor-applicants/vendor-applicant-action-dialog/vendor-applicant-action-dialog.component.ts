@@ -10,12 +10,13 @@ import {DIALOG_DATA, DialogRef} from "@angular/cdk/dialog";
 export class VendorApplicantActionDialogComponent {
   ref = inject(DialogRef);
   data = inject(DIALOG_DATA);
+  application = this.data.application;
 
   handleCancel() {
     this.ref.close({'action': 'discard'});
   }
 
   handleSubmit() {
-    this.ref.close({'action': 'approve'});
+    this.ref.close({'action': 'confirm'});
   }
 }

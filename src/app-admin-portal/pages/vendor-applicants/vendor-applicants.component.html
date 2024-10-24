@@ -6,11 +6,11 @@
   @if (applicants(); as applicants) {
     <table class="app-table">
       <thead>
-      <th>BIZ NAME</th>
-      <th>EMAIL</th>
-      <th>PHONE</th>
-      <th>ADDRESS</th>
-      <th>ACTION</th>
+        <th>BIZ NAME</th>
+        <th>EMAIL</th>
+        <th>PHONE</th>
+        <th>ADDRESS</th>
+        <th>ACTIONS</th>
       </thead>
       <tbody>
         @for (applicant of applicants; track applicant.application_id) {
@@ -20,7 +20,11 @@
             <td>{{applicant.phone}}</td>
             <td>{{applicant.formatted_address}}</td>
             <td>
-              <a class="app-link" (click)="handleApprovePopup(applicant)">Approve</a>
+              <span>
+                <a class="app-link" (click)="handleActionPopup(applicant, 'approve')">Approve</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="app-link" (click)="handleActionPopup(applicant, 'reject')">Reject</a>
+              </span>
             </td>
           </tr>
         }
