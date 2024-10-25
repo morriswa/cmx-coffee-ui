@@ -1,70 +1,161 @@
+// TEXT FORMATTING //
+.small-text {
+  font-size: 20px;
+  color: #54524E;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
 
+// LANDING SCREEN //
 .landing-h1{
   display: flex;
   flex-direction: column;
   color: #EC5F46;
-  font-size: 50px;
-  padding-right: 300px;
+  font-size: 85px;
+  padding-right: 0px;
   text-align: left;
-  text-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+  text-shadow: -10px 10px 5px rgba(0, 0, 0, 0.264);
+  line-height: 1.15;
+  padding: 40px;
 }
-.landing-h2{
-  color: #EC5F46;
-  text-align: center;
-  font-size: 40px;
+.opening-pitch {
+  font-size: 28px;
+  color: #21201F;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  position: relative;
+  top: -30px;
+  left: 40px;
 }
-
-.landing2{
-  background-color: #FFFFFF;
-  text-align: center;
-  color: #54524E
-}
-
-.fun-facts{
-  width: 1269px;
-  height: 438px;
-  background-color: #ECEAE5;
-  margin-left: auto;
-  margin-right: auto;
-
-}
-
 .coffee-image1{
   position: absolute;
-  height: 449px;
-  width: 447px;
-  top: 200px;
-  left: 900px;
+  height: 700px;
+  width: auto;
+  top: 210px;
+  right: 20px;
 }
-
-.opening-pitch {
-  font-size: 25px;
-  color: #21201F
-}
-
+// BUTTONS ON LANDING SCREEN //
 .home-page-btns {
   display: flex;
   flex-direction: row;
   height: 48px;
-  width:170px;
-  margin-top: 50px;
+  width: 700px;
+  position: relative;
+  top: 0px;
+  left: 40px;
 }
 .get-started-btn{
   margin-right: 10px;
   background-color: #EC5F46;
   color: #FFFFFF;
-  width: 128px;
-  height: 48px;
+  width: 180px;
+  height: 60px;
+  box-shadow: -10px 10px 5px rgba(0, 0, 0, 0.264);
   cursor: pointer;
 
 }
-
 .learn-more-btn{
   background-color: #FFFFFF;
   color: #000000;
   margin-left: 10px;
-  width: 128px;
-  height: 48px;
+  width: 180px;
+  height: 60px;
+  box-shadow: -10px 10px 5px rgba(0, 0, 0, 0.264);
   cursor: pointer;
-
 }
+
+// LANDING SCREEN 2 (FUN FACTS) //
+.landing-h2{
+  color: #EC5F46;
+  text-align: center;
+  font-size: 45px;
+  letter-spacing: 1px;
+  position: relative;
+  top: 80px;
+}
+.landing2 {
+  width: 100vw;
+  height: 1000px; 
+  background-color: #FAF9F5;
+  position: relative; 
+  top: 70px;
+  left: -20px;
+  z-index: -1; 
+}
+.landing2-pitch {
+  position: relative;
+  top: 80px;
+  text-align: center;
+}
+
+// FUN FACTS GRID CSS //
+.container{
+  margin: 20px auto;
+  width:400px;
+  height:400px;
+  // background-color:#fff;
+  display:grid;
+  grid-template-columns: 600px 600px;
+  grid-row: auto auto;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  position: relative;
+  top: 80px;
+  left: -400px;
+  .box{
+    background-color:#ECEAE5;
+    padding:20px;
+    border-radius:10px;
+    color:#21201F;
+    // display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    font-family:sans-serif;
+  }
+}
+.fact-text {
+  font-size: 28px;
+  color: #21201F;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  font-weight: bold;
+}
+
+// .blob {
+//   position: relative;
+//   top: 100px;
+//   width: 100%;
+// }
+.blob {
+  position: absolute; /* Use absolute instead of fixed */
+  top: 100px; /* Adjust initial vertical position */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Centering */
+  z-index: -1; /* Behind other content */
+  pointer-events: none; /* Prevent mouse events */
+  transition: transform 0.1s ease-out; /* Smooth movement */
+}
+
+// LANDING SCREEN 3 //
+.landing3 {
+  width: 100vw;
+  height: 1000px; 
+  background-color: #EC5F46;
+  position: relative; 
+  top: 70px;
+  left: -20px;
+  z-index: -1; 
+}
+.landing-h3{
+  color: #FAF9F5;
+  text-align: center;
+  font-size: 45px;
+  letter-spacing: 1px;
+  position: relative;
+  top: 80px;
+}
+
+
+
+////////////////////
