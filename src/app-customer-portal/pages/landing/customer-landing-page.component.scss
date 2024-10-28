@@ -243,3 +243,22 @@
 .feature-content-2 h2{
   font-size: 48px;
 }
+
+.coffee-journey{
+  width: 1440px;
+  height: 608px;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.journey-content{
+  width: 768px;
+  height: 194px;
+}
+
+.journey-content h2{
+  font-size: 49px;
+  color: #EC5F46;
+}
