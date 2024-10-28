@@ -29,6 +29,7 @@ const routesConfig: Routes = [
       },
       {
         path: "profile",
+        canActivate: [HasPermission('cmx_coffee:appuser')],
         loadComponent: () => import('src/app-customer-portal/pages/customer-profile/customer-profile-page.component')
           .then(m=>m.CustomerProfilePageComponent)
       },

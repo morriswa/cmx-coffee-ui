@@ -1,0 +1,60 @@
+
+<div class="flex-col surface p-4 space-between-items" style="height: 450px; width: 300px">
+  <div>
+    <h1 class="mb-3">Taste Questionnaire</h1>
+
+    @if (page()<PAGE_COUNT) {
+      <h2>Question {{page()}}</h2>
+    } @else {
+      <h2>You did it!!!</h2>
+    }
+
+    @switch (page()) {
+      @case (1) {
+        <h4>How strong do you like your coffee?</h4>
+        <app-radio-button-group class="mt-3" [radioButtonFormControl]="pageOneCoffeeStrengthForm"></app-radio-button-group>
+      }
+      @case (2) {
+        <h4>Do you enjoy flavored coffee?</h4>
+        <app-radio-button-group class="mt-3" [radioButtonFormControl]="pageTwoFlavoredCoffeeForm"></app-radio-button-group>
+      }
+      @case (3) {
+        <h4>I drink my coffee with...</h4>
+        <app-radio-button-group class="mt-3" [radioButtonFormControl]="pageThreeCreamersForm"></app-radio-button-group>
+      }
+      @case (4) {
+        <h4>I use my cup of coffee to...</h4>
+        <app-radio-button-group class="mt-3" [radioButtonFormControl]="pageFourCoffeeTimeForm"></app-radio-button-group>
+      }
+      @case (5) {
+        <h4>Select flavor notes</h4>
+        <app-radio-button-group class="mt-3" [radioButtonFormControl]="pageFiveFlavorNotesForm"></app-radio-button-group>
+      }
+      @case (6) {
+        <h4>Do you prefer single origin or blends</h4>
+        <app-radio-button-group class="mt-3" [radioButtonFormControl]="pageSixSingleOriginForm"></app-radio-button-group>
+      }
+      @case (7) {
+        <h4>I make coffee with a(n)...</h4>
+        <app-radio-button-group class="mt-3" [radioButtonFormControl]="pageSevenCoffeeToolForm"></app-radio-button-group>
+      }
+      @case (8) {
+        <h4>One more</h4>
+        <app-radio-button-group class="mt-3" [radioButtonFormControl]="pageEightForm"></app-radio-button-group>
+      }
+      @case (9) {
+        <div class="app-button-group mt-3">
+          <button class="app-button" (click)="handleSubmit()">Save and Complete</button>
+        </div>
+      }
+      @default {
+        <p>This page shouldn't be showed...</p>
+      }
+    }
+  </div>
+
+  <div *ngIf="page()<PAGE_COUNT" class="app-button-group">
+    <button class="app-button" [disabled]="backwardDisabled()" (click)="backward()">Previous</button>
+    <button class="app-button" [disabled]="forwardDisabled()" (click)="forward()">Next</button>
+  </div>
+</div>

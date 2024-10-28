@@ -1,13 +1,12 @@
 
 @if (user(); as user) {
   <h1>Hello {{ firstName() }}</h1>
-  <br>
 
+  <br>
   <img [src]="user.picture">
   <p>Name: {{ user.name }}</p>
   <p>Email: {{ user.email }}</p>
 
   <br>
-  <h2>{{ !accountComplete()? 'Complete taste profile' : 'Edit taste profile' }}</h2>
-  <input placeholder="implement me">
+  <button (click)="openTasteQuestionnaire()">{{ !accountComplete()? 'Complete taste profile' : 'Edit taste profile' }}</button>
 }

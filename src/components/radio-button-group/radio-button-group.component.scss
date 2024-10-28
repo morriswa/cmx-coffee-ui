@@ -1,0 +1,29 @@
+@use "src/styles/variables" as *;
+
+.radio-button-group {
+  width: fit-content;
+}
+
+.radio-button-wrapper {
+  margin-bottom: 10px; // space between the buttons
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+}
+
+.radio-button {
+
+  padding: 10px;
+  border: solid 2px $black;
+  border-radius: 50%;
+
+  &.activated-radio-button {
+    background-color: $black;
+  }
+}
+
+.radio-button-label {
+  margin-left: 5px; // space from button to number label
+}

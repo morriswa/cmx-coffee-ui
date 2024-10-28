@@ -1,5 +1,8 @@
 import {Component, computed, inject, OnInit, signal, WritableSignal} from "@angular/core";
 import {LoginService} from "src/services/login.service";
+import {Dialog} from "@angular/cdk/dialog";
+import {TasteQuestionnaireComponent} from "../taste-questionnaire/taste-questionnaire.component";
+
 
 @Component({
   selector: 'customer-landing-page',
@@ -7,7 +10,13 @@ import {LoginService} from "src/services/login.service";
   standalone: true,
 })
 export class CustomerProfilePageComponent implements OnInit {
+
+  // services
   login = inject(LoginService);
+  dialogs = inject(Dialog);
+
+
+  // state
   user: WritableSignal<any> = signal(undefined);
   accountComplete: WritableSignal<boolean> = signal(false);
   firstName = computed(()=>{
@@ -20,11 +29,19 @@ export class CustomerProfilePageComponent implements OnInit {
     return ''
   })
 
+
+  // lifecycle
   async ngOnInit() {
 
     let user = await this.login.getUser()
     let hasCustomerPermission = await this.login.hasPermission('cmx_coffee:customer')
     this.user.set(user);
     this.accountComplete.set(hasCustomerPermission)
+  }
+
+
+
+  openTasteQuestionnaire() {
+    const ref = this.dialogs.open(TasteQuestionnaireComponent);
   }
 }
