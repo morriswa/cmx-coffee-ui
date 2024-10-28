@@ -28,6 +28,12 @@ const routesConfig: Routes = [
           .then(m=>m.ShopPageComponent)
       },
       {
+        path: "plans",
+        canActivate: [HasPermission('cmx_coffee:appuser')],
+        loadComponent: () => import('src/app-customer-portal/pages/subscription-plans/subscription-plans-page.component')
+          .then(m=>m.SubscriptionPlansPageComponent)
+      },
+      {
         path: "profile",
         canActivate: [HasPermission('cmx_coffee:appuser')],
         loadComponent: () => import('src/app-customer-portal/pages/customer-profile/customer-profile-page.component')
