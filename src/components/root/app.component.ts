@@ -15,20 +15,22 @@ import {
   RouterOutlet
 } from "@angular/router";
 import {Subscription} from "rxjs";
+import {FullscreenAppLoaderComponent} from "../fullscreen-app-loader/fullscreen-app-loader.component";
 
 
 @Component({
   selector: "app-root",
   template: `
     @if (loading()) {
-      <h1>Loading</h1>
+      <app-fullscreen-loader/>
     } @else {
       <router-outlet/>
     }
   `,
   standalone: true,
   imports: [
-    RouterOutlet
+    RouterOutlet,
+    FullscreenAppLoaderComponent
   ],
   host: {'class': 'flex-child'}
 })

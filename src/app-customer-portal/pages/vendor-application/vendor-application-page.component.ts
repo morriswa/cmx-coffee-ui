@@ -1,7 +1,7 @@
 import {Component, inject, signal, ViewChild, WritableSignal} from "@angular/core";
-import {AddressFormComponent} from "../../components/address-form/address-form.component";
+import {AddressFormComponent} from "../../../components/address-form/address-form.component";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ApiClient} from "../../services/api-client.service";
+import {ApiClient} from "../../../services/api-client.service";
 import {VendorApplication} from "src/types/vendor.type";
 
 

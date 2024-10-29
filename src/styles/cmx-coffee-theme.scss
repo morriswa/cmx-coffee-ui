@@ -1,9 +1,6 @@
 @use "variables" as *;
 @use "tools" as *;
 
-// ng cdk
-@import "@angular/cdk/overlay-prebuilt.css";
-
 
 .app-header {
   @extend .flex-row, .space-between-items, .align-items-center;
@@ -12,9 +9,9 @@
   padding: 10px 20px;
 }
 
-.app-link{
+.app-link {
   color: $primary-color;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: $font-family;
   font-size: $font-size-med;
   font-weight: $bold-font-weight;
   cursor: pointer;
@@ -36,7 +33,7 @@
 }
 
 .app-button-group {
-  @extend .flex-row, .space-between-items, .align-items-center;
+  @extend .flex-row, .align-items-center;
 
   > * {
     &:not(:last-child) {
@@ -58,3 +55,15 @@
   font-family: $header-font-family;
 }
 
+.app-table {
+  text-align: left;
+
+  th, td {
+    padding: 5px 10px;
+    vertical-align: top;
+  }
+}
+
+.surface {
+  background-color: $white;
+}

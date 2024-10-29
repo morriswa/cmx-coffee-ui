@@ -2,3 +2,6 @@
 @forward "styles/tools";
 @forward "styles/overrides";
 @forward "styles/cmx-coffee-theme";
+// global imports
+// ng cdk
+@import "@angular/cdk/overlay-prebuilt.css";

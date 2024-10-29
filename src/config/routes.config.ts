@@ -6,6 +6,7 @@ import {AccessDeniedComponent} from "src/pages/access-denied/access-denied.compo
 import {AdminService} from "../app-admin-portal/services/admin.service";
 import {NotImplementedComponent} from "src/pages/not-implemented/not-implemented.component";
 import {LogoutComponent} from "src/pages/logout/logout.component";
+import {VendorService} from "../app-vendor-portal/services/vendor.service";
 
 
 const routesConfig: Routes = [
@@ -28,14 +29,21 @@ const routesConfig: Routes = [
           .then(m=>m.ShopPageComponent)
       },
       {
+        path: "plans",
+        canActivate: [HasPermission('cmx_coffee:appuser')],
+        loadComponent: () => import('src/app-customer-portal/pages/subscription-plans/subscription-plans-page.component')
+          .then(m=>m.SubscriptionPlansPageComponent)
+      },
+      {
         path: "profile",
+        canActivate: [HasPermission('cmx_coffee:appuser')],
         loadComponent: () => import('src/app-customer-portal/pages/customer-profile/customer-profile-page.component')
           .then(m=>m.CustomerProfilePageComponent)
       },
       {
         path: "forms/vendor-application",
         canActivate: [HasPermission('cmx_coffee:appuser')],
-        loadComponent: () => import('src/pages/vendor-application/vendor-application-page.component')
+        loadComponent: () => import('src/app-customer-portal/pages/vendor-application/vendor-application-page.component')
           .then(m=>m.VendorApplicationPageComponent)
       },
     ]
@@ -44,18 +52,23 @@ const routesConfig: Routes = [
     title: "Vendor Settings",
     path: "vendor",
     canActivate: [HasPermission('cmx_coffee:vendor')],
+    providers: [VendorService],
     loadComponent: ()=>import('src/app-vendor-portal/vendor-portal.component')
       .then(m=>m.VendorPortalComponent),
     children: [
       {
-        path: "",
-        pathMatch: "full",
-        loadComponent: ()=>import('src/app-vendor-portal/pages/vendor-landing-page/vendor-landing-page.component')
-          .then(m=>m.VendorLandingPageComponent)
+        path: "product/:productId",
+        loadComponent: () => import('src/app-vendor-portal/pages/vendor-manage-product-details/vendor-manage-product-details-page.component')
+          .then(m=>m.VendorManageProductDetailsPageComponent)
+      },
+      {
+        path: "products",
+        loadComponent: ()=>import('src/app-vendor-portal/pages/manage-products/manage-products-page.component')
+          .then(m=>m.ManageProductsPageComponent)
       },
       {
         path: "**",
-        redirectTo: ""
+        redirectTo: "products"
       }
     ]
   },
