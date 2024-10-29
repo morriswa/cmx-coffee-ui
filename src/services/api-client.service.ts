@@ -67,4 +67,8 @@ export class ApiClient {
   getProductsForVendor() {
     return this.request<any[]>('GET', 's/vendor/products');
   }
+
+  getProductDetailsForVendor(productId: number) {
+    return this.request('GET', `s/vendor/product/${productId}`);
+  }
 }

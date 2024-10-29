@@ -1,0 +1,12 @@
+
+@if (productDetails(); as product) {
+  <h1>Currently viewing {{product.product_name}}</h1>
+
+  <h2>TODO add images/upload image dialog</h2>
+  <br>
+  <h3>ID: {{product.product_id}}</h3>
+  <h3>Desc: {{product.description}}</h3>
+  <h3>Initial Price: {{product.initial_price | currency}}</h3>
+} @else {
+  <app-loader/>
+}

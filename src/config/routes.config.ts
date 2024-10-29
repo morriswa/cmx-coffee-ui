@@ -57,6 +57,11 @@ const routesConfig: Routes = [
       .then(m=>m.VendorPortalComponent),
     children: [
       {
+        path: "product/:productId",
+        loadComponent: () => import('src/app-vendor-portal/pages/vendor-manage-product-details/vendor-manage-product-details-page.component')
+          .then(m=>m.VendorManageProductDetailsPageComponent)
+      },
+      {
         path: "products",
         loadComponent: ()=>import('src/app-vendor-portal/pages/manage-products/manage-products-page.component')
           .then(m=>m.ManageProductsPageComponent)

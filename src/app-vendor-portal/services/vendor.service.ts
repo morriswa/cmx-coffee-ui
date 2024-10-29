@@ -8,4 +8,8 @@ export class VendorService {
   async getProducts() {
     return this.api.getProductsForVendor();
   }
+
+  async getProductDetails(productId: number) {
+    return this.api.getProductDetailsForVendor(productId);
+  }
 }
