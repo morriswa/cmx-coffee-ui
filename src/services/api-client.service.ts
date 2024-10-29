@@ -71,4 +71,8 @@ export class ApiClient {
   getProductDetailsForVendor(productId: number) {
     return this.request('GET', `s/vendor/product/${productId}`);
   }
+
+  getProductImages(productId: number) {
+    return this.request<string[]>('GET', `s/product/${productId}/image`);
+  }
 }

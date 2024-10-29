@@ -12,4 +12,8 @@ export class VendorService {
   async getProductDetails(productId: number) {
     return this.api.getProductDetailsForVendor(productId);
   }
+
+  async getProductImages(productId: number) {
+    return this.api.getProductImages(productId);
+  }
 }

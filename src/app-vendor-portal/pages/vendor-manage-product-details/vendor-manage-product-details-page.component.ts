@@ -1,7 +1,7 @@
 import {Component, inject, OnInit, signal, WritableSignal} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {VendorService} from "../../services/vendor.service";
-import {CurrencyPipe, NgIf} from "@angular/common";
+import {CurrencyPipe, NgIf, NgOptimizedImage} from "@angular/common";
 import {LoaderComponent} from "../../../components/loader/loader.component";
 
 
@@ -11,7 +11,8 @@ import {LoaderComponent} from "../../../components/loader/loader.component";
   imports: [
     NgIf,
     CurrencyPipe,
-    LoaderComponent
+    LoaderComponent,
+    NgOptimizedImage
   ],
   standalone: true
 })
@@ -25,7 +26,7 @@ export class VendorManageProductDetailsPageComponent implements OnInit {
   // state
   productId: number;
   productDetails: WritableSignal<any> = signal(undefined);
-
+  productImages: WritableSignal<string[]> = signal([])
 
   // lifecycle
   constructor() {
@@ -34,7 +35,8 @@ export class VendorManageProductDetailsPageComponent implements OnInit {
 
   async ngOnInit() {
     this.productDetails.set(await this.vendorship.getProductDetails(this.productId));
+    const images = await this.vendorship.getProductImages(this.productId)
+    this.productImages.set(images ?? []);
   }
-
 
 }
