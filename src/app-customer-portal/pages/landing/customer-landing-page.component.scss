@@ -1,74 +1,53 @@
+@use "src/styles/variables" as *;
 
-.landing-h1{
-  display: flex;
-  flex-direction: column;
-  color: #EC5F46;
-  font-size: 50px;
-  padding-right: 300px;
-  text-align: left;
-  text-shadow: 5px 5px 0px rgba(0,0,0,0.2);
-  margin-left: 25px;
+
+.statement-header {
+  font-family: $header-font-family;
+  color: $primary-color;
+  font-size: $font-size-xl;
+  text-shadow: 5px 5px 0 rgba(0,0,0,0.2);
 }
-.landing-h2{
-  color: #EC5F46;
+
+.landing-header-2 {
+  color: $primary-color;
   text-align: center;
-  font-size: 40px;
+  font-size: $font-size-lg;
 }
 
-.landing2{
-  width: 1440px;
-  height: 980px;
-  margin-top: 100px;
-  background-color: #FFFFFF;
-  text-align: center;
-  color: #54524E
+.background-overlay-2 {
+  margin: 100px 0 0 0;
+  background-color: $white;
+  color: $text-color;
 }
 
-.fun-facts{
-  display: flex;
-  width: 1269px;
-  height: 438px;
-  background-color: #ECEAE5;
-  margin-left: auto;
-  margin-right: auto;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
+.fun-facts {
+  width: 90vw;
+  background-color: $body-background-color;
   margin-top: 100px;
-
+  padding: 25px;
 }
 
 .top-facts{
-  width: 564px;
-  height: 162px;
-  text-align: left;
-  font-size: 16px;
+  width: 49%;
+  margin-bottom: 25px;
+}
+
+.page-divider-image {
+  width: 100vw;
 }
 
 .coffee-image1{
   position: absolute;
-  height: 449px;
-  width: 447px;
   top: 200px;
   left: 900px;
 }
 
 .opening-pitch {
-  font-size: 25px;
-  color: #21201F;
-  margin-left: 25px;
-
+  width: 60%;
+  font-size: $font-size-subtitle;
+  color: $text-color;
 }
 
-.home-page-btns {
-  display: flex;
-  flex-direction: row;
-  height: 48px;
-  width:300px;
-  margin-top: 50px;
-  margin-left: 25px;
-}
 .get-started-btn{
   margin-right: 20px;
   align-items: center;
@@ -190,80 +169,31 @@
   outline: 0;
 }
 
-.featured-coffee-1{
-  width: 1440px;
-  height: 864px;
-  background-color: #EC5F46;
-  color: #FFFFFF;
+.featured-coffee-1 {
+  min-height: 80vh;
+  background-color: $primary-color;
+  color: $white;
 }
 
 .feature-coffee-2{
-  width: 1440px;
-  height: 864px;
-  background-color: #ECEAE5;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
+  min-height: 80vh;
+  background-color: $body-background-color;
 }
 
-.featured-coffee-container-1{
-  width: 1312px;
-    height: 640px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-end;
-}
+.feature-content {
+  width: 55%;
+  font-size: $font-size-med;
 
-.feature-content-1{
-  width: 616px;
-  height: 443px;
-  font-size: 18px;
-}
-.feature-content-1 h2{
-  font-size: 48px;
-}
-
-.coffee-image2{
-  height: 576px;
-  width: 522px;
-}
-
-.coffee-image3{
-  height: 576px;
-  width: 552px;
-}
-
-.feature-content-2{
-  width: 616px;
-  height: 443px;
-  font-size: 18px;
-}
-
-.feature-content-2 h2{
-  font-size: 48px;
+  .header {
+    font-size: $font-size-lg
+  }
 }
 
 .coffee-journey{
-  width: 1440px;
-  height: 608px;
-  background-color: #FFFFFF;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  min-height: 70vh;
+  background-color: $white;
 }
 
 .journey-content{
-  width: 768px;
-  height: 194px;
-  margin-bottom: 30px;
-}
-
-.journey-content h2{
-  font-size: 49px;
-  color: #EC5F46;
-  margin-bottom: 12px;
+  width: 70%;
 }
