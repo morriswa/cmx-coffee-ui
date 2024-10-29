@@ -1,0 +1,30 @@
+
+<div class="flex-col align-items-center">
+
+  <h1 class="mb-3">Offered Products</h1>
+
+  @if (products(); as products) {
+    <table class="app-table">
+      <thead>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+      </thead>
+      <tbody>
+        @for (product of products; track product.product_id) {
+          <tr>
+            <td>{{product.product_id}}</td>
+            <td>{{product.product_name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.initial_price | currency }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+  @else {
+    <app-loader/>
+  }
+
+</div>

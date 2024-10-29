@@ -5,6 +5,7 @@ import {NgIf} from "@angular/common";
 import {LoginService} from "../services/login.service";
 import {Subscription} from "rxjs";
 
+
 @Component({
   selector: 'app-app-vendor-portal',
   standalone: true,
@@ -16,7 +17,8 @@ import {Subscription} from "rxjs";
         RouterLink
     ],
   templateUrl: './vendor-portal.component.html',
-  styleUrl: './vendor-portal.component.scss'
+  styleUrl: './vendor-portal.component.scss',
+  host: {'class': 'flex-child'},
 })
 export class VendorPortalComponent implements OnInit, OnDestroy {
 

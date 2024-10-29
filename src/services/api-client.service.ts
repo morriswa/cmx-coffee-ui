@@ -63,4 +63,8 @@ export class ApiClient {
   processApplicant(application_id: number, action: "approve" | "reject"): Promise<void> {
     return this.request('PUT', `a/vendor-application/${application_id}?action=${action}`)
   }
+
+  getProductsForVendor() {
+    return this.request<any[]>('GET', 's/vendor/products');
+  }
 }

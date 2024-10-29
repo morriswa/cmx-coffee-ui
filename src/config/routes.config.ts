@@ -6,6 +6,7 @@ import {AccessDeniedComponent} from "src/pages/access-denied/access-denied.compo
 import {AdminService} from "../app-admin-portal/services/admin.service";
 import {NotImplementedComponent} from "src/pages/not-implemented/not-implemented.component";
 import {LogoutComponent} from "src/pages/logout/logout.component";
+import {VendorService} from "../app-vendor-portal/services/vendor.service";
 
 
 const routesConfig: Routes = [
@@ -51,18 +52,18 @@ const routesConfig: Routes = [
     title: "Vendor Settings",
     path: "vendor",
     canActivate: [HasPermission('cmx_coffee:vendor')],
+    providers: [VendorService],
     loadComponent: ()=>import('src/app-vendor-portal/vendor-portal.component')
       .then(m=>m.VendorPortalComponent),
     children: [
       {
-        path: "",
-        pathMatch: "full",
-        loadComponent: ()=>import('src/app-vendor-portal/pages/vendor-landing-page/vendor-landing-page.component')
-          .then(m=>m.VendorLandingPageComponent)
+        path: "products",
+        loadComponent: ()=>import('src/app-vendor-portal/pages/manage-products/manage-products-page.component')
+          .then(m=>m.ManageProductsPageComponent)
       },
       {
         path: "**",
-        redirectTo: ""
+        redirectTo: "products"
       }
     ]
   },
