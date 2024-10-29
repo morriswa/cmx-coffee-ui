@@ -1,5 +1,5 @@
 import {Component, inject} from "@angular/core";
-import {TasteQuestionnaireComponent} from "../taste-questionnaire/taste-questionnaire.component";
+import {CoffeeQuestionnaireComponent} from "../../components/taste-questionnaire/coffee-questionnaire.component";
 import {Dialog} from "@angular/cdk/dialog";
 
 @Component({
@@ -12,6 +12,6 @@ export class SubscriptionPlansPageComponent {
   dialogs = inject(Dialog);
 
   openTasteQuestionnaire() {
-    const ref = this.dialogs.open(TasteQuestionnaireComponent);
+    const ref = this.dialogs.open(CoffeeQuestionnaireComponent);
   }
 }

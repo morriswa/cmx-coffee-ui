@@ -12,7 +12,7 @@
     @switch (page()) {
       @case (1) {
         <h4>How strong do you like your coffee?</h4>
-        <app-radio-button-group class="mt-3" [radioButtonFormControl]="pageOneCoffeeStrengthForm"></app-radio-button-group>
+        <app-checkbox-selector class="mt-3" [checkboxSelectorFormControl]="pageOneCoffeeStrengthForm"></app-checkbox-selector>
       }
       @case (2) {
         <h4>Do you enjoy flavored coffee?</h4>
@@ -20,15 +20,15 @@
       }
       @case (3) {
         <h4>I drink my coffee with...</h4>
-        <app-radio-button-group class="mt-3" [radioButtonFormControl]="pageThreeCreamersForm"></app-radio-button-group>
+        <app-checkbox-selector class="mt-3" [checkboxSelectorFormControl]="pageThreeCreamersForm"></app-checkbox-selector>
       }
       @case (4) {
         <h4>I use my cup of coffee to...</h4>
-        <app-radio-button-group class="mt-3" [radioButtonFormControl]="pageFourCoffeeTimeForm"></app-radio-button-group>
+        <app-checkbox-selector class="mt-3" [checkboxSelectorFormControl]="pageFourCoffeeTimeForm"></app-checkbox-selector>
       }
       @case (5) {
         <h4>Select flavor notes</h4>
-        <app-radio-button-group class="mt-3" [radioButtonFormControl]="pageFiveFlavorNotesForm"></app-radio-button-group>
+        <app-checkbox-selector class="mt-3" [checkboxSelectorFormControl]="pageFiveFlavorNotesForm"></app-checkbox-selector>
       }
       @case (6) {
         <h4>Do you prefer single origin or blends</h4>
@@ -36,7 +36,7 @@
       }
       @case (7) {
         <h4>I make coffee with a(n)...</h4>
-        <app-radio-button-group class="mt-3" [radioButtonFormControl]="pageSevenCoffeeToolForm"></app-radio-button-group>
+        <app-checkbox-selector class="mt-3" [checkboxSelectorFormControl]="pageSevenCoffeeToolForm"></app-checkbox-selector>
       }
       @case (8) {
         <h4>One more</h4>

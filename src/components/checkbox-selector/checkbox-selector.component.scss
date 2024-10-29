@@ -1,0 +1,29 @@
+@use "src/styles/variables" as *;
+
+.checkbox-selector {
+  width: fit-content;
+}
+
+.checkbox-wrapper {
+  margin-bottom: 10px; // space between the buttons
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+}
+
+.checkbox-button {
+
+  padding: 10px;
+  border: solid 2px $black;
+  border-radius: 5px;
+
+  &.activated-checkbox-button {
+    background-color: $black;
+  }
+}
+
+.checkbox-button-label {
+  margin-left: 5px; // space from button to number label
+}

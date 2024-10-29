@@ -1,0 +1,17 @@
+
+<div class="flex-col checkbox-selector">
+  @for (button of checkboxSelectorFormControl.options; track button.value) {
+    <div class="checkbox-wrapper flex-row align-items-center">
+      <div
+        class="checkbox-button"
+        [ngClass]="{
+          'activated-checkbox-button': checkboxSelectorFormControl.value.includes(button.value)
+        }"
+        (keydown)="toggleOption(button)"
+        (click)="toggleOption(button)"
+      >
+      </div>
+      <span class="checkbox-button-label">{{ button.label }}</span>
+    </div>
+  }
+</div>

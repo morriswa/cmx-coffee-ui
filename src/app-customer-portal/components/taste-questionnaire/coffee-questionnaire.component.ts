@@ -5,18 +5,23 @@ import {
 } from "src/components/radio-button-group/radio-button-group.component";
 import {NgIf} from "@angular/common";
 import {DialogRef} from "@angular/cdk/dialog";
+import {
+  CheckboxSelectorComponent,
+  CheckboxSelectorFormControl
+} from "src/components/checkbox-selector/checkbox-selector.component";
 
 
 @Component({
   selector: "app-taste-questionnaire",
-  templateUrl: "./taste-questionnaire.component.html",
+  templateUrl: "./coffee-questionnaire.component.html",
   imports: [
     RadioButtonGroupComponent,
-    NgIf
+    NgIf,
+    CheckboxSelectorComponent
   ],
   standalone: true
 })
-export class TasteQuestionnaireComponent {
+export class CoffeeQuestionnaireComponent {
 
   PAGE_COUNT = 9;
 
@@ -25,7 +30,7 @@ export class TasteQuestionnaireComponent {
   page: WritableSignal<number> = signal(1);
   forwardDisabled: Signal<boolean> = computed(()=>this.page()>=this.PAGE_COUNT);
   backwardDisabled: Signal<boolean> = computed(()=>this.page()<=1);
-  pageOneCoffeeStrengthForm: RadioButtonFormControl = new RadioButtonFormControl([
+  pageOneCoffeeStrengthForm: CheckboxSelectorFormControl = new CheckboxSelectorFormControl([
     { value: 'bold', label: 'Bold' },
     { value: 'medium', label: 'Medium' },
     { value: 'mild', label: 'Mild' },
@@ -33,19 +38,20 @@ export class TasteQuestionnaireComponent {
   pageTwoFlavoredCoffeeForm: RadioButtonFormControl = new RadioButtonFormControl([
     { value: 'y', label: 'Yes, I love flavor varieties.' },
     { value: 'n', label: 'No, I like to enjoy my coffee without additives' },
+    { value: 'np', label: 'I love all coffee!!' },
   ]);
-  pageThreeCreamersForm: RadioButtonFormControl = new RadioButtonFormControl([
+  pageThreeCreamersForm: CheckboxSelectorFormControl = new CheckboxSelectorFormControl([
     { value: 'black', label: 'Black Coffee' },
     { value: 'milk', label: 'Coffee with Milk' },
     { value: 'sweet', label: 'Coffee with Sweeteners' },
     { value: 'sweetmilk', label: 'Coffee with Milk and Sweeteners' },
   ]);
-  pageFourCoffeeTimeForm: RadioButtonFormControl = new RadioButtonFormControl([
+  pageFourCoffeeTimeForm: CheckboxSelectorFormControl = new CheckboxSelectorFormControl([
     { value: 'morning', label: 'Morning' },
     { value: 'afternoon', label: 'Afternoon' },
     { value: 'night', label: 'Night' },
   ])
-  pageFiveFlavorNotesForm: RadioButtonFormControl = new RadioButtonFormControl([
+  pageFiveFlavorNotesForm: CheckboxSelectorFormControl = new CheckboxSelectorFormControl([
     { value: 'nutty', label: 'Nutty' },
     { value: 'fruity', label: 'Fruity' },
     { value: 'earthy', label: 'Earthy' },
@@ -55,8 +61,9 @@ export class TasteQuestionnaireComponent {
   pageSixSingleOriginForm: RadioButtonFormControl = new RadioButtonFormControl([
     { value: 'so', label: 'Single Origin' },
     { value: 'bl', label: 'Blend' },
+    { value: 'np', label: 'I love all coffee!!' },
   ]);
-  pageSevenCoffeeToolForm: RadioButtonFormControl = new RadioButtonFormControl([
+  pageSevenCoffeeToolForm: CheckboxSelectorFormControl = new CheckboxSelectorFormControl([
     { value: 'espresso', label: 'Espresso' },
     { value: 'drip', label: 'Drip' },
     { value: 'french', label: 'French Press' },
@@ -86,7 +93,13 @@ export class TasteQuestionnaireComponent {
 
   handleSubmit() {
     this.ref.close({
-
+      'strength': this.pageOneCoffeeStrengthForm.value,
+      'flavored': this.pageTwoFlavoredCoffeeForm.value,
+      'creamers': this.pageThreeCreamersForm.value,
+      'time_of_day': this.pageFourCoffeeTimeForm.value,
+      'tasting_notes': this.pageFiveFlavorNotesForm.value,
+      'origins': this.pageSixSingleOriginForm.value,
+      'tools': this.pageSevenCoffeeToolForm.value
     })
   }
 }

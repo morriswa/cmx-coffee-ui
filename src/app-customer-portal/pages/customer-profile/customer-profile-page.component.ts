@@ -1,7 +1,7 @@
 import {Component, computed, inject, OnInit, signal, WritableSignal} from "@angular/core";
 import {LoginService} from "src/services/login.service";
 import {Dialog} from "@angular/cdk/dialog";
-import {TasteQuestionnaireComponent} from "../taste-questionnaire/taste-questionnaire.component";
+import {CoffeeQuestionnaireComponent} from "../../components/taste-questionnaire/coffee-questionnaire.component";
 
 
 @Component({
@@ -39,9 +39,17 @@ export class CustomerProfilePageComponent implements OnInit {
     this.accountComplete.set(hasCustomerPermission)
   }
 
+  openCoffeeQuestionnaire() {
+    const ref = this.dialogs.open(CoffeeQuestionnaireComponent);
 
+    let subscription = ref.closed.subscribe((res)=>{
+      this.saveCoffeeQuestionnaire(res)
+      subscription.unsubscribe();
+    });
+  }
 
-  openTasteQuestionnaire() {
-    const ref = this.dialogs.open(TasteQuestionnaireComponent);
+  saveCoffeeQuestionnaire(res: any) {
+    console.log(res);
+    // todo implement me
   }
 }
