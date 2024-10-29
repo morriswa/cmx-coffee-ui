@@ -42,7 +42,7 @@ const routesConfig: Routes = [
       {
         path: "forms/vendor-application",
         canActivate: [HasPermission('cmx_coffee:appuser')],
-        loadComponent: () => import('src/pages/vendor-application/vendor-application-page.component')
+        loadComponent: () => import('src/app-customer-portal/pages/vendor-application/vendor-application-page.component')
           .then(m=>m.VendorApplicationPageComponent)
       },
     ]
