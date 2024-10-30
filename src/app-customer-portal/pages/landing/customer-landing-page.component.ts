@@ -1,5 +1,7 @@
 import {Component} from "@angular/core";
 import {NgOptimizedImage} from "@angular/common";
+import {FancyButtonComponent} from "src/components/fancy-button/fancy-button.component";
+import {RouterLink} from "@angular/router";
 
 
 @Component({
@@ -8,7 +10,9 @@ import {NgOptimizedImage} from "@angular/common";
   styleUrl: './customer-landing-page.component.scss',
   standalone: true,
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
+    FancyButtonComponent,
+    RouterLink
   ],
   host: {'class': 'flex-child'}
 })

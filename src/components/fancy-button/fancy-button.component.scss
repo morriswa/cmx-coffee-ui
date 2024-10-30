@@ -1,0 +1,63 @@
+@use "src/styles/variables" as *;
+
+.app-fancy-button-wrapper {
+  //z-index: 1;
+  position: sticky;
+}
+
+.app-fancy-button {
+  align-items: center;
+  border-radius: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: $font-family;
+  font-size: $font-size-med;
+  height: 48px;
+  line-height: 24px;
+  padding: 0 25px;
+  position: relative;
+
+  border: 2px solid #111;
+
+  &.neutral {
+    background-color: #FAF9F5;
+    color: $text-color;
+  }
+
+  &.primary {
+    background-color: $primary-color;
+    color: $white;
+  }
+
+  &:after {
+    display: block;
+    top: -2px;
+    left: 0;
+    z-index: -1;
+
+    content: "";
+
+    background-color: $black;
+    border-radius: 8px;
+    height: 48px;
+    width: 100%;
+    position: absolute;
+    transform: translate(8px, 8px);
+    transition: transform .2s ease-out;
+  }
+
+  &:active:after {
+    transform: translate(0, 0);
+  }
+
+  &:active {
+    outline: 0;
+  }
+
+  &:hover {
+    outline: 0;
+  }
+
+}
+
+
