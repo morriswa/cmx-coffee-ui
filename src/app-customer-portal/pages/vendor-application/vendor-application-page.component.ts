@@ -3,6 +3,7 @@ import {AddressFormComponent} from "../../../components/address-form/address-for
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ApiClient} from "../../../services/api-client.service";
 import {VendorApplication} from "src/types/vendor.type";
+import { FancyButtonComponent } from "../../../components/fancy-button/fancy-button.component";
 
 
 @Component({
@@ -11,8 +12,9 @@ import {VendorApplication} from "src/types/vendor.type";
   styleUrl: "./vendor-application-page.component.scss",
   imports: [
     AddressFormComponent,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    FancyButtonComponent
+],
   standalone: true
 })
 export class VendorApplicationPageComponent {
