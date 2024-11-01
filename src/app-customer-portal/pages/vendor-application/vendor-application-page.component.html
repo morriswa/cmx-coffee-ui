@@ -1,4 +1,5 @@
 
+<div class="flex-col align-items-center">
 <div class="vendor-app-form-header">
   <h1>Vendor Application Form</h1>
   <h2>Let's become partners</h2>
@@ -14,27 +15,11 @@
 
 @switch (pageState()) {
   @case ('form') {
-    <div class="main-form">
-      <div style="max-width: 400px">
+      <div class="flex-row flex-wrap mx-auto justify-content-center">
         <div class="flex-col mr-2">
           <span>Business Name</span>
           <input [formControl]="businessNameForm">
         </div>
-
-        <!-- <div class="flex-col mb-1">
-          <span>Company Address</span>
-          <input [formControl]="businessAddressForm">
-        </div> -->
-
-        <!-- <div class="flex-col mb-1">
-          <span>City</span>
-          <input [formControl]="businessCityForm">
-        </div> -->
-
-        <!-- <div class="flex-col mb-1">
-          <span>State/Province</span>
-          <input [formControl]="businessLocationForm">
-        </div> -->
 
         <div class="flex-col mr-2">
           <span>Business Email</span>
@@ -46,15 +31,13 @@
           <input [formControl]="businessPhoneForm">
         </div>
 
-        <!-- <div class="flex-col mb-1">
-          <span>Fax Number</span>
-          <input [formControl]="businessFaxForm">
+        <div class="flex-col mr-2">
+          <span>Phone</span>
+          <input [formControl]="businessPhoneForm">
         </div>
 
-        <div class="flex-col mb-1">
-          <span>Company Website</span>
-          <input [formControl]="businessWebsiteForm">
-        </div> -->
+
+
       </div>
 
       <app-address-form #addressForm></app-address-form>
@@ -62,7 +45,6 @@
       <!-- <fancy-button color=""(click)="handleConsolePrint()">Console Print</fancy-button> -->
         <fancy-button color="primary" (click)="handleSubmit()">Submit</fancy-button>
       </div>
-    </div>
 
   }
   @case ('success') {
@@ -73,3 +55,4 @@
     <button class="app-button" (click)="pageState.set('form')">Try again</button>
   }
 }
+</div>
