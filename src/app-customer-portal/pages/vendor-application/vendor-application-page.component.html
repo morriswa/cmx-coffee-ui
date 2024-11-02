@@ -1,58 +1,36 @@
 
-<div class="flex-col align-items-center">
-<div class="vendor-app-form-header">
-  <h1>Vendor Application Form</h1>
-  <h2>Let's become partners</h2>
-  <hr>
-</div>
+<div class="flex-col align-items-center vw-90 mx-auto">
 
-<div class="subsection-header">
-  <h2>
-    Business Information
-  </h2>
-</div>
+  <h1 class="mt-3">Vendor Application Form</h1>
+  <h2 class="mb-5">Let's become partners</h2>
+  <hr style="width: 100%">
 
+  <h2 class="my-5">Business Information</h2>
 
-@switch (pageState()) {
-  @case ('form') {
-      <div class="flex-row flex-wrap mx-auto justify-content-center">
-        <div class="flex-col mr-2">
-          <span>Business Name</span>
-          <input [formControl]="businessNameForm">
+  @switch (pageState()) {
+    @case ('form') {
+      <div style="align-content: flex-start" class="flex-row flex-wrap col-gap-5 justify-content-center mb-5">
+        <tagged-input label="Business Name" [form]="businessNameForm"/>
+
+        <tagged-input label="Business Email" [form]="businessEmailForm"/>
+
+        <tagged-input label="Phone" [form]="businessPhoneForm"/>
+
+        <div class="app-form-wrapper">
+
         </div>
 
-        <div class="flex-col mr-2">
-          <span>Business Email</span>
-          <input [formControl]="businessEmailForm">
-        </div>
-
-        <div class="flex-col mr-2">
-          <span>Phone</span>
-          <input [formControl]="businessPhoneForm">
-        </div>
-
-        <div class="flex-col mr-2">
-          <span>Phone</span>
-          <input [formControl]="businessPhoneForm">
-        </div>
-
-
-
+        <app-address-form #addressForm></app-address-form>
       </div>
 
-      <app-address-form #addressForm></app-address-form>
-      <div class="submit-button">
-      <!-- <fancy-button color=""(click)="handleConsolePrint()">Console Print</fancy-button> -->
-        <fancy-button color="primary" (click)="handleSubmit()">Submit</fancy-button>
-      </div>
-
+      <fancy-button color="primary" (click)="handleSubmit()">Submit</fancy-button>
+    }
+    @case ('success') {
+      <h1>Successfully submitted application!</h1>
+    }
+    @case ('error') {
+      <p>Could not submit your vendor application!</p>
+      <button class="app-button" (click)="pageState.set('form')">Try again</button>
+    }
   }
-  @case ('success') {
-    <h1>Successfully submitted application!</h1>
-  }
-  @case ('error') {
-    <p>Could not submit your vendor application!</p>
-    <button class="app-button" (click)="pageState.set('form')">Try again</button>
-  }
-}
 </div>
