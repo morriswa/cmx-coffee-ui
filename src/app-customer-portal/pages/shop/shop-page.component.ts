@@ -4,7 +4,8 @@ import {Component} from "@angular/core";
   selector: 'app-shop',
   templateUrl: './shop-page.component.html',
   styleUrl: './shop-page.component.scss',
-  standalone: true
+  standalone: true,
+  host: {'class': 'flex-child'}
 })
 export class ShopPageComponent {
 
