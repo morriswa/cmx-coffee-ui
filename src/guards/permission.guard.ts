@@ -10,7 +10,14 @@ export const HasPermission = (permission: string): CanActivateFn => {
     const router = inject(Router);
 
     if (!await login.isAuthenticated) {
-      await login.login([state.url]);
+      console.log('AUTH0 DEBUG: call login')
+      try {
+        await login.login([state.url]);
+        console.log('AUTH0 DEBUG: returned successfully from login')
+      } catch (e) {
+        console.error('AUTH0 DEBUG: DID NOT RETURN successfully from login')
+        console.error(e);
+      }
       return false;
     }
 

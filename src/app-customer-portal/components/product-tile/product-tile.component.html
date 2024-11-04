@@ -1,0 +1,8 @@
+
+<div class="mb-1" style="height: 200px; width: 200px; background-color: black"></div>
+<a class="app-link" [routerLink]="['/shop/product', product.product_id]">{{product.product_id + " " + product.product_name}}</a>
+<h3>{{product.price | currency}}</h3>
+<p>{{product.description}}</p>
+<p *ngIf="product.decaf === 'y'">Decaf</p>
+<p *ngIf="product.single_origin === 'y'">Single Origin</p>
+<p *ngIf="product.flavored === 'y'">Flavored</p>

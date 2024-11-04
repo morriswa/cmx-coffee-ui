@@ -3,10 +3,10 @@
   <h1>Currently viewing {{product.product_name}}</h1>
 
   @for (productImage of productImages(); track productImage; let idx = $index) {
-    <img [ngSrc]="productImage" height="400" width="600" [alt]="'product showcase ' + idx">
+    <img [ngSrc]="productImage" height="150" width="200" [alt]="'product showcase ' + idx">
   }
 
-  <h2>TODO add upload image dialog</h2>
+  <file-upload (onConfirm)="handleChangeImage($event)"/>
   <br>
   <h3>ID: {{product.product_id}}</h3>
   <h3>Desc: {{product.description}}</h3>

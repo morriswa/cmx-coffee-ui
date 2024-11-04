@@ -1,11 +1,13 @@
 import { inject, Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http"; // HttpClient and HttpHeaders for HTTP requests
 import { firstValueFrom } from "rxjs"; // Used to convert observables to promises
-import { environment } from "src/environments/environment"; // Import environment variables
+import { environment } from "src/environments/environment";
+import {Product} from "src/types/product.type";
+import {CustomerProductPreferences} from "../types/customer.type"; // Import environment variables
 
 
 // Define the supported HTTP methods
-export type SUPPORTED_METHODS = 'GET' | 'POST' | 'PUT' | 'DELETE';
+export type SUPPORTED_METHODS = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
 
 @Injectable()
@@ -78,5 +80,32 @@ export class ApiClient {
 
   getProductDetailsForCustomer(productId: number) {
     return this.request('GET', `s/shop/product/${productId}`)
+  }
+
+  getProductsForCustomer() {
+    return this.request<Product[]>('GET', `s/shop/products`);
+  }
+
+  listProduct(createRequest: any) {
+    return this.request('POST', 's/vendor/products', createRequest);
+  }
+
+  uploadProductImage(productId: number, image: File) {
+    let postBody = new FormData();
+    postBody.append("image_upload",image);
+
+    return this.request('POST', `s/vendor/product/${productId}/image`, postBody);
+  }
+
+  unlistProduct(product_id: number) {
+    return this.request('DELETE', `s/vendor/product/${product_id}`);
+  }
+
+  updateCustomerPreferences(request: CustomerProductPreferences) {
+    return this.request('PATCH', `s/profile/product-preferences`, request);
+  }
+
+  getCustomerPreferences() {
+    return this.request('GET', `s/profile/product-preferences`);
   }
 }

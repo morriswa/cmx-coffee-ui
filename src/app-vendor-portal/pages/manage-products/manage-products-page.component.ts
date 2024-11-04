@@ -1,8 +1,11 @@
 import {Component, inject, OnInit, signal, WritableSignal} from "@angular/core";
-import {LoaderComponent} from "../../../components/loader/loader.component";
+import {LoaderComponent} from "src/components/loader/loader.component";
 import {CurrencyPipe, NgIf} from "@angular/common";
-import {VendorService} from "../../services/vendor.service";
+import {VendorService} from "src/app-vendor-portal/services/vendor.service";
 import {RouterLink} from "@angular/router";
+import {Dialog} from "@angular/cdk/dialog";
+import {UnlistProductDialogComponent} from "./unlist-product-dialog/unlist-product-dialog.component";
+
 
 @Component({
   selector: "app-manage-products-page",
@@ -18,6 +21,7 @@ import {RouterLink} from "@angular/router";
 export class ManageProductsPageComponent implements OnInit {
 
   // services
+  dialogs = inject(Dialog);
   vendorship = inject(VendorService);
 
   // state
@@ -30,4 +34,29 @@ export class ManageProductsPageComponent implements OnInit {
     console.log(this.products());
   }
 
+
+  // logic
+  handleUnlistPopup(product: any) {
+    const ref = this.dialogs.open(UnlistProductDialogComponent, {
+      data: { product: product }
+    });
+
+    const ref$ = ref.closed.subscribe(async (result: any)=>{
+      if (result?.action==='confirm') {
+        await this.unlistProduct(product.product_id);
+      }
+
+      ref$.unsubscribe();
+    });
+  }
+
+  async unlistProduct(product_id: number) {
+    await this.vendorship.unlistProduct(product_id);
+    this.products.update(products=>{
+      if (products)
+        return products.filter(product=>product.product_id!==product_id);
+      else
+        return products;
+    });
+  }
 }

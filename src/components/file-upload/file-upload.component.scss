@@ -1,0 +1,6 @@
+@use "src/styles/cmx-coffee-theme";
+
+
+.file-upload-form::file-selector-button {
+  @extend .app-button
+}

@@ -1,2 +1,10 @@
 
-<h1 style="text-align: center">Shop Product Name</h1>
+<div class="flex-col align-items-center">
+  <h1 class="my-5">Shop Product Name</h1>
+
+  <div class="flex-row flex-wrap vw-90 mx-auto">
+    @for (product of products(); track product.product_id) {
+      <app-product-tile class="mr-5 mb-5" [product]="product"/>
+    }
+  </div>
+</div>

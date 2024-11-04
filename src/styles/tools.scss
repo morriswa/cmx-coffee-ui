@@ -71,6 +71,10 @@
   align-items: center;
 }
 
+.align-items-baseline {
+  align-items: baseline;
+}
+
 .justify-content-center {
   justify-content: center;
 }
@@ -107,7 +111,10 @@
 
 .mr-2 {
   margin-right: 20px;
-  margin-bottom: 20px;
+}
+
+.mr-5 {
+  margin-right: 50px;
 }
 
 .mt-0 {
