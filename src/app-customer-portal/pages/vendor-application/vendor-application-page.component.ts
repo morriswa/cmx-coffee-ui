@@ -1,8 +1,10 @@
 import {Component, inject, signal, ViewChild, WritableSignal} from "@angular/core";
-import {AddressFormComponent} from "../../../components/address-form/address-form.component";
+import {AddressFormComponent} from "src/components/address-form/address-form.component";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ApiClient} from "../../../services/api-client.service";
+import {ApiClient} from "src/services/api-client.service";
 import {VendorApplication} from "src/types/vendor.type";
+import { FancyButtonComponent } from "src/components/fancy-button/fancy-button.component";
+import {TaggedInputComponent} from "src/components/tagged-input/tagged-input.component";
 
 
 @Component({
@@ -11,7 +13,9 @@ import {VendorApplication} from "src/types/vendor.type";
   styleUrl: "./vendor-application-page.component.scss",
   imports: [
     AddressFormComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FancyButtonComponent,
+    TaggedInputComponent
   ],
   standalone: true
 })

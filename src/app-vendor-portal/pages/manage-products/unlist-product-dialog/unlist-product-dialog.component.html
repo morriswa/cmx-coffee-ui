@@ -1,0 +1,16 @@
+<div class="flex-col surface p-4">
+  <h1>Please Confirm</h1>
+
+  <br>
+  <h4>Are you sure you want to unlist this Product?</h4>
+
+  <br>
+  <p>Name: {{ product.product_name }}</p>
+  <p>Name: {{ product.description }}</p>
+  <p>Name: {{ product.initial_price | currency }}</p>
+
+  <div class="app-button-group mt-3">
+    <button class="app-button" (click)="handleCancel()">Cancel</button>
+    <button class="app-button" (click)="handleSubmit()">Confirm</button>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+@use "src/styles/variables" as *;
+
+.app-fancy-button-wrapper {
+  position: sticky;
+}
+
+.app-fancy-button {
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: $font-family;
+  font-size: $font-size-med;
+  height: 48px;
+  line-height: 24px;
+  padding: 0 25px;
+  position: relative;
+  outline: 0;
+
+  border: 2px solid $black;
+
+  &.neutral {
+    background-color: $white;
+    color: $text-color;
+  }
+
+  &.primary {
+    background-color: $primary-color;
+    color: $white;
+  }
+
+  &:after {
+    z-index: -1;
+    top: -2px;
+    left: 0;
+
+    content: "";
+
+    background-color: $black;
+    border-radius: 8px;
+    height: 48px;
+    width: 100%;
+    position: absolute;
+    transform: translate(8px, 8px);
+    transition: transform .2s ease-out;
+    cursor: default;
+  }
+
+  &:active:after {
+    transform: translate(0, 0);
+  }
+}
+
+

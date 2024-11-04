@@ -2,6 +2,7 @@ import {Component, computed, inject, OnInit, signal, WritableSignal} from "@angu
 import {LoginService} from "src/services/login.service";
 import {Dialog} from "@angular/cdk/dialog";
 import {CoffeeQuestionnaireComponent} from "../../components/taste-questionnaire/coffee-questionnaire.component";
+import {ApiClient} from "../../../services/api-client.service";
 
 
 @Component({
@@ -13,6 +14,7 @@ export class CustomerProfilePageComponent implements OnInit {
 
   // services
   login = inject(LoginService);
+  api = inject(ApiClient);
   dialogs = inject(Dialog);
 
 
@@ -37,19 +39,18 @@ export class CustomerProfilePageComponent implements OnInit {
     let hasCustomerPermission = await this.login.hasPermission('cmx_coffee:customer')
     this.user.set(user);
     this.accountComplete.set(hasCustomerPermission)
+
+    // TODO add preferences to view
+    console.log(await this.api.getCustomerPreferences())
   }
 
   openCoffeeQuestionnaire() {
     const ref = this.dialogs.open(CoffeeQuestionnaireComponent);
 
-    let subscription = ref.closed.subscribe((res)=>{
-      this.saveCoffeeQuestionnaire(res)
+    let subscription = ref.closed.subscribe(async (res)=>{
+      // TODO update preferences in view after saved
+      console.log(await this.api.getCustomerPreferences())
       subscription.unsubscribe();
     });
-  }
-
-  saveCoffeeQuestionnaire(res: any) {
-    console.log(res);
-    // todo implement me
   }
 }

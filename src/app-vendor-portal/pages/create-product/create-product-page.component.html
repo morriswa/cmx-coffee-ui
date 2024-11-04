@@ -1,0 +1,36 @@
+
+<div class="flex-col align-items-center">
+
+  <h1 class="header-font my-5">Create Product</h1>
+
+  <div class="flex-row flex-wrap vw-70">
+    <div class="flex-col ml-2-5">
+      <tagged-input label="Product Name" [form]="productNameForm"/>
+      <tagged-input label="Description" [form]="descriptionForm"/>
+      <tagged-input label="Price" [form]="initialPriceForm"/>
+      <tagged-input label="Coffee Strength" [form]="tasteStrengthForm"/>
+    </div>
+
+    <div class="flex-col ml-2-5 mt-1">
+      <div class="flex-col justify-content-flex-start">
+        <span class="app-form-label mb-1">Is product decaf?</span>
+        <app-radio-button-group [radioButtonFormControl]="decafForm"/>
+      </div>
+      <br>
+
+      <div class="flex-col justify-content-flex-start">
+        <span class="app-form-label mb-1">Is product flavored?</span>
+        <app-radio-button-group [radioButtonFormControl]="flavoredForm"/>
+      </div>
+      <br>
+
+      <div class="flex-col justify-content-flex-start">
+        <span class="app-form-label mb-1">Is product single-origin?</span>
+        <app-radio-button-group [radioButtonFormControl]="singleOriginForm"/>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <fancy-button class="mt-2" (click)="submitForm()">Submit</fancy-button>
+</div>
