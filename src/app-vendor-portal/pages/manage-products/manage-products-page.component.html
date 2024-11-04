@@ -10,6 +10,7 @@
         <th>Name</th>
         <th>Description</th>
         <th>Price</th>
+        <th>Actions</th>
       </thead>
       <tbody>
         @for (product of products; track product.product_id) {
@@ -18,6 +19,7 @@
             <td><a class="app-link" [routerLink]="['/vendor', 'product', product.product_id]">{{product.product_name}}</a></td>
             <td>{{product.description}}</td>
             <td>{{product.initial_price | currency }}</td>
+            <td><a class="app-link" (click)="handleUnlistPopup(product)">Unlist</a></td>
           </tr>
         }
       </tbody>

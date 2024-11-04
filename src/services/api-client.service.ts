@@ -91,4 +91,8 @@ export class ApiClient {
 
     return this.request('POST', `s/vendor/product/${productId}/image`, postBody);
   }
+
+  unlistProduct(product_id: number) {
+    return this.request('DELETE', `s/vendor/product/${product_id}`);
+  }
 }

@@ -24,4 +24,8 @@ export class VendorService {
   addProductImage(productId: number, newImage: File) {
     return this.api.uploadProductImage(productId, newImage);
   }
+
+  unlistProduct(product_id: number) {
+    return this.api.unlistProduct(product_id)
+  }
 }
