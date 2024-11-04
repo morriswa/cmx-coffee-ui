@@ -16,4 +16,12 @@ export class VendorService {
   async getProductImages(productId: number) {
     return this.api.getProductImages(productId);
   }
+
+  listProduct(createRequest: any) {
+    return this.api.listProduct(createRequest);
+  }
+
+  addProductImage(productId: number, newImage: File) {
+    return this.api.uploadProductImage(productId, newImage);
+  }
 }

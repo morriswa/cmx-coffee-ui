@@ -46,7 +46,6 @@ export class RadioButtonFormControl {
     NgClass
   ],
   standalone: true,
-  host: { 'class': 'flex-child' }
 })
 export class RadioButtonGroupComponent implements OnInit {
   @Input() public radioButtonFormControl!: RadioButtonFormControl;

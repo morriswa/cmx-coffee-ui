@@ -58,13 +58,18 @@ const routesConfig: Routes = [
     children: [
       {
         path: "product/:productId",
-        loadComponent: () => import('src/app-vendor-portal/pages/vendor-manage-product-details/vendor-manage-product-details-page.component')
-          .then(m=>m.VendorManageProductDetailsPageComponent)
+        loadComponent: () => import('src/app-vendor-portal/pages/manage-product-details/manage-product-details-page.component')
+          .then(m=>m.ManageProductDetailsPageComponent)
       },
       {
         path: "products",
         loadComponent: ()=>import('src/app-vendor-portal/pages/manage-products/manage-products-page.component')
           .then(m=>m.ManageProductsPageComponent)
+      },
+      {
+        path: "create-product",
+        loadComponent: ()=>import('src/app-vendor-portal/pages/create-product/create-product-page.component')
+          .then(m=>m.CreateProductPageComponent)
       },
       {
         path: "**",

@@ -80,4 +80,15 @@ export class ApiClient {
   getProductsForCustomer() {
     return this.request<Product[]>('GET', `s/shop/products`);
   }
+
+  listProduct(createRequest: any) {
+    return this.request('POST', 's/vendor/products', createRequest);
+  }
+
+  uploadProductImage(productId: number, image: File) {
+    let postBody = new FormData();
+    postBody.append("image_upload",image);
+
+    return this.request('POST', `s/vendor/product/${productId}/image`, postBody);
+  }
 }
