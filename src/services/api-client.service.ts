@@ -1,7 +1,8 @@
 import { inject, Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http"; // HttpClient and HttpHeaders for HTTP requests
 import { firstValueFrom } from "rxjs"; // Used to convert observables to promises
-import { environment } from "src/environments/environment"; // Import environment variables
+import { environment } from "src/environments/environment";
+import {Product} from "src/types/product.type"; // Import environment variables
 
 
 // Define the supported HTTP methods
@@ -74,5 +75,9 @@ export class ApiClient {
 
   getProductImages(productId: number) {
     return this.request<string[]>('GET', `s/product/${productId}/image`);
+  }
+
+  getProductsForCustomer() {
+    return this.request<Product[]>('GET', `s/shop/products`);
   }
 }
