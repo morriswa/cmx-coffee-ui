@@ -75,4 +75,8 @@ export class ApiClient {
   getProductImages(productId: number) {
     return this.request<string[]>('GET', `s/product/${productId}/image`);
   }
+
+  getProductDetailsForCustomer(productId: number) {
+    return this.request('GET', `s/shop/product/${productId}`)
+  }
 }

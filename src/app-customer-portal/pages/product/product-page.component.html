@@ -1,0 +1,62 @@
+<!-- <h1>Got product id {{productId}}</h1> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+@if (currentProduct(); as product) {
+  <!-- <h1>Product name {{product.product_name}}</h1> -->
+
+  <div class="divided-page">
+
+    <div class="product-image-side">
+    @if (productImages(); as images) {
+      @for(image of images; track image) {
+        <div style="padding: 100px;">
+        <img class="product-image-1" [src]="image" width="600" height="400">
+        </div>
+      }
+    }
+    </div>
+
+    <div class="product-details-side">
+      <div style="padding: 70px;">
+
+      <h1 class="product-heading"> {{product.product_name}} </h1>
+      <h2 class="price"> $ {{product.tax_adjusted_price}} </h2>
+
+      <!-- star rating: -->
+      <div class="rating">
+        <span class="fa fa-star" [ngClass]="product.review>=1?'checked':''"></span>
+        <span class="fa fa-star" [ngClass]="product.review>=2?'checked':''"></span>
+        <span class="fa fa-star" [ngClass]="product.review>=3?'checked':''"></span>
+        <span class="fa fa-star" [ngClass]="product.review>=4?'checked':''"></span>
+        <span class="fa fa-star" [ngClass]="product.review>=5?'checked':''"></span>
+        <span> ({{product.review}} stars) • 10 reviews </span>
+        </div>
+      <div class="description"> {{product.description}} </div>
+
+      <div class="dropdown">
+        <p>Size Options</p>
+        <button class="dropbtn">Select</button>
+        <div class="dropdown-content">
+          <a href="#">Size 1</a>
+          <a href="#">Size 2</a>
+          <a href="#">Size 3</a>
+        </div>
+      </div>
+
+      <div class="quantity">Quantity</div>
+      <input class="q-input">
+
+      <button class="cart-button">Add to Cart</button>
+      <button class="buy-button">Buy Now</button>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+} @else {
+  <app-loader/>
+}
+
