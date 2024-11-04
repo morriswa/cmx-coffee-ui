@@ -5,8 +5,12 @@
 
 <div class="flex-col app-form-wrapper">
   <span class="app-form-label">State</span>
-  <input class="app-form-input" (keyup)="stateForm.set($any($event.target).value)">
-</div>
+  <select class="app-form-input" name="state" id="state" (change)="stateForm.set($any($event.target).value)">
+        <option value="" disabled selected>Select State</option>
+        <option *ngFor="let state of stateValue" [value]="state.value">{{state.label}}</option>
+  </select>
+  <!-- <input class="app-form-input" (keyup)="stateForm.set($any($event.target).value)">
+</div> -->
 
 <tagged-input label="Zip" [form]="zipForm"/>
 
