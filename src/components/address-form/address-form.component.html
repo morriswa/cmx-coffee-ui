@@ -9,8 +9,7 @@
         <option value="" disabled selected>Select State</option>
         <option *ngFor="let state of stateValue" [value]="state.value">{{state.label}}</option>
   </select>
-  <!-- <input class="app-form-input" (keyup)="stateForm.set($any($event.target).value)">
-</div> -->
+</div>
 
 <tagged-input label="Zip" [form]="zipForm"/>
 
