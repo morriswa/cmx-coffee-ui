@@ -47,7 +47,7 @@ export class VendorApplicantsComponent implements OnInit{
     const ref$ = ref.closed.subscribe(async (result: any)=>{
       if (result?.action==='confirm') {
         if (action === 'approve') await this.approveApplication(application.application_id);
-        else if (action === 'reject') await this.rejectApplication(application);
+        else if (action === 'reject') await this.rejectApplication(application.application_id);
       } else {
         console.log(`no action on application ${application.application_id}`);
       }
@@ -62,6 +62,7 @@ export class VendorApplicantsComponent implements OnInit{
   }
 
   async rejectApplication(application_id: number) {
-    await this.administration.processApplicant(application_id, 'approve')
+    await this.administration.processApplicant(application_id, 'reject')
+    this.applicants.update(apps=>apps?.filter(app=>app.application_id!==application_id))
   }
 }
