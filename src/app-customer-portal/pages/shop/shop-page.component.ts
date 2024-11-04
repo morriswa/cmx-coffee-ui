@@ -2,15 +2,20 @@ import {Component, inject, OnInit, signal, WritableSignal} from "@angular/core";
 import {Product} from "../../../types/product.type";
 import {ApiClient} from "../../../services/api-client.service";
 import {ProductTileComponent} from "../../components/product-tile/product-tile.component";
+import {FancyButtonComponent} from "../../../components/fancy-button/fancy-button.component";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop-page.component.html',
   styleUrl: './shop-page.component.scss',
+  standalone: true,
+  host: {'class': 'flex-child'},
   imports: [
-    ProductTileComponent
+    ProductTileComponent,
+    FancyButtonComponent,
+    RouterLink
   ],
-  standalone: true
 })
 export class ShopPageComponent implements OnInit {
 
@@ -23,4 +28,5 @@ export class ShopPageComponent implements OnInit {
     if (latestProducts) this.products.set(latestProducts)
   }
 
+    protected readonly print = print;
 }
