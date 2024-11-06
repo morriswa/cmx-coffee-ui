@@ -1,9 +1,10 @@
 import {Component, inject, OnInit, signal, WritableSignal} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {VendorService} from "../../services/vendor.service";
+import {VendorService} from "src/app-vendor-portal/services/vendor.service";
 import {CurrencyPipe, NgIf, NgOptimizedImage} from "@angular/common";
-import {LoaderComponent} from "../../../components/loader/loader.component";
-import {FileUploadComponent} from "../../../components/file-upload/file-upload.component";
+import {LoaderComponent} from "src/components/loader/loader.component";
+import {FileUploadComponent} from "src/components/file-upload/file-upload.component";
+import {ImageGalleryComponent} from "src/components/image-gallery/image-gallery.component";
 
 
 @Component({
@@ -14,7 +15,8 @@ import {FileUploadComponent} from "../../../components/file-upload/file-upload.c
     CurrencyPipe,
     LoaderComponent,
     NgOptimizedImage,
-    FileUploadComponent
+    FileUploadComponent,
+    ImageGalleryComponent
   ],
   standalone: true
 })
@@ -28,7 +30,7 @@ export class ManageProductDetailsPageComponent implements OnInit {
   // state
   productId: number;
   productDetails: WritableSignal<any> = signal(undefined);
-  productImages: WritableSignal<string[]> = signal([])
+  productImages: WritableSignal<string[]|undefined> = signal(undefined)
 
   // lifecycle
   constructor() {

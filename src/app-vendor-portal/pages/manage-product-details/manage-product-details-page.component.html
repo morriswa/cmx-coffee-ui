@@ -1,10 +1,12 @@
 
+<div class="flex-col vw-90 mx-auto">
 @if (productDetails(); as product) {
   <h1>Currently viewing {{product.product_name}}</h1>
 
-  @for (productImage of productImages(); track productImage; let idx = $index) {
-    <img [ngSrc]="productImage" height="150" width="200" [alt]="'product showcase ' + idx">
-  }
+  <image-gallery *ngIf="productImages() as images"
+                 [images]="images"
+                 [alt]="'product highlights for ' + product.product_name"
+  />
 
   <file-upload (onConfirm)="handleChangeImage($event)"/>
   <br>
@@ -14,3 +16,4 @@
 } @else {
   <app-loader/>
 }
+</div>

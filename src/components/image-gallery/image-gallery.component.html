@@ -1,0 +1,6 @@
+
+<div class="app-image-gallery">
+  @for (image of images; track image; let idx = $index) {
+    <img [ngSrc]="image" height="150" width="200" [alt]="alt ?? (alts ? alts[idx] : 'not provided')">
+  }
+</div>
