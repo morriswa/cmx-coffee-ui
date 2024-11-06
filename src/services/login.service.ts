@@ -95,4 +95,13 @@ export class LoginService {
     this._permissions.set(perms);
   }
 
+  async isTokenExpired(): Promise<boolean> {
+    const token = await firstValueFrom(this.auth0.idTokenClaims$);
+    const expiration_timestamp = token?.exp;
+
+    if (expiration_timestamp) {
+      return expiration_timestamp > new Date().getTime();
+    }
+    return true;
+  }
 }
