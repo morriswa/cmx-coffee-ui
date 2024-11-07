@@ -1,18 +1,24 @@
 
-<div class="flex-col vw-90 mx-auto">
+<div class="flex-col vw-90 mx-auto align-items-center">
 @if (productDetails(); as product) {
-  <h1>Currently viewing {{product.product_name}}</h1>
+  <h1 class="my-5">Currently viewing {{product.product_name}}</h1>
 
-  <image-gallery *ngIf="productImages() as images"
-                 [images]="images"
-                 [alt]="'product highlights for ' + product.product_name"
-  />
+  <div class="flex-row space-around-items">
+    <div style="width: 50%" class="flex-col">
+      <image-gallery *ngIf="productImages() as images"
+                     [images]="images"
+                     [alt]="'product highlights for ' + product.product_name"
+      />
+      <file-upload (onConfirm)="handleChangeImage($event)"/>
+    </div>
 
-  <file-upload (onConfirm)="handleChangeImage($event)"/>
-  <br>
-  <h3>ID: {{product.product_id}}</h3>
-  <h3>Desc: {{product.description}}</h3>
-  <h3>Initial Price: {{product.initial_price | currency}}</h3>
+    <div style="width: 50%" class="flex-col">
+      <h3>PID: {{product.product_id}}</h3>
+      <h3 class="mt-3">{{product.product_name}}</h3>
+      <h3 class="mt-3">{{product.description}}</h3>
+      <h3 class="mt-3">Initial Price: {{product.initial_price | currency}}</h3>
+    </div>
+  </div>
 } @else {
   <app-loader/>
 }

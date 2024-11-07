@@ -24,7 +24,14 @@ export class LoginService {
   constructor() {
     const authCheck = this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
       if (isAuthenticated) {
-        await this.refreshPerms();
+        console.log('AUTH0 DEBUG: is authenticated')
+
+        if (await this.isTokenExpired()) {
+          console.log('AUTH0 DEBUG: token is expired, attempting logout')
+          this.logout()
+        } else {
+          await this.refreshPerms();
+        }
       }
 
       this._ready.set(true);
@@ -100,8 +107,9 @@ export class LoginService {
     const expiration_timestamp = token?.exp;
 
     if (expiration_timestamp) {
-      return expiration_timestamp > new Date().getTime();
+      return (expiration_timestamp * 1000) < new Date().getTime();
+    } else {
+      throw new Error('failed to retrieve expiration time from token')
     }
-    return true;
   }
 }
