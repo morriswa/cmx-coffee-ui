@@ -49,7 +49,23 @@
 .app-button {
   padding: 10px 20px;
   font-size: 15px;
-  width: 300px;
+
+  &.primary {
+    background-color: $primary-color;
+    color: $white;
+  }
+
+  &:not(.primary) {
+    background-color: $white;
+  }
+
+  &.short {
+    width: 100px;
+  }
+
+  &:not(.short) {
+    width: 300px;
+  }
 }
 
 .header-font{
@@ -72,6 +88,11 @@
 // IN DEVELOPMENT
 .app-form-wrapper {
   margin: 10px;
+}
+
+.app-form-popup {
+  background-color: $surface-color;
+  padding: 20px;
 }
 
 .app-form-input {

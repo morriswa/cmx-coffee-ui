@@ -28,4 +28,8 @@ export class VendorService {
   unlistProduct(product_id: number) {
     return this.api.unlistProduct(product_id)
   }
+
+  updateProduct(productId: number, changes: any) {
+    return this.api.updateProduct(productId, changes);
+  }
 }
