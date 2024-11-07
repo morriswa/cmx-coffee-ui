@@ -109,4 +109,8 @@ export class ApiClient {
   updateProduct(productId: number, changes: VendorProduct) {
     return this.request('PATCH', `s/vendor/product/${productId}`, changes)
   }
+
+  getVendorsForAdmin() {
+    return this.request<any[]>('GET', 'a/vendors')
+  }
 }
