@@ -31,13 +31,13 @@
         [cdkConnectedOverlayOpen]="showEditProductNameDialog()"
         [cdkConnectedOverlayPositions]="popupPositions"
         [cdkConnectedOverlayPush]="true"
-        (overlayOutsideClick)="showEditProductNameDialog.set(false)"
+        (overlayOutsideClick)="handleCancelProductNameChange()"
       >
         <div class="app-form-wrapper flex-col app-form-popup">
           <span class="app-form-label">Set new product name</span>
           <input class="app-form-input" [formControl]="productNameForm" [placeholder]="product.product_name">
           <div class="app-button-group mt-3">
-            <button class="app-button short" (click)="showEditProductNameDialog.set(false)">Cancel</button>
+            <button class="app-button short" (click)="handleCancelProductNameChange()">Cancel</button>
             <button class="app-button short" (click)="handleStageProductName()">Save</button>
           </div>
         </div>
@@ -59,13 +59,13 @@
         [cdkConnectedOverlayOpen]="showEditInitialPriceDialog()"
         [cdkConnectedOverlayPositions]="popupPositions"
         [cdkConnectedOverlayPush]="true"
-        (overlayOutsideClick)="showEditInitialPriceDialog.set(false)"
+        (overlayOutsideClick)="handleCancelInitialPrice()"
       >
         <div class="app-form-wrapper flex-col app-form-popup">
           <span class="app-form-label">Set new base price</span>
           <input class="app-form-input" [formControl]="initialPriceForm" type="number">
           <div class="app-button-group mt-3">
-            <button class="app-button short" (click)="showEditInitialPriceDialog.set(false)">Cancel</button>
+            <button class="app-button short" (click)="handleCancelInitialPrice()">Cancel</button>
             <button class="app-button short" (click)="handleStageInitialPrice()">Save</button>
           </div>
         </div>
@@ -92,17 +92,24 @@
         [cdkConnectedOverlayOpen]="showEditDescriptionDialog()"
         [cdkConnectedOverlayPositions]="popupPositions"
         [cdkConnectedOverlayPush]="true"
-        (overlayOutsideClick)="showEditDescriptionDialog.set(false)"
+        (overlayOutsideClick)="handleCancelProductDescription()"
       >
         <div class="app-form-wrapper flex-col app-form-popup">
           <span class="app-form-label">Set new product description</span>
           <input class="app-form-input" [formControl]="productDescriptionForm" [placeholder]="product.description">
           <div class="app-button-group mt-3">
-            <button class="app-button short" (click)="showEditDescriptionDialog.set(false)">Cancel</button>
+            <button class="app-button short" (click)="handleCancelProductDescription()">Cancel</button>
             <button class="app-button short" (click)="handleStageProductDescription()">Save</button>
           </div>
         </div>
       </ng-template>
+
+      <ul>
+        @for (flag of productFlags; track flag) {
+          <li>{{flag}}</li>
+        }
+      </ul>
+      <a class="app-link" (click)="handleProductFlagPopup()">Edit Product Flags</a>
 
       @if (stagedProductChanges()) {
         <h3 class="mt-5">Careful! You have unsaved changes</h3>

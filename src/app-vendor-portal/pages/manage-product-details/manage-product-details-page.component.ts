@@ -8,6 +8,8 @@ import {ImageGalleryComponent} from "src/components/image-gallery/image-gallery.
 import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition} from "@angular/cdk/overlay";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {VendorProduct} from "src/types/vendor.type";
+import {Dialog} from "@angular/cdk/dialog";
+import {ProductFlagDialogComponent} from "./product-flag-dialog/product-flag-dialog.component";
 
 
 @Component({
@@ -32,25 +34,45 @@ export class ManageProductDetailsPageComponent implements OnInit {
   //const
   readonly popupPositions: ConnectedPosition[] = [{
     originX: 'end',
-    originY: 'top',
+    originY: 'bottom',
     overlayX: 'center',
-    overlayY: 'bottom',
+    overlayY: 'top',
   },]
 
 
   // services
   vendorship = inject(VendorService);
   activatedRoute = inject(ActivatedRoute);
+  dialogs = inject(Dialog);
 
 
   // component state
   productId: number;
-  displayDetails: WritableSignal<any> = signal(undefined);
+  displayDetails: WritableSignal<VendorProduct|undefined> = signal(undefined);
   productImages: WritableSignal<string[]|undefined> = signal(undefined)
 
-  oldProductDetails: WritableSignal<any> = signal(undefined);
-  stagedProductChanges: WritableSignal<any|undefined> = signal(undefined);
+  oldProductDetails: WritableSignal<VendorProduct|undefined> = signal(undefined);
+  stagedProductChanges: WritableSignal<any> = signal(undefined);
 
+  get productFlags() {
+    const product: VendorProduct|undefined = this.displayDetails();
+    if (!product) return  [];
+    let flags: any[] = []
+
+    if (product.coffee_bean_characteristics.taste_strength)
+      flags.push(`Strength ${Number(product.coffee_bean_characteristics.taste_strength) + 1} / 10`)
+    if (product.coffee_bean_characteristics.decaf==='y')
+      flags.push('Decaf');
+    else flags.push('Contains Caffeine')
+    if (product.coffee_bean_characteristics.single_origin==='y')
+      flags.push('Single Origin');
+    if (product.coffee_bean_characteristics.single_origin==='n')
+      flags.push('Blend');
+    if (product.coffee_bean_characteristics.flavored==='y')
+      flags.push('Flavored');
+
+    return flags;
+  }
 
   // form state
   initialPriceForm: FormControl = new FormControl();
@@ -151,8 +173,50 @@ export class ManageProductDetailsPageComponent implements OnInit {
       if (!d) d = {};
       d['product_name'] = this.productNameForm.value;
       return d;
-    })
+    });
     this.productNameForm.reset();
     this.showEditProductNameDialog.set(false);
+  }
+
+  handleStageCoffeeBeanCharacteristics(cbc: any) {
+    this.stagedProductChanges.update(d=>{
+      if (!d) d = {};
+      d.coffee_bean_characteristics = cbc;
+      return d;
+    });
+    this.displayDetails.update(d=>{
+      if (!d) d = {};
+      d.coffee_bean_characteristics = cbc;
+      return d;
+    });
+  }
+
+  handleCancelProductDescription() {
+    this.showEditDescriptionDialog.set(false);
+    this.productDescriptionForm.setValue(this.oldProductDetails()?.description);
+  }
+
+  handleCancelInitialPrice() {
+    this.showEditInitialPriceDialog.set(false);
+    this.initialPriceForm.setValue(this.oldProductDetails()?.initial_price);
+  }
+
+  handleCancelProductNameChange() {
+    this.showEditProductNameDialog.set(false)
+    this.productNameForm.setValue(this.oldProductDetails()?.product_name);
+  }
+
+  handleProductFlagPopup() {
+    const dialog = this.dialogs.open(ProductFlagDialogComponent, {
+      data: this.displayDetails(),
+    });
+
+    const sub = dialog.closed.subscribe((res: any)=>{
+      if (res?.result==='update') {
+        this.handleStageCoffeeBeanCharacteristics(res.data)
+      }
+
+      sub.unsubscribe();
+    })
   }
 }
