@@ -26,19 +26,17 @@ $font-size-sm: 10px;
 $font-size-xs: 8px;
 
 // colors
+$black: #21201F;
+$white: #ffffff;
+$clear: #ffffff00;
+
 $primary-color: #EC5F46;
 $secondary-color: #050559;
 $tertiary-color: #efa145;
-
 $neutral-color: #8f8f8f;
 $neutral-variant-color: #575757;
 
 $body-background-color: #ECEAE5;
-$surface-color: #eac8a8ff;
+$surface-color: $white;
 $error-color: #ff3636;
-
-$black: #21201F;
-$white: #ECEAE5;
-$clear: #ffffff00;
-
 $text-color: #21201F;
