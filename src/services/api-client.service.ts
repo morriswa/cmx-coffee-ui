@@ -48,7 +48,7 @@ export class ApiClient {
   }
 
   permissions(): Promise<any> {
-    return this.request<any>("GET", 'permissions');
+    return this.request<any>("GET", 's/permissions');
   }
 
   profile() {
@@ -60,11 +60,11 @@ export class ApiClient {
   }
 
   getApplicants() {
-    return this.request<any[]>('GET', 'a/vendor-applications')
+    return this.request<any[]>('GET', 's/admin/vendor-applications')
   }
 
   processApplicant(application_id: number, action: "approve" | "reject"): Promise<void> {
-    return this.request('PUT', `a/vendor-application/${application_id}?action=${action}`)
+    return this.request('PUT', `s/admin/vendor-application/${application_id}?action=${action}`)
   }
 
   getProductsForVendor() {
@@ -76,11 +76,11 @@ export class ApiClient {
   }
 
   getProductImages(productId: number) {
-    return this.request<string[]>('GET', `s/product/${productId}/image`);
+    return this.request<string[]>('GET', `product/${productId}/image`);
   }
 
   getProductsForCustomer() {
-    return this.request<Product[]>('GET', `s/shop/products`);
+    return this.request<Product[]>('GET', `shop/products`);
   }
 
   listProduct(createRequest: any) {
@@ -111,6 +111,6 @@ export class ApiClient {
   }
 
   getVendorsForAdmin() {
-    return this.request<any[]>('GET', 'a/vendors')
+    return this.request<any[]>('GET', 's/admin/vendors')
   }
 }
