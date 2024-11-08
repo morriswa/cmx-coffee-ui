@@ -1,7 +1,7 @@
 import {CanActivateFn, Router} from "@angular/router";
 import {inject} from "@angular/core";
 import {LoginService} from "../services/login.service";
-import {tryTimes} from "src/utils";
+import {tryTimes, until} from "src/utils";
 
 
 export const HasPermission = (permission: string): CanActivateFn => {
@@ -9,7 +9,8 @@ export const HasPermission = (permission: string): CanActivateFn => {
     const login = inject(LoginService);
     const router = inject(Router);
 
-    if (!await login.isAuthenticated) {
+    await until(login.ready)
+    if (!login.isAuthenticated) {
       console.log('AUTH0 DEBUG: user was not authenticated, attempting login')
       try {
         await login.login([state.url]);
@@ -29,8 +30,7 @@ export const HasPermission = (permission: string): CanActivateFn => {
       return false;
     }
 
-    const hasPermission =
-      await tryTimes<boolean>(()=>login.hasPermission(permission), 3);
+    const hasPermission = login.hasPermission(permission);
 
     if (!hasPermission) {
       console.log('AUTH0 DEBUG: user does not have appropriate permissions...')

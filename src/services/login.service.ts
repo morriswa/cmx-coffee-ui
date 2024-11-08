@@ -1,6 +1,6 @@
 import {inject, Injectable, Signal, signal, WritableSignal} from "@angular/core";
 import {AuthService, User} from "@auth0/auth0-angular";
-import {firstValueFrom, Observable} from "rxjs";
+import {firstValueFrom, Observable, tap} from "rxjs";
 import {ApiClient} from "./api-client.service";
 import {Router} from "@angular/router";
 import {AUTH0_CONFIG} from "src/environments/environment";
@@ -19,6 +19,7 @@ export class LoginService {
   // state
   private _permissions: WritableSignal<string[]> = signal([]);
   private _ready: WritableSignal<boolean> = signal(false);
+  private _isAuthenticated: WritableSignal<boolean> = signal(false);
 
 
   constructor() {
@@ -34,6 +35,7 @@ export class LoginService {
         }
       }
 
+      this._isAuthenticated.set(isAuthenticated);
       this._ready.set(true);
       authCheck.unsubscribe();
     });
@@ -68,11 +70,13 @@ export class LoginService {
   }
 
   get isAuthenticated$(): Observable<boolean> {
-    return this.auth0.isAuthenticated$
+    return this.auth0.isAuthenticated$.pipe(
+      tap(isAuthenticated => this._isAuthenticated.set(isAuthenticated))
+    );
   }
 
-  get isAuthenticated(): Promise<boolean> {
-    return firstValueFrom(this.auth0.isAuthenticated$)
+  get isAuthenticated(): boolean {
+    return this._isAuthenticated()
   }
 
   get permissions(): string[] {
@@ -84,8 +88,7 @@ export class LoginService {
     return this._ready;
   }
 
-  async hasPermission(permission: string): Promise<boolean> {
-    await until(this._ready)
+  hasPermission(permission: string): boolean {
     const perms = this._permissions();
     return perms.includes(permission)
   }

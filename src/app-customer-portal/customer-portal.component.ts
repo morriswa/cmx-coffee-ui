@@ -1,9 +1,9 @@
-import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, inject, signal, WritableSignal} from '@angular/core';
 import {LoginService} from "src/services/login.service";
 import {AsyncPipe, NgIf} from "@angular/common";
-import {Subscription} from "rxjs";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition} from "@angular/cdk/overlay";
+import {UserService} from "./services/user.service";
 
 
 @Component({
@@ -21,14 +21,9 @@ import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition} from "@angular
   styleUrl: './customer-portal.component.scss',
   host: {'class': 'flex-child'}
 })
-export class CustomerPortalComponent implements OnInit, OnDestroy {
+export class CustomerPortalComponent {
 
-  login = inject(LoginService);
-  isLoggedIn: WritableSignal<boolean> = signal(false);
-  private _authenticatedSubscription?: Subscription;
-  accountMenuOpen: WritableSignal<boolean> = signal(false);
-  accountName: WritableSignal<string|undefined> = signal(undefined);
-
+  // const
   readonly accountMenuPosition: ConnectedPosition[] = [
     {
       offsetY: 35,
@@ -39,17 +34,15 @@ export class CustomerPortalComponent implements OnInit, OnDestroy {
     },
   ];
 
-  async ngOnInit() {
-    this._authenticatedSubscription = this.login.isAuthenticated$.subscribe(
-      (res)=>this.isLoggedIn.set(res)
-    );
-    const user = await this.login.getUser()
-    this.accountName.set(user.name)
-  }
 
-  ngOnDestroy(): void {
-    this._authenticatedSubscription?.unsubscribe();
-  }
+  // services
+  login = inject(LoginService);
+  userSa = inject(UserService)
+
+
+  // state
+  accountMenuOpen: WritableSignal<boolean> = signal(false);
+
 
   handleLogin() {
     this.login.login();

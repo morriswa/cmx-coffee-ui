@@ -7,6 +7,8 @@ import {AdminService} from "../app-admin-portal/services/admin.service";
 import {NotImplementedComponent} from "src/pages/not-implemented/not-implemented.component";
 import {LogoutComponent} from "src/pages/logout/logout.component";
 import {VendorService} from "../app-vendor-portal/services/vendor.service";
+import {UserService} from "../app-customer-portal/services/user.service";
+import {ReadyUserService} from "../guards/ready-user.service";
 
 
 const routesConfig: Routes = [
@@ -16,6 +18,8 @@ const routesConfig: Routes = [
     path: "",
     loadComponent: ()=>import('src/app-customer-portal/customer-portal.component')
       .then(m=>m.CustomerPortalComponent),
+    canActivate: [ReadyUserService],
+    providers: [UserService],
     children: [
       {
         path: "",
@@ -35,10 +39,22 @@ const routesConfig: Routes = [
           .then(m=>m.SubscriptionPlansPageComponent)
       },
       {
-        path: "profile",
+        path: "account",
         canActivate: [HasPermission('cmx_coffee:appuser')],
-        loadComponent: () => import('src/app-customer-portal/pages/customer-profile/customer-profile-page.component')
-          .then(m=>m.CustomerProfilePageComponent)
+        loadComponent: () => import('src/app-customer-portal/pages/account/account-page.component')
+          .then(m=>m.AccountPageComponent),
+        children: [
+          {
+            path: "profile",
+            loadComponent: () => import('src/app-customer-portal/pages/profile/profile-page.component')
+              .then(m=>m.ProfilePageComponent),
+          },
+          {
+            path: "orders",
+            loadComponent: () => import('src/app-customer-portal/pages/order/order-page.component')
+              .then(m=>m.OrderPageComponent),
+          },
+        ]
       },
       {
         path: "forms/vendor-application",
