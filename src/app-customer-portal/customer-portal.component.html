@@ -1,73 +1,71 @@
 
-@if (login.ready()) {
-  <div class="app-header">
-    <div class="app-button-group">
-      <img src="static/comapny_logo.png" alt="The company logo" routerLink="/" width="84px" height="36px">
-      <a class="app-link" routerLink="/shop">Browse Coffee</a>
-      <a class="app-link" routerLink="/plans">Subscription Plans</a>
-      <a class="app-link" routerLink="/not-implemented">About Us</a>
-    </div>
-
-    <div class="app-button-group">
-      <div class="app-search-bar">
-        <form id="form">
-          <button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 50 50"
-              width="50px"
-              height="50px"
-            >
-              <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z"/>
-            </svg>
-          </button>
-          <input type="search" id="query" name="q" placeholder="Search..." aria-label="Search through site content">
-        </form>
-      </div>
-
-      <img routerLink="/not-implemented" src="static/shopping_cart.png" alt="Your shopping cart" width="40px" height="40px">
-
-      @if (login.isAuthenticated) {
-        <!-- This button triggers the overlay and is it's origin -->
-        <a
-          class="app-link"
-          (click)="accountMenuOpen.set(!accountMenuOpen())"
-          cdkOverlayOrigin
-          #accountMenu="cdkOverlayOrigin"
-        >
-          Account
-        </a>
-
-        <!-- This template displays the overlay content and is connected to the button -->
-        <ng-template
-          cdkConnectedOverlay
-          [cdkConnectedOverlayOrigin]="accountMenu"
-          [cdkConnectedOverlayOpen]="accountMenuOpen()"
-          [cdkConnectedOverlayPositions]="accountMenuPosition"
-          (overlayOutsideClick)="accountMenuOpen.set(false)"
-        >
-          <div class="app-account-menu-popup" (click)="accountMenuOpen.set(false)">
-            <h4>Good afternoon</h4>
-            <h4>{{ login.user().name }}</h4>
-            <hr>
-            <a class="app-link" routerLink="/account/profile">Profile</a>
-            <a class="app-link" routerLink="/not-implemented">Orders</a>
-            <hr>
-            <a *ngIf="login.permissions().includes('cmx_coffee:admin')" class="app-link" routerLink="/admin">Admin Portal</a>
-            <a *ngIf="login.permissions().includes('cmx_coffee:vendor')" class="app-link" routerLink="/vendor">Vendor Portal</a>
-            <a class="app-link" routerLink="/forms/vendor-application">vendorapp</a>
-            <hr>
-            <a class="app-link" routerLink="/logout">Logout</a>
-          </div>
-        </ng-template>
-      }
-      @else {
-        <a class="app-link" (click)="handleLogin()">Login</a>
-      }
-    </div>
+<div class="app-header">
+  <div class="app-button-group">
+    <img src="static/comapny_logo.png" alt="The company logo" routerLink="/" width="84px" height="36px">
+    <a class="app-link" routerLink="/shop">Browse Coffee</a>
+    <a class="app-link" routerLink="/plans">Subscription Plans</a>
+    <a class="app-link" routerLink="/not-implemented">About Us</a>
   </div>
 
-  <div class="app-body">
-    <router-outlet/>
+  <div class="app-button-group">
+    <div class="app-search-bar">
+      <form id="form">
+        <button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 50 50"
+            width="50px"
+            height="50px"
+          >
+            <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z"/>
+          </svg>
+        </button>
+        <input type="search" id="query" name="q" placeholder="Search..." aria-label="Search through site content">
+      </form>
+    </div>
+
+    <img routerLink="/not-implemented" src="static/shopping_cart.png" alt="Your shopping cart" width="40px" height="40px">
+
+    @if (login.isAuthenticated) {
+      <!-- This button triggers the overlay and is it's origin -->
+      <a
+        class="app-link"
+        (click)="accountMenuOpen.set(!accountMenuOpen())"
+        cdkOverlayOrigin
+        #accountMenu="cdkOverlayOrigin"
+      >
+        Account
+      </a>
+
+      <!-- This template displays the overlay content and is connected to the button -->
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="accountMenu"
+        [cdkConnectedOverlayOpen]="accountMenuOpen()"
+        [cdkConnectedOverlayPositions]="accountMenuPosition"
+        (overlayOutsideClick)="accountMenuOpen.set(false)"
+      >
+        <div class="app-account-menu-popup" (click)="accountMenuOpen.set(false)">
+          <h4>Good afternoon</h4>
+          <h4>{{ login.user().name }}</h4>
+          <hr>
+          <a class="app-link" routerLink="/account/profile">Profile</a>
+          <a class="app-link" routerLink="/account/orders">Orders</a>
+          <hr>
+          <a *ngIf="login.permissions().includes('cmx_coffee:admin')" class="app-link" routerLink="/admin">Admin Portal</a>
+          <a *ngIf="login.permissions().includes('cmx_coffee:vendor')" class="app-link" routerLink="/vendor">Vendor Portal</a>
+          <a class="app-link" routerLink="/forms/vendor-application">vendorapp</a>
+          <hr>
+          <a class="app-link" routerLink="/logout">Logout</a>
+        </div>
+      </ng-template>
+    }
+    @else {
+      <a class="app-link" (click)="handleLogin()">Login</a>
+    }
   </div>
-}
+</div>
+
+<div class="app-body">
+  <router-outlet/>
+</div>

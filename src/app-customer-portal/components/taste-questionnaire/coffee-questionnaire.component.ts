@@ -26,12 +26,12 @@ import {yn} from "../../../types";
 })
 export class CoffeeQuestionnaireComponent {
 
-  PAGE_COUNT = 9;
+  PAGE_COUNT = 8;
 
   ref = inject(DialogRef);
   api = inject(ApiClient);
 
-  page: WritableSignal<number> = signal(1);
+  page: WritableSignal<number> = signal(0);
   forwardDisabled: Signal<boolean> = computed(()=>this.page()>=this.PAGE_COUNT);
   backwardDisabled: Signal<boolean> = computed(()=>this.page()<=1);
   pageOneCoffeeStrengthForm: CheckboxSelectorFormControl = new CheckboxSelectorFormControl([
@@ -68,17 +68,13 @@ export class CoffeeQuestionnaireComponent {
     { value: 'np', label: 'I love all coffee!!' },
   ]);
   pageSevenCoffeeToolForm: CheckboxSelectorFormControl = new CheckboxSelectorFormControl([
-    { value: 'espresso', label: 'Espresso' },
+    { value: 'espresso', label: 'Espresso Machine' },
     { value: 'drip', label: 'Drip' },
     { value: 'french', label: 'French Press' },
     { value: 'pour', label: 'Pour Over' },
     { value: 'perc', label: 'Percolator' },
     { value: 'cold', label: 'Cold Brew' },
     { value: 'air', label: 'Airopress' },
-  ])
-  pageEightForm: RadioButtonFormControl = new RadioButtonFormControl([
-    { value: 'fun', label: 'Fun' },
-    { value: 'notfun', label: 'Not fun' },
   ])
 
   forward() {

@@ -1,7 +1,7 @@
 import {CanActivateFn, Router} from "@angular/router";
 import {inject} from "@angular/core";
 import {LoginService} from "../services/login.service";
-import {tryTimes, until} from "src/utils";
+import {until} from "src/utils";
 
 
 export const HasPermission = (permission: string): CanActivateFn => {

@@ -8,7 +8,7 @@ import {ImageGalleryComponent} from "src/components/image-gallery/image-gallery.
 import {CdkConnectedOverlay, CdkOverlayOrigin} from "@angular/cdk/overlay";
 import {ReactiveFormsModule} from "@angular/forms";
 import {VendorProduct} from "src/types/vendor.type";
-import {EditProductDetailsComponent} from "./edit-product-details/edit-product-details.component";
+import {EditProductDetailsComponent} from "../../components/edit-product-details/edit-product-details.component";
 
 
 @Component({
