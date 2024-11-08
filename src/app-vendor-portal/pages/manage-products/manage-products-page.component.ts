@@ -4,7 +4,7 @@ import {CurrencyPipe, NgIf} from "@angular/common";
 import {VendorService} from "src/app-vendor-portal/services/vendor.service";
 import {RouterLink} from "@angular/router";
 import {Dialog} from "@angular/cdk/dialog";
-import {UnlistProductDialogComponent} from "./unlist-product-dialog/unlist-product-dialog.component";
+import {UnlistProductDialogComponent} from "../../components/unlist-product-dialog/unlist-product-dialog.component";
 
 
 @Component({

@@ -4,7 +4,7 @@ import {LoaderComponent} from "src/components/loader/loader.component";
 import {Dialog} from "@angular/cdk/dialog";
 import {
   VendorApplicantActionDialogComponent
-} from "./vendor-applicant-action-dialog/vendor-applicant-action-dialog.component";
+} from "../../components/vendor-applicant-action-dialog/vendor-applicant-action-dialog.component";
 import {NgIf} from "@angular/common";
 
 
