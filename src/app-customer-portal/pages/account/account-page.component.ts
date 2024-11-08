@@ -1,8 +1,8 @@
 import {Component, inject} from "@angular/core";
 import {NgOptimizedImage} from "@angular/common";
 import {RouterLink, RouterOutlet} from "@angular/router";
-import {UserService} from "../../services/user.service";
-import {LoaderComponent} from "../../../components/loader/loader.component";
+import {LoaderComponent} from "src/components/loader/loader.component";
+import {LoginService} from "src/services/login.service";
 
 
 @Component({
@@ -19,5 +19,5 @@ import {LoaderComponent} from "../../../components/loader/loader.component";
 export class AccountPageComponent {
 
   // services
-  userSa = inject(UserService);
+  userSa = inject(LoginService);
 }

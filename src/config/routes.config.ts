@@ -7,8 +7,6 @@ import {AdminService} from "../app-admin-portal/services/admin.service";
 import {NotImplementedComponent} from "src/pages/not-implemented/not-implemented.component";
 import {LogoutComponent} from "src/pages/logout/logout.component";
 import {VendorService} from "../app-vendor-portal/services/vendor.service";
-import {UserService} from "../app-customer-portal/services/user.service";
-import {ReadyUserService} from "../guards/ready-user.service";
 
 
 const routesConfig: Routes = [
@@ -18,8 +16,6 @@ const routesConfig: Routes = [
     path: "",
     loadComponent: ()=>import('src/app-customer-portal/customer-portal.component')
       .then(m=>m.CustomerPortalComponent),
-    canActivate: [ReadyUserService],
-    providers: [UserService],
     children: [
       {
         path: "",

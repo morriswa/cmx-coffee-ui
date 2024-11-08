@@ -1,6 +1,6 @@
-import {inject, Injectable, Signal, signal, WritableSignal} from "@angular/core";
+import {computed, inject, Injectable, Signal, signal, WritableSignal} from "@angular/core";
 import {AuthService, User} from "@auth0/auth0-angular";
-import {firstValueFrom, Observable, tap} from "rxjs";
+import {firstValueFrom} from "rxjs";
 import {ApiClient} from "./api-client.service";
 import {Router} from "@angular/router";
 import {AUTH0_CONFIG} from "src/environments/environment";
@@ -17,13 +17,59 @@ export class LoginService {
 
 
   // state
-  private _permissions: WritableSignal<string[]> = signal([]);
   private _ready: WritableSignal<boolean> = signal(false);
   private _isAuthenticated: WritableSignal<boolean> = signal(false);
+  private _user: WritableSignal<User|undefined> = signal(undefined);
+  private _permissions: WritableSignal<string[]> = signal([]);
+  private _accountComplete: WritableSignal<boolean> = signal(false);
 
 
+  // public
+  get isAuthenticated(): boolean {
+    if (!this._ready()) throw new Error('Not ready')
+    return this._isAuthenticated()
+  }
+
+  hasPermission(permission: string): boolean {
+    const perms = this._permissions();
+    return perms.includes(permission)
+  }
+
+
+  // signals
+  firstName = computed(()=>{
+    const user = this._user();
+    if (user?.name) {
+      const fullName = user.name;
+      const names = fullName.split(' ');
+      return names[0];
+    }
+    return ''
+  })
+
+  user = computed(()=>{
+    if (!this._ready()) throw new Error('Not ready')
+    const user = this._user();
+    if (!user) throw new Error('no cached user');
+    return user;
+  })
+
+  get accountComplete(): Signal<boolean> {
+    return this._accountComplete;
+  }
+
+  get permissions(): Signal<string[]> {
+    return this._permissions;
+  }
+
+  get ready(): Signal<boolean> {
+    return this._ready;
+  }
+
+
+  // lifecycle
   constructor() {
-    const authCheck = this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
+    const initialAuthCheck = this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
       if (isAuthenticated) {
         console.log('AUTH0 DEBUG: is authenticated')
 
@@ -37,7 +83,7 @@ export class LoginService {
 
       this._isAuthenticated.set(isAuthenticated);
       this._ready.set(true);
-      authCheck.unsubscribe();
+      initialAuthCheck.unsubscribe();
     });
   }
 
@@ -69,35 +115,6 @@ export class LoginService {
       .subscribe(()=>logoutActionSubscription.unsubscribe());
   }
 
-  get isAuthenticated$(): Observable<boolean> {
-    return this.auth0.isAuthenticated$.pipe(
-      tap(isAuthenticated => this._isAuthenticated.set(isAuthenticated))
-    );
-  }
-
-  get isAuthenticated(): boolean {
-    return this._isAuthenticated()
-  }
-
-  get permissions(): string[] {
-    if (!this._ready()) return []
-    else return this._permissions();
-  }
-
-  get ready(): Signal<boolean> {
-    return this._ready;
-  }
-
-  hasPermission(permission: string): boolean {
-    const perms = this._permissions();
-    return perms.includes(permission)
-  }
-
-  async getUser() {
-    await until(this._ready)
-    return await firstValueFrom(this.auth0.user$) as User
-  }
-
 
   // logic
   private async refreshPerms() {
@@ -114,5 +131,12 @@ export class LoginService {
     } else {
       throw new Error('failed to retrieve expiration time from token')
     }
+  }
+
+  async refreshUserCache() {
+    await until(this._ready)
+    const user = await firstValueFrom(this.auth0.user$) as User
+    this._user.set(user);
+    this._accountComplete.set(this.hasPermission('cmx_coffee:customer'))
   }
 }

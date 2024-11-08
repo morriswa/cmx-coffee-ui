@@ -1,9 +1,9 @@
 import {Component, inject} from "@angular/core";
 import {NgOptimizedImage} from "@angular/common";
-import {ApiClient} from "../../../services/api-client.service";
+import {ApiClient} from "src/services/api-client.service";
 import {Dialog} from "@angular/cdk/dialog";
-import {CoffeeQuestionnaireComponent} from "../../components/taste-questionnaire/coffee-questionnaire.component";
-import {UserService} from "../../services/user.service";
+import {CoffeeQuestionnaireComponent} from "src/app-customer-portal/components/taste-questionnaire/coffee-questionnaire.component";
+import {LoginService} from "src/services/login.service";
 
 
 @Component({
@@ -19,7 +19,7 @@ export class ProfilePageComponent{
   // services
   api = inject(ApiClient);
   dialogs = inject(Dialog);
-  userSa = inject(UserService);
+  userSa = inject(LoginService);
 
 
   openCoffeeQuestionnaire() {
