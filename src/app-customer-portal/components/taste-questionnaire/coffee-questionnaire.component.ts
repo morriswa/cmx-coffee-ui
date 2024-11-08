@@ -26,7 +26,7 @@ import {yn} from "../../../types";
 })
 export class CoffeeQuestionnaireComponent {
 
-  PAGE_COUNT = 9;
+  PAGE_COUNT = 8;
 
   ref = inject(DialogRef);
   api = inject(ApiClient);
