@@ -1,3 +1,39 @@
-body{
-  background-color: #ECEAE5;
+@use "src/styles/variables" as *;
+
+
+
+// shop coffee banner
+.shop-banner {
+  background-color: $primary-color;
+  padding: 40px;
 }
+
+.shop-heading {
+  font-size: $font-size-xxl;
+  font-family: $header-font-family;
+  color: $white;
+  text-shadow: -10px 5px 3px rgba(33, 32, 31, 0.3);
+  letter-spacing: 3px;
+}
+
+.shop-text {
+  font-size: $font-size-subtitle;
+  width: 35vw;
+  line-height: 35px;
+  text-shadow: -10px 5px 3px rgba(33, 32, 31, 0.3);
+  color: $white;
+}
+
+// browse coffee heading
+.browse-coffee-heading {
+  font-size: $font-size-xl;
+  font-family: $header-font-family;
+  color: $black;
+}
+
+.browse-coffee-text {
+  font-size: $font-size-subtitle;
+  color: $black;
+}
+
+// browse types of coffees

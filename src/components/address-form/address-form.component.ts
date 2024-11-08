@@ -1,6 +1,7 @@
 import {Component, signal} from "@angular/core";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Address} from "src/types/address.type";
+import {TaggedInputComponent} from "src/components/tagged-input/tagged-input.component";
 
 @Component({
   selector: "app-address-form",
@@ -9,7 +10,9 @@ import {Address} from "src/types/address.type";
   standalone: true,
   imports: [
     ReactiveFormsModule,
-  ]
+    TaggedInputComponent,
+  ],
+  host: { 'class': 'flex-child' }
 })
 export class AddressFormComponent {
 

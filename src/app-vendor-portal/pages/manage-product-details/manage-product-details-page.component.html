@@ -1,0 +1,23 @@
+
+<div class="flex-col vw-90 mx-auto align-items-center">
+@if (productDetails) {
+  <h1 class="my-5">Now viewing {{productDetails.product_name}}</h1>
+
+  <div class="flex-row space-around-items">
+    <div style="width: 50%" class="flex-col">
+      <image-gallery *ngIf="productImages() as images"
+                     [images]="images"
+                     [alt]="'product highlights for ' + productDetails.product_name"
+      />
+      <file-upload (onConfirm)="handleChangeImage($event)"/>
+    </div>
+
+    <div style="width: 50%" class="flex-col">
+      <app-edit-product-details [productDetails]="productDetails" (saveProduct)="handleUpdateProductDetails($event)"/>
+    </div>
+
+  </div>
+} @else {
+  <app-loader class="mt-5"/>
+}
+</div>

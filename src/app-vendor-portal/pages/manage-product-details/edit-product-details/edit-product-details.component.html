@@ -1,0 +1,110 @@
+
+@if (displayDetails(); as draft) {
+
+  <p>PID: {{draft.product_id}}</p>
+
+  <!-- PRODUCT NAME HEADER -->
+  <span class="flex-row align-items-baseline">
+  <h1>{{draft.product_name}}</h1>
+  <a
+    class="app-link"
+    cdkOverlayOrigin
+    #editProduct="cdkOverlayOrigin"
+    (click)="showEditProductNameDialog.set(true)"
+  >&nbsp;- Edit</a>
+  </span>
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="editProduct"
+    [cdkConnectedOverlayOpen]="showEditProductNameDialog()"
+    [cdkConnectedOverlayPositions]="popupPositions"
+    [cdkConnectedOverlayPush]="true"
+    (overlayOutsideClick)="handleCancelProductNameChange()"
+  >
+    <div class="app-form-wrapper flex-col app-form-popup">
+      <span class="app-form-label">Set new product name</span>
+      <input class="app-form-input" [formControl]="productNameForm" [placeholder]="draft.product_name">
+      <div class="app-button-group mt-3">
+        <button class="app-button short" (click)="handleCancelProductNameChange()">Cancel</button>
+        <button class="app-button short" (click)="handleStageProductName()">Save</button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- PRICE -->
+  <span class="flex-row align-items-baseline">
+        <h2>{{draft.initial_price | currency}}</h2>
+        <a
+          class="app-link"
+          cdkOverlayOrigin
+          #editInitialPrice="cdkOverlayOrigin"
+          (click)="showEditInitialPriceDialog.set(true)"
+        >&nbsp;- Edit</a>
+      </span>
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="editInitialPrice"
+    [cdkConnectedOverlayOpen]="showEditInitialPriceDialog()"
+    [cdkConnectedOverlayPositions]="popupPositions"
+    [cdkConnectedOverlayPush]="true"
+    (overlayOutsideClick)="handleCancelInitialPrice()"
+  >
+    <div class="app-form-wrapper flex-col app-form-popup">
+      <span class="app-form-label">Set new base price</span>
+      <input class="app-form-input" [formControl]="initialPriceForm" type="number">
+      <div class="app-button-group mt-3">
+        <button class="app-button short" (click)="handleCancelInitialPrice()">Cancel</button>
+        <button class="app-button short" (click)="handleStageInitialPrice()">Save</button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- PRODUCT DESCRIPTION -->
+  <h3 class="mt-3">
+
+    {{draft.description}}
+
+    <a
+      class="app-link"
+      cdkOverlayOrigin
+      #editDescription="cdkOverlayOrigin"
+      (click)="showEditDescriptionDialog.set(true)"
+    >
+      &nbsp;- Edit
+    </a>
+
+  </h3>
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="editDescription"
+    [cdkConnectedOverlayOpen]="showEditDescriptionDialog()"
+    [cdkConnectedOverlayPositions]="popupPositions"
+    [cdkConnectedOverlayPush]="true"
+    (overlayOutsideClick)="handleCancelProductDescription()"
+  >
+    <div class="app-form-wrapper flex-col app-form-popup">
+      <span class="app-form-label">Set new product description</span>
+      <input class="app-form-input" [formControl]="productDescriptionForm" [placeholder]="draft.description">
+      <div class="app-button-group mt-3">
+        <button class="app-button short" (click)="handleCancelProductDescription()">Cancel</button>
+        <button class="app-button short" (click)="handleStageProductDescription()">Save</button>
+      </div>
+    </div>
+  </ng-template>
+
+  <ul>
+    @for (flag of productFlags; track flag) {
+      <li>{{flag}}</li>
+    }
+  </ul>
+  <a class="app-link" (click)="handleProductFlagPopup()">Edit Product Flags</a>
+
+  @if (stagedProductChanges()) {
+    <h3 class="mt-5">Careful! You have unsaved changes</h3>
+    <div class="app-button-group">
+      <button class="app-button short" (click)="saveChanges()">Save</button>
+      <button class="app-button short" (click)="discardChanges()">Discard</button>
+    </div>
+  }
+
+}

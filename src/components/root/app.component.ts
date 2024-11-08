@@ -15,13 +15,14 @@ import {
   RouterOutlet
 } from "@angular/router";
 import {Subscription} from "rxjs";
-import {FullscreenAppLoaderComponent} from "../fullscreen-app-loader/fullscreen-app-loader.component";
+import {FullscreenAppLoaderComponent} from "src/components/fullscreen-app-loader/fullscreen-app-loader.component";
+import {LoginService} from "src/services/login.service";
 
 
 @Component({
   selector: "app-root",
   template: `
-    @if (loading()) {
+    @if (resolvingRoute() || !login.ready()) {
       <app-fullscreen-loader/>
     } @else {
       <router-outlet/>
@@ -36,21 +37,28 @@ import {FullscreenAppLoaderComponent} from "../fullscreen-app-loader/fullscreen-
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  private router = inject(Router);
+  // services
+  login = inject(LoginService);
+  router = inject(Router);
+
+
+  // state
+  resolvingRoute: WritableSignal<boolean> = signal(false);
+
   private routerEventSubscription?: Subscription;
 
-  protected loading: WritableSignal<boolean> = signal(false);
 
+  // lifecycle
   ngOnInit() {
     this.routerEventSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
-        this.loading.set(true);
+        this.resolvingRoute.set(true);
       } else if (
            event instanceof NavigationEnd
         || event instanceof NavigationCancel
         || event instanceof NavigationError
       ) {
-        this.loading.set(false);
+        this.resolvingRoute.set(false);
       }
     });
   }

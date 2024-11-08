@@ -1,0 +1,9 @@
+
+<input
+  type="file"
+  class="file-upload-form"
+  [formControl]="fileForm"
+  (change)="stageFile($event)"
+>
+
+<button class="app-button" [disabled]="!stagedFile()" (click)="confirm()">Upload</button>

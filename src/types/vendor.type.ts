@@ -10,3 +10,11 @@ export type VendorApplication = {
   zip: string,
   country: string,
 }
+
+export type VendorProduct = {
+  product_id?: number,
+  product_name?: string,
+  description?: string,
+  initial_price?: number,
+  coffee_bean_characteristics?: any,
+}

@@ -9,6 +9,9 @@ import {
   CheckboxSelectorComponent,
   CheckboxSelectorFormControl
 } from "src/components/checkbox-selector/checkbox-selector.component";
+import {ApiClient} from "../../../services/api-client.service";
+import {CustomerProductPreferences} from "../../../types/customer.type";
+import {yn} from "../../../types";
 
 
 @Component({
@@ -26,6 +29,7 @@ export class CoffeeQuestionnaireComponent {
   PAGE_COUNT = 9;
 
   ref = inject(DialogRef);
+  api = inject(ApiClient);
 
   page: WritableSignal<number> = signal(0);
   forwardDisabled: Signal<boolean> = computed(()=>this.page()>=this.PAGE_COUNT);
@@ -87,15 +91,37 @@ export class CoffeeQuestionnaireComponent {
     }
   }
 
-  handleSubmit() {
-    this.ref.close({
-      'strength': this.pageOneCoffeeStrengthForm.value,
-      'flavored': this.pageTwoFlavoredCoffeeForm.value,
-      'creamers': this.pageThreeCreamersForm.value,
-      'time_of_day': this.pageFourCoffeeTimeForm.value,
-      'tasting_notes': this.pageFiveFlavorNotesForm.value,
-      'origins': this.pageSixSingleOriginForm.value,
-      'tools': this.pageSevenCoffeeToolForm.value
-    })
+  async handleSubmit() {
+    try {
+      // const questionnaire_data = {
+      //   'strength': this.pageOneCoffeeStrengthForm.value,
+      //   'flavored': this.pageTwoFlavoredCoffeeForm.value,
+      //   'creamers': this.pageThreeCreamersForm.value,
+      //   'time_of_day': this.pageFourCoffeeTimeForm.value,
+      //   'tasting_notes': this.pageFiveFlavorNotesForm.value,
+      //   'origins': this.pageSixSingleOriginForm.value,
+      //   'tools': this.pageSevenCoffeeToolForm.value
+      // }
+      const request: CustomerProductPreferences = {}
+
+      const strength = this.pageOneCoffeeStrengthForm.value;
+      if (strength) {
+        request.strength_mild = yn(strength.includes('mild'))
+        request.strength_med = yn(strength.includes('medium'))
+        request.strength_bold = yn(strength.includes('bold'))
+      }
+
+      const singleOrigin = this.pageSixSingleOriginForm.value;
+      if (singleOrigin) {
+        request.single_origin = yn(singleOrigin.includes('so')||singleOrigin.includes('np'))
+        request.origin_blend = yn(singleOrigin.includes('bl')||singleOrigin.includes('np'))
+      }
+
+      await this.api.updateCustomerPreferences(request);
+      this.ref.close('success')
+    } catch (e) {
+      console.error(e)
+      this.ref.close('failed')
+    }
   }
 }

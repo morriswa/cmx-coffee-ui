@@ -1,9 +1,8 @@
-import {Component, inject, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition} from "@angular/cdk/overlay";
 import {NgIf} from "@angular/common";
 import {LoginService} from "../services/login.service";
-import {Subscription} from "rxjs";
 
 
 @Component({
@@ -20,18 +19,9 @@ import {Subscription} from "rxjs";
   styleUrl: './vendor-portal.component.scss',
   host: {'class': 'flex-child'},
 })
-export class VendorPortalComponent implements OnInit, OnDestroy {
+export class VendorPortalComponent implements OnInit {
 
-  // services
-  login = inject(LoginService);
-
-
-  // state
-  isLoggedIn: WritableSignal<boolean> = signal(false);
-  accountMenuOpen: WritableSignal<boolean> = signal(false);
-  accountName: WritableSignal<string|undefined> = signal(undefined);
-
-  private _authenticatedSubscription?: Subscription;
+  // const
   readonly accountMenuPosition: ConnectedPosition[] = [
     {
       offsetY: 35,
@@ -42,23 +32,17 @@ export class VendorPortalComponent implements OnInit, OnDestroy {
     },
   ];
 
-  async ngOnInit() {
-    this._authenticatedSubscription = this.login.isAuthenticated$.subscribe(
-      (res)=>this.isLoggedIn.set(res)
-    );
-    const user = await this.login.getUser()
-    this.accountName.set(user.name)
+
+  // services
+  login = inject(LoginService);
+
+
+  // state
+  accountMenuOpen: WritableSignal<boolean> = signal(false);
+
+
+  ngOnInit() {
+    this.login.refreshUserCache();
   }
 
-  ngOnDestroy(): void {
-    this._authenticatedSubscription?.unsubscribe();
-  }
-
-  handleLogin() {
-    this.login.login();
-  }
-
-  handleLogout() {
-    this.login.logout()
-  }
 }
