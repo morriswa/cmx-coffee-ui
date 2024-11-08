@@ -1,9 +1,14 @@
 import {Component, inject, OnInit, signal, WritableSignal} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
-import {VendorService} from "../../services/vendor.service";
+import {ActivatedRoute, RouterLink} from "@angular/router";
+import {VendorService} from "src/app-vendor-portal/services/vendor.service";
 import {CurrencyPipe, NgIf, NgOptimizedImage} from "@angular/common";
-import {LoaderComponent} from "../../../components/loader/loader.component";
-import {FileUploadComponent} from "../../../components/file-upload/file-upload.component";
+import {LoaderComponent} from "src/components/loader/loader.component";
+import {FileUploadComponent} from "src/components/file-upload/file-upload.component";
+import {ImageGalleryComponent} from "src/components/image-gallery/image-gallery.component";
+import {CdkConnectedOverlay, CdkOverlayOrigin} from "@angular/cdk/overlay";
+import {ReactiveFormsModule} from "@angular/forms";
+import {VendorProduct} from "src/types/vendor.type";
+import {EditProductDetailsComponent} from "./edit-product-details/edit-product-details.component";
 
 
 @Component({
@@ -14,36 +19,48 @@ import {FileUploadComponent} from "../../../components/file-upload/file-upload.c
     CurrencyPipe,
     LoaderComponent,
     NgOptimizedImage,
-    FileUploadComponent
+    FileUploadComponent,
+    ImageGalleryComponent,
+    CdkConnectedOverlay,
+    RouterLink,
+    CdkOverlayOrigin,
+    ReactiveFormsModule,
+    EditProductDetailsComponent
   ],
   standalone: true
 })
 export class ManageProductDetailsPageComponent implements OnInit {
+
 
   // services
   vendorship = inject(VendorService);
   activatedRoute = inject(ActivatedRoute);
 
 
-  // state
-  productId: number;
-  productDetails: WritableSignal<any> = signal(undefined);
-  productImages: WritableSignal<string[]> = signal([])
+  // component state
+  productId: number = this.activatedRoute.snapshot.params['productId']
+  productDetails?: VendorProduct;
+  productImages: WritableSignal<string[]|undefined> = signal(undefined)
+
 
   // lifecycle
-  constructor() {
-    this.productId = this.activatedRoute.snapshot.params['productId']
-  }
-
   async ngOnInit() {
-    this.productDetails.set(await this.vendorship.getProductDetails(this.productId));
+    this.productDetails = await this.vendorship.getProductDetails(this.productId);
+
     const images = await this.vendorship.getProductImages(this.productId)
     this.productImages.set(images ?? []);
   }
 
+
+  // actions
   async handleChangeImage($event: File) {
     await this.vendorship.addProductImage(this.productId, $event);
     const images = await this.vendorship.getProductImages(this.productId)
     this.productImages.set(images ?? []);
+  }
+
+  async handleUpdateProductDetails($event: { changes:any, updatedProduct:any }) {
+    await this.vendorship.updateProduct(this.productId, $event.changes);
+    this.productDetails = $event.updatedProduct;
   }
 }

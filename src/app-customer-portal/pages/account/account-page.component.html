@@ -1,0 +1,16 @@
+
+<div class="flex-row justify-content-center col-gap-5 vw-90 mx-auto mt-5">
+  <div style="width: 30%" class="flex-col gap-1">
+    <h1>Hello {{ userSa.firstName() }}</h1>
+
+    <a class="app-link" routerLink="/account/profile">Your Profile</a>
+    <a class="app-link" routerLink="/account/orders">Orders</a>
+    <a class="app-link" routerLink="/not-implemented">Payment Methods</a>
+    <hr/>
+    <a class="app-link" routerLink="/logout">Logout</a>
+  </div>
+
+  <div class="flex-col wfill">
+    <router-outlet/>
+  </div>
+</div>

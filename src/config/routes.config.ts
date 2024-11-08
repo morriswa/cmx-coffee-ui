@@ -40,10 +40,22 @@ const routesConfig: Routes = [
           .then(m=>m.SubscriptionPlansPageComponent)
       },
       {
-        path: "profile",
+        path: "account",
         canActivate: [HasPermission('cmx_coffee:appuser')],
-        loadComponent: () => import('src/app-customer-portal/pages/customer-profile/customer-profile-page.component')
-          .then(m=>m.CustomerProfilePageComponent)
+        loadComponent: () => import('src/app-customer-portal/pages/account/account-page.component')
+          .then(m=>m.AccountPageComponent),
+        children: [
+          {
+            path: "profile",
+            loadComponent: () => import('src/app-customer-portal/pages/profile/profile-page.component')
+              .then(m=>m.ProfilePageComponent),
+          },
+          {
+            path: "orders",
+            loadComponent: () => import('src/app-customer-portal/pages/order/order-page.component')
+              .then(m=>m.OrderPageComponent),
+          },
+        ]
       },
       {
         path: "forms/vendor-application",

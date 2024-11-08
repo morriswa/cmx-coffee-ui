@@ -1,0 +1,31 @@
+
+<div class="app-form-popup flex-col align-items-flex-start">
+
+  <div class="flex-col m-1">
+    <span class="app-form-label">Coffee bean taste strength</span>
+    <input class="app-form-input" type="number" [formControl]="tasteStrengthForm">
+  </div>
+
+
+  <div class="flex-col justify-content-flex-start  m-1">
+    <span class="app-form-label">Is product decaf?</span>
+    <app-radio-button-group [radioButtonFormControl]="decafForm"/>
+  </div>
+  <br>
+
+  <div class="flex-col justify-content-flex-start  m-1">
+    <span class="app-form-label">Is product flavored?</span>
+    <app-radio-button-group [radioButtonFormControl]="flavoredForm"/>
+  </div>
+  <br>
+
+  <div class="flex-col justify-content-flex-start  m-1">
+    <span class="app-form-label">Is product single-origin?</span>
+    <app-radio-button-group [radioButtonFormControl]="singleOriginForm"/>
+  </div>
+
+  <div class="app-button-group">
+    <button class="app-button short" (click)="saveChanges()">Save</button>
+    <button class="app-button short" (click)="discardChanges()">Discard</button>
+  </div>
+</div>

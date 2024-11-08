@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http"; // HttpClient an
 import { firstValueFrom } from "rxjs"; // Used to convert observables to promises
 import { environment } from "src/environments/environment";
 import {Product} from "src/types/product.type";
-import {CustomerProductPreferences} from "../types/customer.type"; // Import environment variables
+import {CustomerProductPreferences} from "src/types/customer.type";
+import {VendorProduct} from "src/types/vendor.type"; // Import environment variables
 
 
 // Define the supported HTTP methods
@@ -71,7 +72,7 @@ export class ApiClient {
   }
 
   getProductDetailsForVendor(productId: number) {
-    return this.request('GET', `s/vendor/product/${productId}`);
+    return this.request<VendorProduct>('GET', `s/vendor/product/${productId}`);
   }
 
   getProductImages(productId: number) {
@@ -107,5 +108,13 @@ export class ApiClient {
 
   getCustomerPreferences() {
     return this.request('GET', `s/profile/product-preferences`);
+  }
+
+  updateProduct(productId: number, changes: VendorProduct) {
+    return this.request('PATCH', `s/vendor/product/${productId}`, changes)
+  }
+
+  getVendorsForAdmin() {
+    return this.request<any[]>('GET', 'a/vendors')
   }
 }
