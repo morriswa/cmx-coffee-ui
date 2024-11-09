@@ -55,6 +55,11 @@ const routesConfig: Routes = [
             loadComponent: () => import('src/app-customer-portal/pages/order/order-page.component')
               .then(m=>m.OrderPageComponent),
           },
+          {
+            path: "payments",
+            loadComponent: () => import('src/app-customer-portal/pages/payments/payments-page.component')
+              .then(m=>m.PaymentsPageComponent),
+          },
         ]
       },
       {
