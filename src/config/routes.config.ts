@@ -7,13 +7,15 @@ import {AdminService} from "../app-admin-portal/services/admin.service";
 import {NotImplementedComponent} from "src/pages/not-implemented/not-implemented.component";
 import {LogoutComponent} from "src/pages/logout/logout.component";
 import {VendorService} from "../app-vendor-portal/services/vendor.service";
+import {ShoppingCartService} from "../app-customer-portal/services/shopping-cart.service";
 
 
 const routesConfig: Routes = [
   // declare portal routes
   {
-    title: "Product Name",
+    title: "K&M Co.",
     path: "",
+    providers: [ShoppingCartService],
     loadComponent: ()=>import('src/app-customer-portal/customer-portal.component')
       .then(m=>m.CustomerPortalComponent),
     children: [
@@ -27,6 +29,12 @@ const routesConfig: Routes = [
         path: "shop",
         loadComponent: () => import('src/app-customer-portal/pages/shop/shop-page.component')
           .then(m=>m.ShopPageComponent)
+      },
+      {
+        path: "shop/cart",
+        canActivate: [HasPermission('cmx_coffee:appuser')],
+        loadComponent: () => import('src/app-customer-portal/pages/shopping-cart/shopping-cart-page.component')
+          .then(m=>m.ShoppingCartPageComponent)
       },
       {
         path: "plans",
@@ -66,7 +74,7 @@ const routesConfig: Routes = [
     ]
   },
   {
-    title: "Vendor Settings",
+    title: "K&M Vendors",
     path: "vendor",
     canActivate: [HasPermission('cmx_coffee:vendor')],
     providers: [VendorService],
@@ -102,7 +110,7 @@ const routesConfig: Routes = [
       .then(m=>m.DeveloperLandingPageComponent)
   },
   {
-    title: "Admin",
+    title: "K&M Admin",
     path: "admin",
     canActivate: [HasPermission('cmx_coffee:admin')],
     providers: [AdminService],
