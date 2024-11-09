@@ -2,7 +2,7 @@ import { inject, Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http"; // HttpClient and HttpHeaders for HTTP requests
 import { firstValueFrom } from "rxjs"; // Used to convert observables to promises
 import { environment } from "src/environments/environment";
-import {Product} from "src/types/product.type";
+import {CartItem, Product} from "src/types/product.type";
 import {CustomerProductPreferences} from "src/types/customer.type";
 import {VendorProduct} from "src/types/vendor.type"; // Import environment variables
 
@@ -122,7 +122,11 @@ export class ApiClient {
     return this.request('DELETE', 's/payment', {'payment_id': payment_id})
   }
 
-  async createPaymentMethod(nickname: string) {
+  createPaymentMethod(nickname: string) {
     return this.request('POST', 's/payment', {'nickname': nickname});
+  }
+
+  getShoppingCart() {
+    return this.request<CartItem[]>('GET', 's/shop/cart');
   }
 }

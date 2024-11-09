@@ -1,4 +1,5 @@
-import {Component} from "@angular/core";
+import {Component, inject, OnInit} from "@angular/core";
+import {ShoppingCartService} from "../../services/shopping-cart.service";
 
 
 @Component({
@@ -7,6 +8,12 @@ import {Component} from "@angular/core";
   standalone: true,
   host: {'class': 'flex-child'}
 })
-export class ShoppingCartPageComponent {
+export class ShoppingCartPageComponent implements OnInit {
+  cart = inject(ShoppingCartService);
+
+
+  async ngOnInit() {
+    await this.cart.refreshCart()
+  }
 
 }
