@@ -1,10 +1,19 @@
 
 <h3>Payment methods</h3>
 
-<ul>
+<div class="flex-col">
   @for (pay of paymentMethods(); track pay.payment_id) {
-    <li>{{pay.nickname}}</li>
+    <div class="card-box mt-3 p-2 ">
+      <div>
+        <h4>{{pay.nickname}}</h4>
+        <span>Mock Payment Method</span>
+      </div>
+      <div class="flex-row space-between-items">
+        <span>.... .... .... xxxx</span>
+        <span>xx/xx</span>
+      </div>
+    </div>
   }
-</ul>
+</div>
 
 
