@@ -117,4 +117,12 @@ export class ApiClient {
   getPaymentMethods() {
     return this.request<any[]>('GET', 's/payment');
   }
+
+  deletePaymentMethod(payment_id: string) {
+    return this.request('DELETE', 's/payment', {'payment_id': payment_id})
+  }
+
+  async createPaymentMethod(nickname: string) {
+    return this.request('POST', 's/payment', {'nickname': nickname});
+  }
 }

@@ -1,0 +1,10 @@
+<div class="app-form-popup flex-col space-between-items align-items-baseline gap-2">
+  <h3>New Payment Method</h3>
+
+  <tagged-input label="Payment Nickname" [form]="nicknameForm"/>
+
+  <div class="app-button-group">
+    <button class="app-button short" (click)="handleCancel()">Cancel</button>
+    <button class="app-button short" (click)="handleSubmit()">Create</button>
+  </div>
+</div>
