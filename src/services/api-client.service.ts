@@ -113,4 +113,8 @@ export class ApiClient {
   getVendorsForAdmin() {
     return this.request<any[]>('GET', 's/admin/vendors')
   }
+
+  getPaymentMethods() {
+    return this.request<any[]>('GET', 's/payment');
+  }
 }

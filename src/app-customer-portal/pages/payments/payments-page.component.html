@@ -1,0 +1,10 @@
+
+<h3>Payment methods</h3>
+
+<ul>
+  @for (pay of paymentMethods(); track pay.payment_id) {
+    <li>{{pay.nickname}}</li>
+  }
+</ul>
+
+
