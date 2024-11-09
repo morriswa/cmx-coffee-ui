@@ -2,6 +2,9 @@
 @forward "styles/tools";
 @forward "styles/overrides";
 @forward "styles/cmx-coffee-theme";
+
 // global imports
 // ng cdk
 @import "@angular/cdk/overlay-prebuilt.css";
+// fa cdn
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
