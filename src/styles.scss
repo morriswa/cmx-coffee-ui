@@ -1,10 +1,12 @@
 // provides styles modules at global level
-@forward "styles/tools";
 @forward "styles/overrides";
+@forward "styles/tools";
 @forward "styles/cmx-coffee-theme";
 
 // global imports
-// ng cdk
+// ng overlays and dialogs cdk
 @import "@angular/cdk/overlay-prebuilt.css";
-// fa cdn
+// fa cdn (for icons)
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+// fonts
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
