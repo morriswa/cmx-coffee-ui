@@ -1,0 +1,17 @@
+@use "src/styles/variables" as *;
+
+.app-shopping-cart {
+  text-align: left;
+
+  th, td {
+    padding: 5px 10px;
+    vertical-align: top;
+  }
+
+  .app-shopping-cart-item {
+    background-color: $surface-color;
+    padding: 20px;
+    border-radius: 10px;
+  }
+}
+

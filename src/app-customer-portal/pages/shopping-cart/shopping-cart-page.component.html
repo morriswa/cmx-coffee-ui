@@ -1,8 +1,46 @@
 
-<div class="flex-col vw-90 mx-auto mt-5 align-items-center">
-  <h1>Your cart</h1>
+<div class="flex-col vw-90 mx-auto my-5 align-items-center">
+  @if (cart.cart(); as items) {
+    @if (items.length > 0) {
+      <h1>Your cart</h1>
+      <div class="app-shopping-cart mt-5 wfill">
+        @for (item of items; track item.product_id) {
+          <div class="app-shopping-cart-item flex-row space-between-items mb-1">
+            <div class="flex-row">
+              <span style="display: block; width: 100px">{{item.quantity}}x</span>
+              <span>{{item.product_name}} sold by {{item.vendor_name}}</span>
+            </div>
 
-  @for (item of cart.cart(); track item.product_id) {
-    <p>{{item.quantity}}x {{item.product_name}} sold by {{item.vendor_name}}</p>
+            <span>{{item.sale_price * item.quantity | currency}}</span>
+          </div>
+        }
+      </div>
+
+      <hr class="wfill my-5"/>
+
+      <div class="flex-child flex-col align-items-flex-start">
+        <table class="app-shopping-cart">
+          <thead style="display: none"><th></th></thead>
+          <tbody>
+          <tr>
+            <td>Items: </td>
+            <td>{{cart.cartItems()}}</td>
+          </tr>
+          <tr>
+            <td>Cart Total: </td>
+            <td>{{cart.cartTotal() | currency}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <fancy-button color="primary" class="mt-5" routerLink="/not-implemented">Checkout</fancy-button>
+      </div>
+    }
+    @else {
+      <h1 class="my-5">Your cart is empty!</h1>
+      <fancy-button color="primary" routerLink="/shop/cart">Go to Shop</fancy-button>
+    }
+  }
+  @else {
+    <app-loader/>
   }
 </div>
