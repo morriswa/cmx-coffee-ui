@@ -16,7 +16,11 @@ import {until} from "src/utils";
 export class ImageGalleryComponent implements OnInit {
 
   // component io
-  @Input() public images!: string[];
+  @Input() set images(imgs: string[]) {
+    this._images.set(imgs);
+    this.selectedImage.set(imgs[0])
+    this.selectedImageAlt.set(this.alt ?? (this.alts? this.alts[0] : 'not provided'));
+  }
 
   /**
    * an array the same size as images containing alt tags in order
@@ -30,13 +34,14 @@ export class ImageGalleryComponent implements OnInit {
 
 
   // component state
+  _images: WritableSignal<string[]> = signal([])
   selectedImage: WritableSignal<any> = signal(undefined);
   selectedImageAlt: WritableSignal<string> = signal("");
 
 
   // lifecycle
   async ngOnInit() {
-    if (!this.images || !(this.alts||this.alt)) {
+    if (!this._images() || !(this.alts||this.alt)) {
       throw new Error('images and alts||alt inputs are required')
     }
 
@@ -45,10 +50,6 @@ export class ImageGalleryComponent implements OnInit {
         throw new Error('must supply same amount of images as alt tags')
       }
     }
-
-    await until(()=>!!this.images[0])
-    this.selectedImage.set(this.images[0])
-    this.selectedImageAlt.set(this.alt ?? (this.alts? this.alts[0] : 'not provided'));
   }
 
 

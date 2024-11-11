@@ -1,7 +1,7 @@
 
 <div class="app-image-gallery flex-row col-gap-2">
   <div class="gallery-mini-scroll flex-col gap-1">
-    @for (image of images; track image; let idx = $index) {
+    @for (image of _images(); track image; let idx = $index) {
       <img
         class="gallery-mini"
         (click)="selectImage(image, alt ?? (alts ? alts[idx] : 'not provided'))"
@@ -12,5 +12,5 @@
       >
     }
   </div>
-  <img class="gallery-focus" [ngSrc]="selectedImage()" height="300" width="300" [alt]="selectedImageAlt()">
+  <img class="gallery-focus" *ngIf="selectedImage() as image" [ngSrc]="image" height="300" width="300" [alt]="selectedImageAlt()">
 </div>

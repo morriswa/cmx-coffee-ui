@@ -95,7 +95,7 @@ export class ApiClient {
     let postBody = new FormData();
     postBody.append("image_upload",image);
 
-    return this.request('POST', `s/vendor/product/${productId}/image`, postBody);
+    return this.request('POST', `s/vendor/product/${productId}/images`, postBody);
   }
 
   unlistProduct(product_id: number) {
@@ -136,5 +136,13 @@ export class ApiClient {
 
   async getProductReviewState(productId: any) {
     return this.request<any>('GET', `product/${productId}/review-stats`);
+  }
+
+  getProductImagesForVendor(productId: number) {
+    return this.request<any[]>('GET', `s/vendor/product/${productId}/images`)
+  }
+
+  deleteProductImage(productId: number, imageId: string) {
+    return this.request('DELETE', `s/vendor/product/${productId}/image/${imageId}`);
   }
 }

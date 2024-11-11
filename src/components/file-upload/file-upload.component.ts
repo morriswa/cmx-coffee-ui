@@ -23,8 +23,9 @@ export class FileUploadComponent {
     const file = this.stagedFile();
     if (file) {
       this.onConfirm.emit(file);
-      this.fileForm.reset()
     }
+
+    this.discard()
   }
 
   stageFile($event: any) {

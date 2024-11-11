@@ -14,7 +14,7 @@ export class VendorService {
   }
 
   async getProductImages(productId: number) {
-    return this.api.getProductImages(productId);
+    return this.api.getProductImagesForVendor(productId);
   }
 
   listProduct(createRequest: any) {
@@ -31,5 +31,9 @@ export class VendorService {
 
   updateProduct(productId: number, changes: any) {
     return this.api.updateProduct(productId, changes);
+  }
+
+  deleteProductImage(productId: number, imageId: string) {
+    return this.api.deleteProductImage(productId, imageId);
   }
 }
