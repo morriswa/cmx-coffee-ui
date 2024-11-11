@@ -1,5 +1,23 @@
 @use "src/styles/variables" as *;
-//
-//.app-image-gallery {
-//
-//}
+
+.app-image-gallery {
+
+  $gallery-height: 600px;
+  $gallery-focus-width: 450px;
+
+  height: $gallery-height;
+
+  .gallery-mini-scroll {
+    overflow-y: auto;
+    direction: rtl;
+  }
+
+  .gallery-mini {
+    min-height: 125px;
+  }
+
+  .gallery-focus {
+    height: $gallery-height;
+    width: $gallery-focus-width;
+  }
+}

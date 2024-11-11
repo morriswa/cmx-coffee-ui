@@ -30,4 +30,9 @@ export class FileUploadComponent {
   stageFile($event: any) {
     this.stagedFile.set($event.target.files[0])
   }
+
+  discard() {
+    this.fileForm.reset();
+    this.stagedFile.set(undefined);
+  }
 }

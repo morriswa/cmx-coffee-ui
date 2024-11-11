@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, Input} from "@angular/core";
+import {AfterViewChecked, Component, Input, OnInit, signal, WritableSignal} from "@angular/core";
 import {NgOptimizedImage} from "@angular/common";
 
 
@@ -11,7 +11,7 @@ import {NgOptimizedImage} from "@angular/common";
     NgOptimizedImage
   ],
 })
-export class ImageGalleryComponent implements AfterViewChecked {
+export class ImageGalleryComponent implements OnInit {
 
   // component io
   @Input() public images!: string[];
@@ -27,8 +27,14 @@ export class ImageGalleryComponent implements AfterViewChecked {
   @Input() public alt?: string;
 
 
+  // component state
+  selectedImage: WritableSignal<any> = signal(undefined);
+
+  selectedImageAlt: WritableSignal<string> = signal("");
+
+
   // lifecycle
-  ngAfterViewChecked(): void {
+  ngOnInit(): void {
     if (!this.images || !(this.alts||this.alt)) {
       throw new Error('images and alts||alt inputs are required')
     }
@@ -38,5 +44,15 @@ export class ImageGalleryComponent implements AfterViewChecked {
         throw new Error('must supply same amount of images as alt tags')
       }
     }
+
+    this.selectedImage.set(this.images[0])
+    this.selectedImageAlt.set(this.alt ?? (this.alts? this.alts[0] : 'not provided'));
+  }
+
+
+  // logic
+  selectImage(image: string, alt: string) {
+    this.selectedImage.set(image);
+    this.selectedImageAlt.set(alt);
   }
 }
