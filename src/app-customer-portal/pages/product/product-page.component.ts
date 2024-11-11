@@ -29,8 +29,8 @@ export class ProductDetailsPageComponent implements OnInit {
     // this.currentProduct.set(productDetails);
     this.currentProduct.set({
       product_id: 1,
-      product_name: 'maps coffee',
-      description: 'roasted in lenexa kansas. milk flavored. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.',
+      product_name: 'Maps Coffee',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.',
       tax_adjusted_price: 22,
       decaf: 'y',
       single_origin: 'y',
