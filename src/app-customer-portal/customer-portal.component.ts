@@ -1,6 +1,6 @@
 import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {LoginService} from "src/services/login.service";
-import {AsyncPipe, NgIf} from "@angular/common";
+import {AsyncPipe, NgIf, NgOptimizedImage} from "@angular/common";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition} from "@angular/cdk/overlay";
 
@@ -14,7 +14,8 @@ import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition} from "@angular
     RouterLink,
     RouterOutlet,
     CdkConnectedOverlay,
-    CdkOverlayOrigin
+    CdkOverlayOrigin,
+    NgOptimizedImage
   ],
   templateUrl: './customer-portal.component.html',
   styleUrl: './customer-portal.component.scss',

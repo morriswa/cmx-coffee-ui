@@ -3,17 +3,23 @@
 
 <div class="flex-col">
   @for (pay of paymentMethods(); track pay.payment_id) {
-    <div class="card-box mt-3 p-2 ">
+    <div class="flex-col card-box space-between-items mt-3 p-2 ">
       <div>
-        <h4>{{pay.nickname}}</h4>
-        <span>Mock Payment Method</span>
+        <div>
+          <h4>{{pay.nickname}}</h4>
+          <span>Mock Payment Method</span>
+        </div>
+        <div class="flex-row space-between-items">
+          <span>.... .... .... xxxx</span>
+          <span>xx/xx</span>
+        </div>
       </div>
-      <div class="flex-row space-between-items">
-        <span>.... .... .... xxxx</span>
-        <span>xx/xx</span>
-      </div>
+
+      <span class="fa fa-trash" (click)="handleDeletePaymentMethod(pay)"></span>
     </div>
   }
 </div>
 
-
+<div class="mt-3">
+  <a class="app-link" (click)="handleCreatePaymentMethod()">Add Payment Method</a>
+</div>

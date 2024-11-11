@@ -49,6 +49,7 @@
 .app-button {
   padding: 10px 20px;
   font-size: 15px;
+  outline: none !important;
 
   &.primary {
     background-color: $primary-color;
@@ -83,11 +84,6 @@
 
 .surface {
   background-color: $surface-color;
-}
-
-// IN DEVELOPMENT
-.app-form-wrapper {
-  margin: 10px;
 }
 
 .app-form-popup {

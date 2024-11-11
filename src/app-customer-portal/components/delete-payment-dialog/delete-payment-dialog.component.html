@@ -1,0 +1,10 @@
+<div style="width: 300px; height: 150px;" class="app-form-popup flex-col space-between-items">
+  <h3>Are you sure you want to delete this payment method?</h3>
+
+  <p>{{data.nickname}}</p>
+
+  <div class="app-button-group">
+    <button class="app-button" (click)="handleCancel()">Cancel</button>
+    <button class="app-button" (click)="handleConfirm()">Delete</button>
+  </div>
+</div>
