@@ -80,7 +80,7 @@ export class ApiClient {
   }
 
   getProductsForCustomer() {
-    return this.request<Product[]>('GET', `shop/products`);
+    return this.request<Product[]>('GET', `products`);
   }
 
   listProduct(createRequest: any) {
@@ -127,6 +127,6 @@ export class ApiClient {
   }
 
   getShoppingCart() {
-    return this.request<CartItem[]>('GET', 's/shop/cart');
+    return this.request<CartItem[]>('GET', 's/cart');
   }
 }
