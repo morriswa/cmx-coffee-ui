@@ -1,64 +1,58 @@
-<!-- <h1>Got product id {{productId}}</h1> -->
 
 @if (currentProduct(); as product) {
-  <!-- <h1>Product name {{product.product_name}}</h1> -->
 
   <div class="divided-page">
-
     <div class="product-image-side">
-    @if (productImages(); as images) {
-      @for(image of images; track image) {
-        <div style="padding: 100px;">
-        <img class="product-image ml-150" [src]="image" width="550" height="700">
-        <img class="product-image       " [src]="image" width="110" height="140">
-        <img class="product-image mt-15" [src]="image" width="110" height="140">
-        <img class="product-image mt-30" [src]="image" width="110" height="140">
-        </div>
+      @if (productImages(); as images) {
+        @for(image of images; track image) {
+          <div style="padding: 100px;">
+          <img class="product-image ml-150" [src]="image" width="550" height="700">
+          <img class="product-image       " [src]="image" width="110" height="140">
+          <img class="product-image mt-15" [src]="image" width="110" height="140">
+          <img class="product-image mt-30" [src]="image" width="110" height="140">
+          </div>
+        }
       }
-    }
     </div>
 
     <div class="product-details-side ml-n6">
       <div style="padding: 70px;">
 
-      <h1 class="product-heading mt-2"> {{product.product_name}} </h1>
-      <h2 class="price mt-1"> $ {{product.tax_adjusted_price}} </h2>
+        <h1 class="product-heading mt-2"> {{product.product_name}} </h1>
+        <h2 class="price mt-1"> {{product.price | currency }} </h2>
 
-      <!-- star rating: -->
-      <div class="rating mt-3">
-        <span class="fa fa-star" [ngClass]="product.review>=1?'checked':''"></span>
-        <span class="fa fa-star" [ngClass]="product.review>=2?'checked':''"></span>
-        <span class="fa fa-star" [ngClass]="product.review>=3?'checked':''"></span>
-        <span class="fa fa-star" [ngClass]="product.review>=4?'checked':''"></span>
-        <span class="fa fa-star" [ngClass]="product.review>=5?'checked':''"></span>
-        <span> ({{product.review}} stars) • 10 reviews </span>
-      </div>
-
-      <div class="description mt-2"> {{product.description}} </div>
-
-      <div class="dropdown mt-3">
-        <p>Size Options</p>
-        <button class="dropbtn">Select</button>
-        <div class="dropdown-content">
-          <a href="#">Size 1</a>
-          <a href="#">Size 2</a>
+        <!-- star rating: -->
+        <div class="rating mt-3">
+          <span class="fa fa-star" [ngClass]="product.review>=1?'checked':''"></span>
+          <span class="fa fa-star" [ngClass]="product.review>=2?'checked':''"></span>
+          <span class="fa fa-star" [ngClass]="product.review>=3?'checked':''"></span>
+          <span class="fa fa-star" [ngClass]="product.review>=4?'checked':''"></span>
+          <span class="fa fa-star" [ngClass]="product.review>=5?'checked':''"></span>
+          <span> ({{currentProductReviewStats().average_review_score}} stars) • {{currentProductReviewStats().review_count}} reviews </span>
         </div>
+
+        <div class="description mt-2"> {{product.description}} </div>
+
+        <div class="dropdown mt-3">
+          <p>Size Options</p>
+          <button class="dropbtn">Select</button>
+          <div class="dropdown-content">
+            <a>Size 1</a>
+            <a>Size 2</a>
+          </div>
+        </div>
+
+        <div class="quantity mt-5">Quantity</div>
+        <input class="q-input mt-1">
+
+        <div class="app-button-group mt-5">
+          <button class="cart-button">Add to Cart</button>
+          <button class="buy-button">Buy Now</button>
+        </div>
+
       </div>
-
-      <div class="quantity mt-5">Quantity</div>
-      <input class="q-input mt-1">
-
-      <button class="cart-button mt-5">Add to Cart</button>
-      <button class="buy-button mt-2">Buy Now</button>
-
-      </div>
-
-
     </div>
-
   </div>
-
 } @else {
   <app-loader/>
 }
-

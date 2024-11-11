@@ -4,7 +4,12 @@
 
   <div class="flex-child shop-banner flex-col justify-content-flex-start">
       <h1 class="shop-heading">SHOP COFFEE</h1>
-      <p class="shop-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
+      <p class="shop-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Suspendisse varius enim in eros elementum tristique. Duis cursus,
+        mi quis viverra ornare, eros dolor interdum nulla,
+        ut commodo diam libero vitae erat.
+      </p>
       <fancy-button class="mt-3" color="neutral" routerLink="/not-implemented">SHOP ALL</fancy-button>
   </div>
 
@@ -17,7 +22,7 @@
   <!-- browse types of coffees -->
 
   <!-- row one -->
-  <div class="flex-row justify-content-center col-gap-5 my-5">
+  <div class="flex-row flex-wrap justify-content-center col-gap-5 my-5">
 
     @for (product of products(); track product.product_id) {
       <app-product-tile [product]="product">

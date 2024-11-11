@@ -4,7 +4,7 @@
   <div class="product">
     <img ngSrc="static/bag_of_coffee.png" height="458" width="300" alt="coffee">
   </div>
-  <span class="product-text-bold mt-3">{{ product.product_name }}</span>
+  <a class="app-link mt-3" [routerLink]="['/shop', 'product', product.product_id]">{{ product.product_name }}</a>
   <span class="product-text">{{ product.description }}</span>
   <span class="product-text-bold mt-1">{{ product.price | currency }}</span>
 <!--  <p *ngIf="product.decaf === 'y'">Decaf</p>-->

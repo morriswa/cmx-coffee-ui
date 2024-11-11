@@ -80,7 +80,7 @@ export class ApiClient {
   }
 
   getProductDetailsForCustomer(productId: number) {
-    return this.request('GET', `s/shop/product/${productId}`)
+    return this.request('GET', `product/${productId}`)
   }
 
   getProductsForCustomer() {
@@ -132,5 +132,9 @@ export class ApiClient {
 
   getShoppingCart() {
     return this.request<CartItem[]>('GET', 's/cart');
+  }
+
+  async getProductReviewState(productId: any) {
+    return this.request<any>('GET', `product/${productId}/review-stats`);
   }
 }
