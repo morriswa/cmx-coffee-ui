@@ -1,5 +1,6 @@
-import {AfterViewChecked, Component, Input, OnInit, signal, WritableSignal} from "@angular/core";
-import {NgOptimizedImage} from "@angular/common";
+import {Component, Input, OnInit, signal, WritableSignal} from "@angular/core";
+import {NgIf, NgOptimizedImage} from "@angular/common";
+import {until} from "src/utils";
 
 
 @Component({
@@ -8,7 +9,8 @@ import {NgOptimizedImage} from "@angular/common";
   styleUrl: "./image-gallery.component.scss",
   standalone: true,
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgIf
   ],
 })
 export class ImageGalleryComponent implements OnInit {
@@ -29,12 +31,11 @@ export class ImageGalleryComponent implements OnInit {
 
   // component state
   selectedImage: WritableSignal<any> = signal(undefined);
-
   selectedImageAlt: WritableSignal<string> = signal("");
 
 
   // lifecycle
-  ngOnInit(): void {
+  async ngOnInit() {
     if (!this.images || !(this.alts||this.alt)) {
       throw new Error('images and alts||alt inputs are required')
     }
@@ -45,6 +46,7 @@ export class ImageGalleryComponent implements OnInit {
       }
     }
 
+    await until(()=>!!this.images[0])
     this.selectedImage.set(this.images[0])
     this.selectedImageAlt.set(this.alt ?? (this.alts? this.alts[0] : 'not provided'));
   }

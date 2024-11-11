@@ -24,120 +24,113 @@
 // product details side //
 
 .product-details-side {
-  width:50%;
-  height: 550px;
-  float:left;
   font-family: $font-family;
   color: $black;
 }
 
 .product-heading {
-  position: relative;
   font-family: $header-font-family;
   color: $primary-color;
-  font-size: 45px;
-  // text-shadow: -5px 5px 5px rgba(0,0,0,0.2);
+  font-size: $font-size-xl;
 }
 
 .price {
-  position: relative;
   font-family: $text-font-family;
   color: $black;
-  font-size: 30px;
+  font-size: $font-size-lg;
 }
 
-.rating {
-  position: relative;
-}
-// class to change star color
-.checked {
-  color: orange;
-}
 
 .description {
-  position: relative;
   font-family: $text-font-family;
   color: $black;
-  font-size: 20px;
+  font-size: $font-size-med;
   line-height: 150%;
 }
 
-.dropdown {
-  position: relative;
-  font-family: $text-font-family;
-  color: $black;
-  font-size: 20px;
-  display: inline-block;
-  width: 100%;
-  height: 50px;
-}
-.dropbtn {
-  position: relative;
-  top: 10px;
-  background-color: $white;
-  color: $black;
-  border: 2px solid $black;
-  padding: 16px;
-  font-size: 16px;
-  width: 100%;
-  text-align: left;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  width: 100%;
-  font-family: $text-font-family;
-  color: $black;
-  font-size: 15px;
-}
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-.dropdown-content a:hover {background-color: #ddd;}
-.dropdown:hover .dropdown-content {display: block;}
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
 
 .quantity {
-  position: relative;
   font-family: $text-font-family;
   color: $black;
-  font-size: 20px;
+  font-size: $font-size-med;
 }
-.q-input {
-  position: relative;
+
+.cart-quantity-form {
   font-family: $text-font-family;
   color: $black;
-  font-size: 20px;
+  font-size: $font-size-med;
   height: 50px;
   width: 80px;
   border: 2px solid $black;
 }
 
 .cart-button {
-  position: relative;
   font-family: $text-font-family;
   background-color: $primary-color;
   color: $white;
-  font-size: 20px;
+  font-size: $font-size-med;
   height: 50px;
   width: 100%;
   border: 2px solid $primary-color;
 }
 
 .buy-button {
-  position: relative;
   font-family: $text-font-family;
   color: $primary-color;
   background-color: $white;
-  font-size: 20px;
+  font-size: $font-size-med;
   height: 50px;
   width: 100%;
   border: 2px solid $primary-color;
 }
+
+
+//.rating {
+//  position: relative;
+//}
+// class to change star color
+//.checked {
+//  color: orange;
+//}
+
+//.dropdown {
+//  position: relative;
+//  font-family: $text-font-family;
+//  color: $black;
+//  font-size: 20px;
+//  display: inline-block;
+//  width: 100%;
+//  height: 50px;
+//}
+//.dropbtn {
+//  position: relative;
+//  top: 10px;
+//  background-color: $white;
+//  color: $black;
+//  border: 2px solid $black;
+//  padding: 16px;
+//  font-size: 16px;
+//  width: 100%;
+//  text-align: left;
+//}
+//.dropdown-content {
+//  display: none;
+//  position: absolute;
+//  background-color: #f1f1f1;
+//  min-width: 160px;
+//  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+//  z-index: 1;
+//  width: 100%;
+//  font-family: $text-font-family;
+//  color: $black;
+//  font-size: 15px;
+//}
+//.dropdown-content a {
+//  color: black;
+//  padding: 12px 16px;
+//  text-decoration: none;
+//  display: block;
+//}
+//.dropdown-content a:hover {background-color: #ddd;}
+//.dropdown:hover .dropdown-content {display: block;}
+//.dropdown:hover .dropbtn {background-color: #3e8e41;}
