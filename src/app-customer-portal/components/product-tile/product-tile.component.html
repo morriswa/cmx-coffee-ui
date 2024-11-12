@@ -1,8 +1,8 @@
 
 
-<div class="flex-col align-items-center">
+<div class="flex-col align-items-center" style="width: 300px">
   <div class="product">
-    <img ngSrc="static/bag_of_coffee.png" height="458" width="300" alt="coffee">
+    <img [ngSrc]="product.first_image ?? 'static/bag_of_coffee.png'" height="400" width="300" alt="coffee">
   </div>
   <a class="app-link mt-3" [routerLink]="['/shop', 'product', product.product_id]">{{ product.product_name }}</a>
   <span class="product-text">{{ product.description }}</span>

@@ -7,6 +7,7 @@ export type Product = {
   decaf?: string,
   flavored?: string
   single_origin?: string
+  first_image?: string;
 }
 
 export type CartItem = {
