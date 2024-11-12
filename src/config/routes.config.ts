@@ -27,12 +27,12 @@ const routesConfig: Routes = [
       },
       {
         path: "shop",
-        loadComponent: () => import('src/app-customer-portal/pages/shop/shop-page.component')
-          .then(m=>m.ShopPageComponent)
+        loadComponent: () => import('src/app-customer-portal/pages/browse-products/browse-products-page.component')
+          .then(m=>m.BrowseProductsPageComponent)
       },
       {
         path: "shop/product/:product_id",
-        loadComponent: () => import('src/app-customer-portal/pages/product/product-page.component')
+        loadComponent: () => import('src/app-customer-portal/pages/product-details/product-page.component')
           .then(m=>m.ProductDetailsPageComponent)
       },
       {
@@ -55,25 +55,30 @@ const routesConfig: Routes = [
         children: [
           {
             path: "profile",
-            loadComponent: () => import('src/app-customer-portal/pages/profile/profile-page.component')
-              .then(m=>m.ProfilePageComponent),
+            loadComponent: () => import('src/app-customer-portal/pages/account-profile/account-profile-page.component')
+              .then(m=>m.AccountProfilePageComponent),
           },
           {
             path: "orders",
-            loadComponent: () => import('src/app-customer-portal/pages/order/order-page.component')
-              .then(m=>m.OrderPageComponent),
+            loadComponent: () => import('src/app-customer-portal/pages/account-orders/account-orders-page.component')
+              .then(m=>m.AccountOrdersPageComponent),
           },
           {
             path: "payments",
-            loadComponent: () => import('src/app-customer-portal/pages/payments/payments-page.component')
-              .then(m=>m.PaymentsPageComponent),
+            loadComponent: () => import('src/app-customer-portal/pages/account-payments/account-payments-page.component')
+              .then(m=>m.AccountPaymentsPageComponent),
+          },
+          {
+            path: "advanced",
+            loadComponent: () => import('src/app-customer-portal/pages/account-advanced-actions/account-advanced-actions-page.component')
+              .then(m=>m.AccountAdvancedActionsPageComponent),
           },
         ]
       },
       {
         path: "forms/vendor-application",
         canActivate: [HasPermission('cmx_coffee:appuser')],
-        loadComponent: () => import('src/app-customer-portal/pages/vendor-application/vendor-application-page.component')
+        loadComponent: () => import('src/app-customer-portal/pages/forms-vendor-application/vendor-application-page.component')
           .then(m=>m.VendorApplicationPageComponent)
       },
     ]

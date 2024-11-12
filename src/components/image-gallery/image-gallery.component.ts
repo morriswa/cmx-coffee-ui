@@ -23,7 +23,7 @@ export class ImageGalleryComponent implements OnInit {
   }
 
   /**
-   * an array the same size as images containing alt tags in order
+   * an array the same size as images containing alt tags in account-orders
    */
   @Input() public alts?: string[];
 

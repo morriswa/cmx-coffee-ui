@@ -6,7 +6,7 @@ import {CurrencyPipe, NgClass, NgIf} from "@angular/common";
 import {ImageGalleryComponent} from "src/components/image-gallery/image-gallery.component";
 
 @Component({
-  selector: 'app-product-page',
+  selector: 'app-product-details-page',
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.scss',
   standalone: true,

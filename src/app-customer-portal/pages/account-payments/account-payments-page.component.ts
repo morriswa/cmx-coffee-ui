@@ -8,12 +8,12 @@ import {
 
 
 @Component({
-  selector: "app-payments-page",
-  templateUrl: "./payments-page.component.html",
-  styleUrl: "./payments-page.component.scss",
+  selector: "app-account-payments-page",
+  templateUrl: "./account-payments-page.component.html",
+  styleUrl: "./account-payments-page.component.scss",
   standalone: true
 })
-export class PaymentsPageComponent implements OnInit {
+export class AccountPaymentsPageComponent implements OnInit {
 
   api = inject(ApiClient);
   dialogs = inject(Dialog);

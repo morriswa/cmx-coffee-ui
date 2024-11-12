@@ -4,7 +4,7 @@ import {CurrencyPipe} from "@angular/common";
 
 
 @Component({
-  selector: "app-unlist-product-dialog",
+  selector: "app-unlist-product-details-dialog",
   templateUrl: "./unlist-product-dialog.component.html",
   imports: [
     CurrencyPipe

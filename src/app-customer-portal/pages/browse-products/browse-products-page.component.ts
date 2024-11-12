@@ -6,9 +6,9 @@ import {FancyButtonComponent} from "../../../components/fancy-button/fancy-butto
 import {RouterLink} from "@angular/router";
 
 @Component({
-  selector: 'app-shop',
-  templateUrl: './shop-page.component.html',
-  styleUrl: './shop-page.component.scss',
+  selector: 'app-browse-products',
+  templateUrl: './browse-products-page.component.html',
+  styleUrl: './browse-products-page.component.scss',
   standalone: true,
   host: {'class': 'flex-child'},
   imports: [
@@ -17,7 +17,7 @@ import {RouterLink} from "@angular/router";
     RouterLink
   ],
 })
-export class ShopPageComponent implements OnInit {
+export class BrowseProductsPageComponent implements OnInit {
 
   api = inject(ApiClient);
 

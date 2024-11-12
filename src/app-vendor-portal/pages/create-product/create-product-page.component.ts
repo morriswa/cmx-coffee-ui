@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 
 
 @Component({
-  selector: "app-create-product-page",
+  selector: "app-create-product-details-page",
   templateUrl: "./create-product-page.component.html",
   imports: [
     TaggedInputComponent,

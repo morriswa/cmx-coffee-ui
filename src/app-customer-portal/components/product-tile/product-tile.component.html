@@ -7,8 +7,8 @@
   <a class="app-link mt-3" [routerLink]="['/shop', 'product', product.product_id]">{{ product.product_name }}</a>
   <span class="product-text">{{ product.description }}</span>
   <span class="product-text-bold mt-1">{{ product.price | currency }}</span>
-<!--  <p *ngIf="product.decaf === 'y'">Decaf</p>-->
-  <!--<p *ngIf="product.single_origin === 'y'">Single Origin</p>-->
-  <!--<p *ngIf="product.flavored === 'y'">Flavored</p>-->
+<!--  <p *ngIf="product-details.decaf === 'y'">Decaf</p>-->
+  <!--<p *ngIf="product-details.single_origin === 'y'">Single Origin</p>-->
+  <!--<p *ngIf="product-details.flavored === 'y'">Flavored</p>-->
   <button class="app-button wfill mt-3" routerLink="/not-implemented">Add to Cart</button>
 </div>

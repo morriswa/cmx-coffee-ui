@@ -10,7 +10,7 @@ import {VendorProduct} from "src/types/vendor.type";
 
 
 @Component({
-  selector: 'app-product-flag-dialog',
+  selector: 'app-product-details-flag-dialog',
   templateUrl: './product-flag-dialog.component.html',
   styleUrl: 'product-flag-dialog.component.scss',
   imports: [
