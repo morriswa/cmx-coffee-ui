@@ -8,6 +8,7 @@ import {
 import {FancyButtonComponent} from "src/components/fancy-button/fancy-button.component";
 import {VendorService} from "../../services/vendor.service";
 import {Router} from "@angular/router";
+import {NumberFormControl, NumberStepperComponent} from "src/components/number-stepper/number-stepper.component";
 
 
 @Component({
@@ -16,7 +17,8 @@ import {Router} from "@angular/router";
   imports: [
     TaggedInputComponent,
     RadioButtonGroupComponent,
-    FancyButtonComponent
+    FancyButtonComponent,
+    NumberStepperComponent
   ],
   standalone: true
 })
@@ -37,9 +39,7 @@ export class CreateProductPageComponent {
   initialPriceForm = new FormControl(null, [
     Validators.required,
   ])
-  tasteStrengthForm = new FormControl(null, [
-    Validators.min(0), Validators.max(9)
-  ])
+  tasteStrengthForm = new NumberFormControl(1, 10);
   decafForm = new RadioButtonFormControl([
     {value: 'y', label: 'Decaf'},
     {value: 'n', label: 'Contains Caffeine'},
@@ -59,7 +59,7 @@ export class CreateProductPageComponent {
       description: this.descriptionForm.value,
       initial_price: Number(this.initialPriceForm.value),
       coffee_bean_characteristics: {
-        taste_strength: Number(this.tasteStrengthForm.value) - 1,
+        taste_strength: String(Number(this.tasteStrengthForm.value) - 1),
         decaf: this.decafForm.value,
         flavored: this.flavoredForm.value,
         single_origin: this.singleOriginForm.value,

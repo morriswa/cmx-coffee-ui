@@ -40,7 +40,6 @@
   font-size: $font-size-lg;
 }
 
-
 .description {
   font-family: $text-font-family;
   color: $black;
@@ -48,41 +47,25 @@
   line-height: 150%;
 }
 
-
-.quantity {
-  font-family: $text-font-family;
-  color: $black;
-  font-size: $font-size-med;
-}
-
-.cart-quantity-form {
-  font-family: $text-font-family;
-  color: $black;
-  font-size: $font-size-med;
-  height: 50px;
-  width: 80px;
-  border: 2px solid $black;
-}
-
-.cart-button {
-  font-family: $text-font-family;
-  background-color: $primary-color;
-  color: $white;
-  font-size: $font-size-med;
-  height: 50px;
-  width: 100%;
-  border: 2px solid $primary-color;
-}
-
-.buy-button {
-  font-family: $text-font-family;
-  color: $primary-color;
-  background-color: $white;
-  font-size: $font-size-med;
-  height: 50px;
-  width: 100%;
-  border: 2px solid $primary-color;
-}
+//.cart-button {
+//  font-family: $text-font-family;
+//  background-color: $primary-color;
+//  color: $white;
+//  font-size: $font-size-med;
+//  height: 50px;
+//  width: 100%;
+//  border: 2px solid $primary-color;
+//}
+//
+//.buy-button {
+//  font-family: $text-font-family;
+//  color: $primary-color;
+//  background-color: $white;
+//  font-size: $font-size-med;
+//  height: 50px;
+//  width: 100%;
+//  border: 2px solid $primary-color;
+//}
 
 
 //.rating {
