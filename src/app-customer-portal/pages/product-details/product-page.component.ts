@@ -7,6 +7,11 @@ import {ImageGalleryComponent} from "src/components/image-gallery/image-gallery.
 import {NumberFormControl, NumberStepperComponent} from "src/components/number-stepper/number-stepper.component";
 import {ReviewStarsComponent} from "src/components/review-stars/review-stars.component";
 import {ProductReviewStats} from "../../../types/product.type";
+import {ShoppingCartService} from "../../services/shopping-cart.service";
+import {Dialog} from "@angular/cdk/dialog";
+import {
+  CustomerMessageDialogComponent
+} from "../../components/customer-message-dialog/customer-message-dialog.component";
 
 
 @Component({
@@ -22,14 +27,16 @@ export class ProductDetailsPageComponent implements OnInit {
 
   activatedRoute = inject(ActivatedRoute);  // get route
   api = inject(ApiClient);  // get api client
+  cart = inject(ShoppingCartService);
+  dialogs = inject(Dialog);
 
 
   // get product_id from route
-  productId = this.activatedRoute.snapshot.params['product_id']
+  productId: number = Number(this.activatedRoute.snapshot.params['product_id'])
   currentProduct: WritableSignal<any> = signal(undefined);
   productImages: WritableSignal<string[]> = signal([]);
   currentProductReviewStats: WritableSignal<ProductReviewStats> = signal({average_review_score: 0, review_count: 0});
-  cartQuantityForm: NumberFormControl = new NumberFormControl(1,99);
+  cartQuantityForm: NumberFormControl = new NumberFormControl(0, 99);
 
 
   // lifecycle
@@ -42,6 +49,18 @@ export class ProductDetailsPageComponent implements OnInit {
 
     this.currentProduct.set(productDetails);
     this.currentProductReviewStats.set(reviewStats);
+
+    await this.cart.refreshCart();
+    const quantity = this.cart.cart()?.find(i=>i.product_id===this.productId)?.quantity ?? 0;
+    this.cartQuantityForm.value = quantity;
   }
 
+  async handleUpdateCart() {
+    if (this.cartQuantityForm?.valid) {
+      await this.cart.addToCart(this.productId, this.cartQuantityForm.value);
+      this.dialogs.open(CustomerMessageDialogComponent, { data: {
+        message: `Successfully updated quantity of ${this.currentProduct().product_name} in your shopping cart`
+      }})
+    }
+  }
 }

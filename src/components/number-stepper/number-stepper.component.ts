@@ -1,6 +1,6 @@
 import {
-  Component,
-  Input,
+  Component, EventEmitter,
+  Input, Output,
   signal,
   WritableSignal
 } from "@angular/core";
@@ -52,20 +52,24 @@ export class NumberStepperComponent {
 
   @Input() form = new NumberFormControl()
   @Input() label = "";
+  @Output() quantityChanged = new EventEmitter<number>();
 
   handleUpdate($event: any) {
     this.form.value = $event.target.value;
+    this.quantityChanged.emit(this.form.value);
   }
 
   increment() {
     if (this.form.value<this.form.max) {
       this.form.value = this.form.value + 1;
     }
+    this.quantityChanged.emit(this.form.value);
   }
 
   decrement() {
     if (this.form.value>this.form.min) {
       this.form.value = this.form.value - 1;
     }
+    this.quantityChanged.emit(this.form.value);
   }
 }

@@ -4,6 +4,8 @@ import {CurrencyPipe, NgIf} from "@angular/common";
 import {FancyButtonComponent} from "src/components/fancy-button/fancy-button.component";
 import {RouterLink} from "@angular/router";
 import {LoaderComponent} from "src/components/loader/loader.component";
+import {NumberStepperComponent} from "../../../components/number-stepper/number-stepper.component";
+import {ShoppingCartItemComponent} from "../../components/shopping-cart-item/shopping-cart-item.component";
 
 
 @Component({
@@ -16,7 +18,9 @@ import {LoaderComponent} from "src/components/loader/loader.component";
     FancyButtonComponent,
     RouterLink,
     NgIf,
-    LoaderComponent
+    LoaderComponent,
+    NumberStepperComponent,
+    ShoppingCartItemComponent
   ],
   host: {'class': 'flex-child'}
 })
@@ -28,4 +32,7 @@ export class ShoppingCartPageComponent implements OnInit {
     await this.cart.refreshCart()
   }
 
+  async handleUpdateItemQuantity(productId: number, quantity: number) {
+    await this.cart.updateAmountInCart(productId, quantity)
+  }
 }

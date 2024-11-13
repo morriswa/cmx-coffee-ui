@@ -40,15 +40,17 @@ export class ShoppingCartService {
 
   async addToCart(productId: number, quantity: number) {
     await this.api.updateShoppingCart(productId, quantity);
-    // TODO cache this value
+    await this.refreshCart();
   }
 
-  removeFromCart(productId: number) {
-    throw new Error('not implemented')
+  async removeFromCart(productId: number) {
+    await this.api.updateShoppingCart(productId, 0);
+    await this.refreshCart();
   }
 
-  updateAmountInCart(productId: number, quantity: number) {
-    throw new Error('not implemented')
+  async updateAmountInCart(productId: number, quantity: number) {
+    await this.api.updateShoppingCart(productId, quantity);
+    await this.refreshCart();
   }
 
   createOrder() {

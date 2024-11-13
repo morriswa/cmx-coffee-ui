@@ -11,11 +11,11 @@
       <!-- star rating: -->
       <review-stars [stats]="currentProductReviewStats()"/>
       <div class="description mt-2"> {{product.description}} </div>
-      <number-stepper label="Quantity" class="mt-5" [form]="cartQuantityForm"/>
+      <number-stepper label="Quantity" class="mt-5" *ngIf="cartQuantityForm" [form]="cartQuantityForm"/>
 
       <div class="app-button-group mt-3">
-        <button class="app-button primary">Add to Cart</button>
-        <button class="app-button">Buy Now</button>
+        <button class="app-button primary" (click)="handleUpdateCart()">Update Cart</button>
+<!--        <button class="app-button">Buy Now</button>-->
       </div>
     </div>
   </div>
