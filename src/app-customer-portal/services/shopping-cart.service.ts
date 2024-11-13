@@ -38,8 +38,9 @@ export class ShoppingCartService {
     return this._cartItems;
   }
 
-  addToCart(productId: number) {
-    throw new Error('not implemented')
+  async addToCart(productId: number, quantity: number) {
+    await this.api.updateShoppingCart(productId, quantity);
+    // TODO cache this value
   }
 
   removeFromCart(productId: number) {

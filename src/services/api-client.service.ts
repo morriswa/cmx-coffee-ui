@@ -149,4 +149,8 @@ export class ApiClient {
   getAuxData() {
     return this.request('GET','aux')
   }
+
+  updateShoppingCart(productId: number, quantity: number) {
+    return this.request('PATCH', 's/cart', [{product_id: productId, quantity: quantity}]);
+  }
 }
