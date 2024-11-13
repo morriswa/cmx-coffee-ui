@@ -59,7 +59,7 @@ export class CreateProductPageComponent {
       description: this.descriptionForm.value,
       initial_price: Number(this.initialPriceForm.value),
       coffee_bean_characteristics: {
-        strength: this.tasteStrengthForm.value,
+        taste_strength: Number(this.tasteStrengthForm.value) - 1,
         decaf: this.decafForm.value,
         flavored: this.flavoredForm.value,
         single_origin: this.singleOriginForm.value,
