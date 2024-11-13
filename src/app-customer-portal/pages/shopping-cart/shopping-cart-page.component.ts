@@ -35,4 +35,8 @@ export class ShoppingCartPageComponent implements OnInit {
   async handleUpdateItemQuantity(productId: number, quantity: number) {
     await this.cart.updateAmountInCart(productId, quantity)
   }
+
+  async handleResetCart() {
+    await this.cart.resetCart()
+  }
 }

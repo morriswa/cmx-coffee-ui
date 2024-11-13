@@ -37,6 +37,7 @@ export class ProductDetailsPageComponent implements OnInit {
   productImages: WritableSignal<string[]> = signal([]);
   currentProductReviewStats: WritableSignal<ProductReviewStats> = signal({average_review_score: 0, review_count: 0});
   cartQuantityForm: NumberFormControl = new NumberFormControl(0, 99);
+  disabledAction: WritableSignal<boolean> = signal(false);
 
 
   // lifecycle
@@ -57,7 +58,9 @@ export class ProductDetailsPageComponent implements OnInit {
 
   async handleUpdateCart() {
     if (this.cartQuantityForm?.valid) {
+      this.disabledAction.set(true);
       await this.cart.addToCart(this.productId, this.cartQuantityForm.value);
+      this.disabledAction.set(false);
       this.dialogs.open(CustomerMessageDialogComponent, { data: {
         message: `Successfully updated quantity of ${this.currentProduct().product_name} in your shopping cart`
       }})

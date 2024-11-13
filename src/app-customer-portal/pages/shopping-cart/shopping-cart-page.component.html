@@ -27,12 +27,15 @@
           </tr>
           </tbody>
         </table>
-        <fancy-button color="primary" class="mt-5" routerLink="/not-implemented">Checkout</fancy-button>
+        <div class="app-button-group mt-5">
+          <fancy-button color="primary" routerLink="/not-implemented">Checkout</fancy-button>
+          <fancy-button color="neutral" (click)="handleResetCart()">Delete all items</fancy-button>
+        </div>
       </div>
     }
     @else {
       <h1 class="my-5">Your cart is empty!</h1>
-      <fancy-button color="primary" routerLink="/shop/cart">Go to Shop</fancy-button>
+      <fancy-button color="primary" routerLink="/shop">Go to Shop</fancy-button>
     }
   }
   @else {

@@ -49,15 +49,23 @@
 .app-button {
   padding: 10px 20px;
   font-size: 15px;
-  outline: none !important;
 
   &.primary {
-    background-color: $primary-color;
+    outline: $white;
+    border: solid 1px $clear;
     color: $white;
+    background-color: $primary-color;
   }
 
   &:not(.primary) {
-    background-color: $white;
+    outline: $text-color;
+    border: solid 1px $text-color;
+    color: $text-color;
+    background-color: $surface-color;
+  }
+
+  &:disabled {
+    background-color: $neutral-color !important;
   }
 
   &.short {

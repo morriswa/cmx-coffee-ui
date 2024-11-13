@@ -14,7 +14,7 @@
       <number-stepper label="Quantity" class="mt-5" *ngIf="cartQuantityForm" [form]="cartQuantityForm"/>
 
       <div class="app-button-group mt-3">
-        <button class="app-button primary" (click)="handleUpdateCart()">Update Cart</button>
+        <button class="app-button primary" [disabled]="disabledAction()" (click)="handleUpdateCart()">Update Cart</button>
 <!--        <button class="app-button">Buy Now</button>-->
       </div>
     </div>

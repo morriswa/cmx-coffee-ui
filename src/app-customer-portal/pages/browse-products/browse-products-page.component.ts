@@ -29,16 +29,28 @@ export class BrowseProductsPageComponent implements OnInit {
   dialogs = inject(Dialog);
 
   products: WritableSignal<Product[]> = signal([])
+  disabledButtons: WritableSignal<Map<number, boolean>> = signal(new Map());
 
   async ngOnInit() {
     const latestProducts = await this.api.getProductsForCustomer()
     if (latestProducts) this.products.set(latestProducts)
   }
 
-    protected readonly print = print;
+  disabledActions(productId: number) {
+    return this.disabledButtons().get(productId) ?? false;
+  }
 
   async handleAddToCart(product: Product) {
+    this.disabledButtons.update(v=>{
+      v.set(product.product_id, true);
+      return v;
+    });
     await this.shoppingCart.addToCart(product.product_id, 1);
+    this.disabledButtons.update(v=>{
+      v.set(product.product_id, false);
+      return v;
+    });
+
     this.dialogs.open(CustomerMessageDialogComponent,
       { data: { message: `Successfully added 1x ${product.product_name} to your shopping cart` }}
     )

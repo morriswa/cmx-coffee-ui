@@ -26,10 +26,14 @@
 
     @for (product of products(); track product.product_id) {
       <div class="flex-col">
-        <app-product-tile [product]="product">
-
-        </app-product-tile>
-        <button class="app-button wfill mt-3" (click)="handleAddToCart(product)">Add to Cart</button>
+        <app-product-tile [product]="product"/>
+        <button
+          class="app-button wfill mt-3"
+          [disabled]="disabledActions(product.product_id)"
+          (click)="handleAddToCart(product)"
+        >
+          Add to Cart
+        </button>
       </div>
     }
   </div>

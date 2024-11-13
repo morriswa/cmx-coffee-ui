@@ -61,4 +61,9 @@ export class ShoppingCartService {
     const items = await this.api.getShoppingCart();
     if (items) this._cart.set(items)
   }
+
+  async resetCart() {
+    await this.api.resetShoppingCart()
+    this._cart.set([]);
+  }
 }

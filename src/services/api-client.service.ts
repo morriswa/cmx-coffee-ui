@@ -153,4 +153,8 @@ export class ApiClient {
   updateShoppingCart(productId: number, quantity: number) {
     return this.request('PATCH', 's/cart', [{product_id: productId, quantity: quantity}]);
   }
+
+  resetShoppingCart(): Promise<void> {
+    return this.request('DELETE', 's/cart')
+  }
 }
