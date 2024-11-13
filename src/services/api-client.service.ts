@@ -126,8 +126,8 @@ export class ApiClient {
     return this.request('DELETE', 's/payment', {'payment_id': payment_id})
   }
 
-  createPaymentMethod(nickname: string) {
-    return this.request('POST', 's/payment', {'nickname': nickname});
+  createPaymentMethod(nickname: string, territory: string) {
+    return this.request('POST', 's/payment', {'nickname': nickname, 'territory': territory});
   }
 
   getShoppingCart() {
@@ -144,10 +144,6 @@ export class ApiClient {
 
   deleteProductImage(productId: number, imageId: string) {
     return this.request('DELETE', `s/vendor/product/${productId}/image/${imageId}`);
-  }
-
-  getAuxData() {
-    return this.request('GET','aux')
   }
 
   updateShoppingCart(productId: number, quantity: number) {

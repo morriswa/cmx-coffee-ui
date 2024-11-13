@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from "@angular/core";
+import {Component, inject} from "@angular/core";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {VendorAddressForm} from "src/types/address.type";
 import {TaggedInputComponent} from "src/components/tagged-input/tagged-input.component";
@@ -6,7 +6,6 @@ import {CheckboxSelectorComponent} from "../checkbox-selector/checkbox-selector.
 import {
   RadioButtonFormControl,
   RadioButtonGroupComponent,
-  RadioButtonOptions
 } from "../radio-button-group/radio-button-group.component";
 import {ApiClient} from "../../services/api-client.service";
 import {NgIf} from "@angular/common";
@@ -26,7 +25,7 @@ import {NgIf} from "@angular/common";
   ],
   host: { 'class': 'flex-child' }
 })
-export class AddressFormComponent implements OnInit{
+export class AddressFormComponent {
 
   // services
   protected api = inject(ApiClient);
@@ -36,15 +35,11 @@ export class AddressFormComponent implements OnInit{
   protected addressLineTwoForm = new FormControl("");
   protected cityForm = new FormControl("", Validators.required);
   protected zipForm = new FormControl("", Validators.required);
-  protected territoryForm?: RadioButtonFormControl;
-
-  async ngOnInit() {
-    const aux: any = await this.api.getAuxData()
-    const options: RadioButtonOptions[] = (aux.territories??[]).map((t:any)=>{
-      return {value:t.territory_id, label:t.display_name}
-    });
-    this.territoryForm = new RadioButtonFormControl(options)
-  }
+  protected territoryForm: RadioButtonFormControl = new RadioButtonFormControl([
+    {value: 'USA_KS', label: 'Kansas, USA'},
+    {value: 'USA_MO', label: 'Missouri, USA'},
+    {value: 'USA_OK', label: 'Oklahoma, USA'},
+  ]);
 
 
   // publics

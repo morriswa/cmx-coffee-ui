@@ -46,8 +46,10 @@ export class AccountPaymentsPageComponent implements OnInit {
 
     const sub = ref.closed.subscribe(async (res: any)=>{
       if (res.result==='create') {
-        await this.createPaymentMethod(res.nickname)
+        await this.createPaymentMethod(res.nickname, res.territory)
       }
+
+      sub.unsubscribe();
     })
   }
 
@@ -56,8 +58,8 @@ export class AccountPaymentsPageComponent implements OnInit {
     this.paymentMethods.update(m=>m?.filter(p=>p.payment_id!==payment_id))
   }
 
-  private async createPaymentMethod(nickname: string) {
-    await this.api.createPaymentMethod(nickname);
+  private async createPaymentMethod(nickname: string, territory: string) {
+    await this.api.createPaymentMethod(nickname, territory);
     this.paymentMethods.set(await this.api.getPaymentMethods());
   }
 
