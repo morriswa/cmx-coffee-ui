@@ -2,7 +2,7 @@ import { inject, Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http"; // HttpClient and HttpHeaders for HTTP requests
 import { firstValueFrom } from "rxjs"; // Used to convert observables to promises
 import { environment } from "src/environments/environment";
-import {CartItem, Product} from "src/types/product.type";
+import {CartItem, Order, Product} from "src/types/product.type";
 import {CustomerProductPreferences} from "src/types/customer.type";
 import {VendorProduct} from "src/types/vendor.type"; // Import environment variables
 
@@ -152,5 +152,13 @@ export class ApiClient {
 
   resetShoppingCart(): Promise<void> {
     return this.request('DELETE', 's/cart')
+  }
+
+  getOrderDetails(orderId: string) {
+    return this.request<Order>('GET', `s/checkout/${orderId}`)
+  }
+
+  checkout() {
+    return this.request('POST', 's/checkout');
   }
 }

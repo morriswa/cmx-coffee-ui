@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from "@angular/core";
 import {ShoppingCartService} from "src/app-customer-portal/services/shopping-cart.service";
 import {CurrencyPipe, NgIf} from "@angular/common";
 import {FancyButtonComponent} from "src/components/fancy-button/fancy-button.component";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {LoaderComponent} from "src/components/loader/loader.component";
 import {NumberStepperComponent} from "../../../components/number-stepper/number-stepper.component";
 import {ShoppingCartItemComponent} from "../../components/shopping-cart-item/shopping-cart-item.component";
@@ -26,6 +26,7 @@ import {ShoppingCartItemComponent} from "../../components/shopping-cart-item/sho
 })
 export class ShoppingCartPageComponent implements OnInit {
   cart = inject(ShoppingCartService);
+  router = inject(Router);
 
 
   async ngOnInit() {
@@ -38,5 +39,10 @@ export class ShoppingCartPageComponent implements OnInit {
 
   async handleResetCart() {
     await this.cart.resetCart()
+  }
+
+  async handleCheckout() {
+    const orderId = await this.cart.checkout();
+    await this.router.navigate(['/shop', 'checkout', orderId])
   }
 }

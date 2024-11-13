@@ -1,0 +1,33 @@
+
+<div class="flex-col align-items-center vw-90 my-5">
+@if (orderDetails(); as order) {
+  <h1>Checkout</h1>
+  <span>Order {{order.order_id}}</span>
+
+  <hr/>
+
+  <table class="checkout-table">
+    <thead style="display: none"><th></th></thead>
+    <tbody>
+      <tr>
+        <td>Items: </td>
+        <td>{{items()}}</td>
+      </tr>
+      <tr>
+        <td>Subtotal: </td>
+        <td>{{order.subtotal | currency}}</td>
+      </tr>
+      <tr>
+        <td>Sales tax: </td>
+        <td>{{order.tax | currency}}</td>
+      </tr>
+      <tr>
+        <td>Total: </td>
+        <td>{{order.total | currency}}</td>
+      </tr>
+    </tbody>
+  </table>
+} @else {
+  <app-loader/>
+}
+</div>

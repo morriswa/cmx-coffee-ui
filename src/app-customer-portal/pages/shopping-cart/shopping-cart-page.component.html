@@ -17,18 +17,18 @@
         <table class="app-shopping-cart">
           <thead style="display: none"><th></th></thead>
           <tbody>
-          <tr>
-            <td>Items: </td>
-            <td>{{cart.cartItems()}}</td>
-          </tr>
-          <tr>
-            <td>Cart Total: </td>
-            <td>{{cart.cartTotal() | currency}}</td>
-          </tr>
+            <tr>
+              <td>Items: </td>
+              <td>{{cart.cartItems()}}</td>
+            </tr>
+            <tr>
+              <td>Cart Total: </td>
+              <td>{{cart.cartTotal() | currency}}</td>
+            </tr>
           </tbody>
         </table>
         <div class="app-button-group mt-5">
-          <fancy-button color="primary" routerLink="/not-implemented">Checkout</fancy-button>
+          <fancy-button color="primary" (click)="handleCheckout()">Checkout</fancy-button>
           <fancy-button color="neutral" (click)="handleResetCart()">Delete all items</fancy-button>
         </div>
       </div>

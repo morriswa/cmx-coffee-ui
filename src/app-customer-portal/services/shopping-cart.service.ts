@@ -66,4 +66,8 @@ export class ShoppingCartService {
     await this.api.resetShoppingCart()
     this._cart.set([]);
   }
+
+  async checkout() {
+    return this.api.checkout()
+  }
 }
