@@ -1,9 +1,8 @@
 
-export type Address = {
+export type VendorAddressForm = {
   addressLineOne: string;
   addressLineTwo?: string;
   city: string;
-  state: string;
   zip: string;
-  country: string;
+  territory?: number;
 }

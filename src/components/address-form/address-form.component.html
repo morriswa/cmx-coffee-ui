@@ -1,16 +1,14 @@
 
-<tagged-input label="Address Line 1" [form]="addressLineOneForm"/>
-<tagged-input label="Address Line 2" [form]="addressLineTwoForm"/>
-<tagged-input label="City" [form]="cityForm"/>
-
-<div class="flex-col app-form-wrapper">
-  <span class="app-form-label">State</span>
-  <input class="app-form-input" (keyup)="stateForm.set($any($event.target).value)">
+<div class="flex-row flex-wrap justify-content-center col-gap-5">
+  <tagged-input label="Address Line 1" [form]="addressLineOneForm"/>
+  <tagged-input label="Address Line 2" [form]="addressLineTwoForm"/>
+  <tagged-input label="City" [form]="cityForm"/>
+  <tagged-input label="Zip" [form]="zipForm"/>
 </div>
 
-<tagged-input label="Zip" [form]="zipForm"/>
+<br>
 
-<div class="flex-col app-form-wrapper">
-  <span class="app-form-label">Country</span>
-  <input class="app-form-input" (keyup)="countryForm.set($any($event.target).value)">
+<div class="flex-col">
+  <span>State/Territory</span>
+  <app-radio-button-group *ngIf="territoryForm" [radioButtonFormControl]="territoryForm"></app-radio-button-group>
 </div>

@@ -145,4 +145,8 @@ export class ApiClient {
   deleteProductImage(productId: number, imageId: string) {
     return this.request('DELETE', `s/vendor/product/${productId}/image/${imageId}`);
   }
+
+  getAuxData() {
+    return this.request('GET','aux')
+  }
 }

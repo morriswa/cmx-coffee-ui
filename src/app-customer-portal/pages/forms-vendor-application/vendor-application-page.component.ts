@@ -33,12 +33,6 @@ export class VendorApplicationPageComponent {
 
   @ViewChild("addressForm") addressForm?: AddressFormComponent;
 
-  handleConsolePrint() {
-    console.log(this.businessNameForm.value)
-    console.log(this.businessEmailForm.value)
-    console.log(this.businessPhoneForm.value)
-    console.log(this.addressForm?.getAddress());
-  }
 
   async handleSubmit() {
     const address = this.addressForm?.getAddress()!;
@@ -49,9 +43,8 @@ export class VendorApplicationPageComponent {
       address_line_one: address.addressLineOne,
       address_line_two: address.addressLineTwo,
       city: address.city,
-      state: address.state,
       zip: address.zip,
-      country: address.country,
+      territory: address.territory!,
     }
 
     try {
