@@ -27,6 +27,22 @@
       </tr>
     </tbody>
   </table>
+
+  <h3 class="mt-3">Select payment method</h3>
+  <div class="mt-1">
+    <app-radio-button-group *ngIf="paymentSelectionForm" [radioButtonFormControl]="paymentSelectionForm"></app-radio-button-group>
+  </div>
+
+  <div class="app-button-group mt-5">
+    <fancy-button
+      color="primary"
+      [disabled]="!paymentSelectionForm?.valid"
+      (click)="handlePurchase()"
+    >
+      Purchase
+    </fancy-button>
+    <fancy-button color="neutral" (click)="handleDeleteOrder()">Delete Order</fancy-button>
+  </div>
 } @else {
   <app-loader/>
 }

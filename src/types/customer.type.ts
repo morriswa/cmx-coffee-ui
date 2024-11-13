@@ -11,3 +11,11 @@ export type CustomerProductPreferences = {
   "single_origin"?: YesNo,
   "origin_blend"?: YesNo
 }
+
+export type CustomerPayment = {
+  payment_id: string
+  payment_method: string
+  nickname: string
+  territory: string
+  territory_name: string
+}

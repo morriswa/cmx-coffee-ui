@@ -1,4 +1,5 @@
-import {Component} from "@angular/core";
+import {Component, inject, OnInit} from "@angular/core";
+import {ApiClient} from "src/services/api-client.service";
 
 
 @Component({
@@ -6,6 +7,12 @@ import {Component} from "@angular/core";
   templateUrl: "./account-orders-page.component.html",
   standalone: true
 })
-export class AccountOrdersPageComponent {
+export class AccountOrdersPageComponent implements OnInit {
+  api = inject(ApiClient);
+
+  async ngOnInit() {
+    const orders = await this.api.getCustomerOrders()
+    console.log(orders)
+  }
 
 }

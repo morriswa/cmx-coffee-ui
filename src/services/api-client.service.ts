@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http"; // HttpClient an
 import { firstValueFrom } from "rxjs"; // Used to convert observables to promises
 import { environment } from "src/environments/environment";
 import {CartItem, Order, Product} from "src/types/product.type";
-import {CustomerProductPreferences} from "src/types/customer.type";
+import {CustomerPayment, CustomerProductPreferences} from "src/types/customer.type";
 import {VendorProduct} from "src/types/vendor.type"; // Import environment variables
 
 
@@ -119,7 +119,7 @@ export class ApiClient {
   }
 
   getPaymentMethods() {
-    return this.request<any[]>('GET', 's/payment');
+    return this.request<CustomerPayment[]>('GET', 's/payment');
   }
 
   deletePaymentMethod(payment_id: string) {
@@ -160,5 +160,17 @@ export class ApiClient {
 
   checkout() {
     return this.request('POST', 's/checkout');
+  }
+
+  deleteOrder(orderId: string) {
+    return this.request('DELETE', `s/checkout/${orderId}`)
+  }
+
+  completeOrder(orderId: string, paymentId: string) {
+    return this.request('POST', `s/checkout/${orderId}?payment_id=${paymentId}`);
+  }
+
+  getCustomerOrders() {
+    return this.request('GET', 's/orders')
   }
 }

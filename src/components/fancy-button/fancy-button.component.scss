@@ -28,7 +28,12 @@
     color: $white;
   }
 
-  &:after {
+  &.disabled {
+    background-color: $neutral-color;
+    color: $black;
+  }
+
+  &:not(.disabled):after,  {
     z-index: -1;
     top: -2px;
     left: 0;
