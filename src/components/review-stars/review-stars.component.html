@@ -1,0 +1,9 @@
+
+<div class="mt-3">
+  <i class="fa fa-star" [ngClass]="{'checked':highlighted(0)}"></i>
+  <i class="fa fa-star" [ngClass]="{'checked':highlighted(1)}"></i>
+  <i class="fa fa-star" [ngClass]="{'checked':highlighted(2)}"></i>
+  <i class="fa fa-star" [ngClass]="{'checked':highlighted(3)}"></i>
+  <i class="fa fa-star" [ngClass]="{'checked':highlighted(4)}"></i>
+  <span> ({{stats.average_review_score??0|number:'1.1-1'}} stars) • {{stats.review_count}} reviews </span>
+</div>

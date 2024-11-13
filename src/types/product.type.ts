@@ -18,3 +18,8 @@ export type CartItem = {
   vendor_name: string,
   sale_price: number
 }
+
+export type ProductReviewStats = {
+  average_review_score?: number;
+  review_count: number;
+}

@@ -1,0 +1,10 @@
+@use "src/styles/variables" as *;
+
+
+.checked {
+  color: $primary-color;
+}
+
+:not(.checked) {
+  color: $black;
+}

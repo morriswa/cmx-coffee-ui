@@ -5,6 +5,8 @@ import { LoaderComponent } from "src/components/loader/loader.component";
 import {CurrencyPipe, NgClass, NgIf} from "@angular/common";
 import {ImageGalleryComponent} from "src/components/image-gallery/image-gallery.component";
 import {NumberFormControl, NumberStepperComponent} from "src/components/number-stepper/number-stepper.component";
+import {ReviewStarsComponent} from "src/components/review-stars/review-stars.component";
+import {ProductReviewStats} from "../../../types/product.type";
 
 
 @Component({
@@ -12,7 +14,7 @@ import {NumberFormControl, NumberStepperComponent} from "src/components/number-s
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.scss',
   standalone: true,
-  imports: [LoaderComponent, NgClass, CurrencyPipe, ImageGalleryComponent, NgIf, NumberStepperComponent],
+  imports: [LoaderComponent, NgClass, CurrencyPipe, ImageGalleryComponent, NgIf, NumberStepperComponent, ReviewStarsComponent],
   host: {'class': 'flex-child'}
 })
 export class ProductDetailsPageComponent implements OnInit {
@@ -26,7 +28,7 @@ export class ProductDetailsPageComponent implements OnInit {
   productId = this.activatedRoute.snapshot.params['product_id']
   currentProduct: WritableSignal<any> = signal(undefined);
   productImages: WritableSignal<string[]> = signal([]);
-  currentProductReviewStats: WritableSignal<any> = signal({average_review_score: 0, review_count: 0});
+  currentProductReviewStats: WritableSignal<ProductReviewStats> = signal({average_review_score: 0, review_count: 0});
   cartQuantityForm: NumberFormControl = new NumberFormControl(1,99);
 
 

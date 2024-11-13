@@ -1,42 +1,22 @@
 
 @if (currentProduct(); as product) {
 
-  <div class="flex-row align-items-center justify-content-center mt-5">
+  <div class="flex-row flex-wrap vw-90 mx-auto align-items-center justify-content-center mt-5">
     <image-gallery [images]="productImages()" [alt]="product.product_name"/>
 
     <div class="product-details-side m-5">
-
       <h1 class="product-heading mt-2"> {{product.product_name}} </h1>
       <h2 class="price mt-1"> {{product.price | currency }} </h2>
 
       <!-- star rating: -->
-      <div class="rating mt-3">
-        <span class="fa fa-star" [ngClass]="currentProductReviewStats().average_review_score>=1?'checked':''"></span>
-        <span class="fa fa-star" [ngClass]="currentProductReviewStats().average_review_score>=2?'checked':''"></span>
-        <span class="fa fa-star" [ngClass]="currentProductReviewStats().average_review_score>=3?'checked':''"></span>
-        <span class="fa fa-star" [ngClass]="currentProductReviewStats().average_review_score>=4?'checked':''"></span>
-        <span class="fa fa-star" [ngClass]="currentProductReviewStats().average_review_score>=5?'checked':''"></span>
-        <span> ({{currentProductReviewStats().average_review_score}} stars) • {{currentProductReviewStats().review_count}} reviews </span>
-      </div>
-
+      <review-stars [stats]="currentProductReviewStats()"/>
       <div class="description mt-2"> {{product.description}} </div>
-
-<!--      <div class="dropdown mt-3">-->
-<!--        <p>Size Options</p>-->
-<!--        <button class="dropbtn">Select</button>-->
-<!--        <div class="dropdown-content">-->
-<!--          <a>Size 1</a>-->
-<!--          <a>Size 2</a>-->
-<!--        </div>-->
-<!--      </div>-->
-
       <number-stepper label="Quantity" class="mt-5" [form]="cartQuantityForm"/>
 
       <div class="app-button-group mt-3">
         <button class="app-button primary">Add to Cart</button>
         <button class="app-button">Buy Now</button>
       </div>
-
     </div>
   </div>
 } @else {
