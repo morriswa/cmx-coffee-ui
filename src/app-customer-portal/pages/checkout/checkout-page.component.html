@@ -33,6 +33,8 @@
     <app-radio-button-group *ngIf="paymentSelectionForm" [radioButtonFormControl]="paymentSelectionForm"></app-radio-button-group>
   </div>
 
+  <a class="app-link" (click)="handleCreatePaymentMethod()">Add Payment Method</a>
+
   <div class="app-button-group mt-5">
     <fancy-button
       color="primary"

@@ -1,15 +1,19 @@
-import {Component, computed, inject, OnInit, Signal, signal, WritableSignal} from "@angular/core";
+import {Component, computed, effect, inject, OnInit, Signal, signal, WritableSignal} from "@angular/core";
 import {ApiClient} from "../../../services/api-client.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Order} from "../../../types/product.type";
 import {CurrencyPipe, NgIf} from "@angular/common";
 import {LoaderComponent} from "../../../components/loader/loader.component";
-import {CustomerPayment} from "../../../types/customer.type";
 import {
   RadioButtonFormControl,
   RadioButtonGroupComponent, RadioButtonOptions
 } from "../../../components/radio-button-group/radio-button-group.component";
 import {FancyButtonComponent} from "../../../components/fancy-button/fancy-button.component";
+import {
+  CreateMockPaymentDialogComponent
+} from "../../components/create-mock-payment-dialog/create-mock-payment-dialog.component";
+import {ShoppingCartService} from "../../services/shopping-cart.service";
+import {Dialog} from "@angular/cdk/dialog";
 
 
 @Component({
@@ -33,10 +37,16 @@ export class CheckoutPageComponent implements OnInit{
   api = inject(ApiClient);
   route = inject(ActivatedRoute);
   router = inject(Router);
+  cart = inject(ShoppingCartService);
+  dialogs = inject(Dialog);
 
 
   // state
   orderId = this.route.snapshot.params['order_id']
+  paymentSelectionForm?: RadioButtonFormControl;
+
+
+  // get
   orderDetails: WritableSignal<Order|undefined> = signal(undefined);
   items: Signal<number> = computed(()=>{
     const details = this.orderDetails();
@@ -47,23 +57,24 @@ export class CheckoutPageComponent implements OnInit{
     }
     return sum;
   });
-  payments: WritableSignal<CustomerPayment[]> = signal([]);
 
 
   // lifecycle
-  paymentSelectionForm?: RadioButtonFormControl;
+  constructor() {
+    effect(()=>{
+      const payments = this.cart.paymentMethods();
+
+      const paymentOptions: RadioButtonOptions[] = payments.map(p=>{
+        return {value: p.payment_id, label: p.nickname}
+      });
+      this.paymentSelectionForm = new RadioButtonFormControl(paymentOptions);
+    })
+  }
 
   async ngOnInit() {
+    this.cart.refreshPaymentMethods();
     const order = await this.api.getOrderDetails(this.orderId);
-    const payments = await this.api.getPaymentMethods() ?? [];
-
     this.orderDetails.set(order);
-    this.payments.set(payments);
-
-    const paymentOptions: RadioButtonOptions[] = payments.map(p=>{
-      return {value: p.payment_id, label: p.nickname}
-    });
-    this.paymentSelectionForm = new RadioButtonFormControl(paymentOptions);
   }
 
   async handlePurchase() {
@@ -76,5 +87,17 @@ export class CheckoutPageComponent implements OnInit{
   async handleDeleteOrder() {
    await this.api.deleteOrder(this.orderId);
    await this.router.navigate(['/'])
+  }
+
+  handleCreatePaymentMethod() {
+    const ref = this.dialogs.open(CreateMockPaymentDialogComponent)
+
+    const sub = ref.closed.subscribe(async (res: any)=>{
+      if (res.result==='create') {
+        await this.cart.createPaymentMethod(res.nickname, res.territory);
+      }
+
+      sub.unsubscribe();
+    })
   }
 }
