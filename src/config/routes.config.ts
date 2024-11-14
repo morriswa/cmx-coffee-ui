@@ -71,6 +71,11 @@ const routesConfig: Routes = [
         loadComponent: () => import('src/app-customer-portal/pages/vendor-application/vendor-application-page.component')
           .then(m=>m.VendorApplicationPageComponent)
       },
+      {
+        path: "track",
+        loadComponent: () => import('src/app-customer-portal/pages/track-order/track-page.component')
+          .then(m=>m.TrackPageComponent)
+      }
     ]
   },
   {
