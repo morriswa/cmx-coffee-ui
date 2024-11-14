@@ -1,0 +1,109 @@
+@use "src/styles/variables" as *;
+
+body {
+  background-color: $white;
+}
+
+.divided-page {
+  width: 100%;
+  height: 1000px;
+}
+
+// left side //
+
+.track-heading {
+  width: 50%;
+  height: 550px;
+  float:left;
+}
+
+.heading {
+  font-family: $header-font-family;
+  color: $primary-color;
+  font-size: $font-size-xxxl;
+}
+
+.text {
+  font-family: $text-font-family;
+  color: $black;
+  font-size: $font-size-med;
+  line-height: 150%;
+}
+
+// right side //
+
+//  needs to be done
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex; /* Use flexbox for alignment */
+  justify-content: space-between; /* Ensure space between the columns */
+}
+
+.column-left {
+  width: 33.33%;
+  padding-left: 130px;
+}
+.column-middle {
+  width: 33.33%;
+}
+.column-right {
+  width: 33.33%;
+  padding-right: 130px;
+}
+
+hr {
+  border: none;
+  height: 4px;
+  background-color: $black;
+  margin: 0; /* Remove any default margin to make lines touch */
+  width: 100%; /* Make the line span the full width of the column */
+  margin-top: 10px;
+}
+
+.delivered {
+  position: relative;
+  top: -50px;
+  left: 430px;
+}
+.delivered-dot {
+  position: relative;
+  top: -48px;
+  left: 458px;
+  display: inline-block;
+  width: 15px;   /* size of the dot */
+  height: 15px;
+  background-color: $black;  /* dot color */
+  border-radius: 50%;
+}
+.confirmed {
+  position: relative;
+  left: -40px
+}
+
+.dot {
+  display: inline-block;
+  width: 15px;   /* size of the dot */
+  height: 15px;
+  background-color: $black;  /* dot color */
+  border-radius: 50%;       /* makes it a circle */
+  position: relative;
+  top: -10px;
+}
+
+.otw-dot {
+  display: inline-block;
+  width: 15px;   /* size of the dot */
+  height: 15px;
+  background-color: #4CAF50;  /* dot color */
+  border-radius: 50%;       /* makes it a circle */
+  position: relative;
+  top: -10px;
+}
+
+.status {
+  font-weight: bold;
+}
