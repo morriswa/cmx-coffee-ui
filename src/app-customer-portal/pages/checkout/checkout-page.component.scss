@@ -1,6 +1,15 @@
+@use "src/styles/variables" as *;
+
 
 .checkout-table {
   td {
     padding: 10px;
   }
+}
+
+.checkout-item {
+  background-color: $surface-color;
+  padding: 20px;
+  border-radius: 10px;
+  overflow-x: auto;
 }
