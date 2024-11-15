@@ -44,7 +44,7 @@ export class CreateProductPageComponent {
   initialPriceForm = new FormControl(null, [
     Validators.required,
     Validators.min(0),
-    Validators.max(999),
+    Validators.max(999.99),
   ])
   tasteStrengthForm = new NumberFormControl(1, 10);
   decafForm = new RadioButtonFormControl([
