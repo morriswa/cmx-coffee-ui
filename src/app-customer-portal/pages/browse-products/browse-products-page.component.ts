@@ -15,7 +15,7 @@ import {
   templateUrl: './browse-products-page.component.html',
   styleUrl: './browse-products-page.component.scss',
   standalone: true,
-  host: {'class': 'flex-child'},
+  host: {'class': 'flex-col align-items-center'},
   imports: [
     ProductTileComponent,
     FancyButtonComponent,

@@ -1,12 +1,11 @@
 
-
 <div class="flex-col align-items-center" style="width: 300px">
-  <div class="product">
-    <img [ngSrc]="product.first_image ?? 'static/bag_of_coffee.png'" height="400" width="300" alt="coffee">
-  </div>
+
+  <img class="product-image" [ngSrc]="product.first_image ?? 'static/bag_of_coffee.png'" height="400" width="300" alt="coffee">
   <a class="app-link mt-3" [routerLink]="['/shop', 'product', product.product_id]">{{ product.product_name }}</a>
-  <span class="product-text">{{ product.description }}</span>
-  <span class="product-text-bold mt-1">{{ product.price | currency }}</span>
+  <span class="font-med">{{ product.description }}</span>
+  <span class="mt-1 font-med font-bold">{{ product.price | currency }}</span>
+
 <!--  <p *ngIf="product-details.decaf === 'y'">Decaf</p>-->
   <!--<p *ngIf="product-details.single_origin === 'y'">Single Origin</p>-->
   <!--<p *ngIf="product-details.flavored === 'y'">Flavored</p>-->

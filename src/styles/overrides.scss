@@ -11,6 +11,8 @@ body {
   flex-direction: column;
 
   font-family: $font-family;
+  color: $text-color;
+  font-size: $font-size-med;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -45,6 +45,11 @@
   row-gap: 20px;
 }
 
+.gap-3 {
+  column-gap: 30px;
+  row-gap: 30px;
+}
+
 .gap-5 {
   column-gap: 50px;
   row-gap: 50px;
@@ -135,12 +140,17 @@
   margin-right: 10px;
 }
 
+.mx-2 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 .ml-1 {
   margin-left: 10px;
 }
 
-.ml-2-5 {
-  margin-left: 25px;
+.ml-3 {
+  margin-left: 30px;
 }
 
 .ml-150 {
@@ -179,8 +189,8 @@
   margin-top: 50px;
 }
 
-.m-5 {
-  margin: 50px;
+.mt-10 {
+  margin-top: 100px;
 }
 
 .mt-15 {
@@ -189,6 +199,10 @@
 
 .mt-30 {
   margin-top: 300px;
+}
+
+.m-5 {
+  margin: 50px;
 }
 
 .mb-1 {
@@ -205,6 +219,10 @@
 
 .p-2 {
   padding: 20px;
+}
+
+.p-3 {
+  padding: 30px;
 }
 
 .p-4 {
@@ -225,4 +243,57 @@
 
 .m-1 {
   margin: 10px;
+}
+
+
+.header-font {
+  font-family: $header-font-family;
+}
+
+.font-xxl {
+  font-size: $font-size-xxl;
+}
+
+.font-xl {
+  font-size: $font-size-xl;
+}
+
+.font-lg {
+  font-size: $font-size-lg;
+}
+
+.font-ml {
+  font-size: $font-size-ml;
+}
+
+.font-med {
+  font-size: $font-size-med;
+}
+
+.font-sm {
+  font-size: $font-size-sm;
+}
+
+.font-xs {
+  font-size: $font-size-xs;
+}
+
+.background-primary {
+  background-color: $primary-color;
+}
+
+.background-white {
+  background-color: $white;
+}
+
+.background-body {
+  background-color: $body-background-color;
+}
+
+.primary {
+  color: $primary-color;
+}
+
+.font-bold {
+  font-weight: $font-weight-bold;
 }

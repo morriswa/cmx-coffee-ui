@@ -13,7 +13,7 @@
   color: $primary-color;
   font-family: $font-family;
   font-size: $font-size-med;
-  font-weight: $bold-font-weight;
+  font-weight: $font-weight-bold;
   cursor: pointer;
   text-decoration: none;
 }
@@ -77,10 +77,6 @@
   }
 }
 
-.header-font{
-  font-family: $header-font-family;
-}
-
 .app-table {
   text-align: left;
 
@@ -88,10 +84,6 @@
     padding: 5px 10px;
     vertical-align: top;
   }
-}
-
-.surface {
-  background-color: $surface-color;
 }
 
 .app-form-popup {
@@ -116,9 +108,9 @@
   cursor: text;
 
   color: rgb(35, 38, 59);
-  font-size: $font-size;
+  font-size: $font-size-med;
   font-family: $font-family;
-  line-height: calc($font-size + 6px);
+  line-height: calc($font-size-med + 6px);
 
   background-color: $white;
   padding: 0 16px;
