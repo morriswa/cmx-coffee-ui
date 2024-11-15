@@ -13,8 +13,7 @@
 
   @switch (pageState()) {
     @case ('form') {
-      <div class="flex-row flex-wrap gap-2 justify-content-center">
-
+      <div class="flex-row flex-wrap mx-1 gap-2 justify-content-center">
         <div class="flex-col app-form-wrapper">
           <span class="app-form-label">Business Name</span>
           <input class="app-form-input" [formControl]="businessNameForm">
@@ -35,9 +34,9 @@
           >
           <span>Required, 10 digit</span>
         </div>
-
-        <app-address-form #addressForm></app-address-form>
       </div>
+
+      <app-address-form class="mt-2 wfill" #addressForm></app-address-form>
 
       <fancy-button class="mt-5" color="primary" [disabled]="!valid" (click)="handleSubmit()">Submit</fancy-button>
     }
