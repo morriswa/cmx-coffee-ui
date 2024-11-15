@@ -17,7 +17,8 @@ import {TaggedInputComponent} from "src/components/tagged-input/tagged-input.com
     FancyButtonComponent,
     TaggedInputComponent
   ],
-  standalone: true
+  standalone: true,
+  host: {class: 'flex-child'}
 })
 export class VendorApplicationPageComponent {
 
@@ -32,6 +33,15 @@ export class VendorApplicationPageComponent {
 
 
   @ViewChild("addressForm") addressForm?: AddressFormComponent;
+
+  get valid(): boolean {
+    return (
+          this.businessNameForm.valid
+      &&  this.businessEmailForm.valid
+      &&  this.businessPhoneForm.valid
+      &&  (this.addressForm?.valid ?? false)
+    )
+  }
 
 
   async handleSubmit() {

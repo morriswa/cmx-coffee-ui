@@ -2,28 +2,44 @@
 <div class="flex-col align-items-center vw-90 mx-auto">
 
   <h1 class="mt-3">Vendor Application Form</h1>
-  <h2 class="mb-5">Let's become partners</h2>
+  <h2 class="mb-3">Let's become partners</h2>
   <hr style="width: 100%">
 
-  <h2 class="my-5">Business Information</h2>
+</div>
+
+<div class="flex-col align-items-center pb-5">
+
+  <h2 class="my-1">Business Information</h2>
 
   @switch (pageState()) {
     @case ('form') {
-      <div style="align-content: flex-start" class="flex-row flex-wrap col-gap-5 justify-content-center mb-5">
-        <tagged-input label="Business Name" [form]="businessNameForm"/>
+      <div class="flex-row flex-wrap gap-2 justify-content-center">
 
-        <tagged-input label="Business Email" [form]="businessEmailForm"/>
+        <div class="flex-col app-form-wrapper">
+          <span class="app-form-label">Business Name</span>
+          <input class="app-form-input" [formControl]="businessNameForm">
+          <span>Required</span>
+        </div>
 
-        <tagged-input label="Phone" [form]="businessPhoneForm"/>
+        <div class="flex-col app-form-wrapper">
+          <span class="app-form-label">Business Email</span>
+          <input class="app-form-input" [formControl]="businessEmailForm">
+          <span>Required</span>
+        </div>
 
-        <div class="app-form-wrapper">
-
+        <div class="flex-col app-form-wrapper">
+          <span class="app-form-label">Phone</span>
+          <input
+            class="app-form-input"
+            [formControl]="businessPhoneForm"
+          >
+          <span>Required, 10 digit</span>
         </div>
 
         <app-address-form #addressForm></app-address-form>
       </div>
 
-      <fancy-button color="primary" (click)="handleSubmit()">Submit</fancy-button>
+      <fancy-button class="mt-5" color="primary" [disabled]="!valid" (click)="handleSubmit()">Submit</fancy-button>
     }
     @case ('success') {
       <h1>Successfully submitted application!</h1>

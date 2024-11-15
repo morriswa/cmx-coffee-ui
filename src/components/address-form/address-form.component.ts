@@ -1,4 +1,4 @@
-import {Component, inject} from "@angular/core";
+import {Component, inject, signal, WritableSignal} from "@angular/core";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {VendorAddressForm} from "src/types/address.type";
 import {TaggedInputComponent} from "src/components/tagged-input/tagged-input.component";
@@ -14,7 +14,6 @@ import {NgIf} from "@angular/common";
 @Component({
   selector: "app-address-form",
   templateUrl: "./address-form.component.html",
-  styleUrl: "./address-form.component.scss",
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -23,7 +22,6 @@ import {NgIf} from "@angular/common";
     NgIf,
     RadioButtonGroupComponent,
   ],
-  host: { 'class': 'flex-child' }
 })
 export class AddressFormComponent {
 
@@ -41,14 +39,28 @@ export class AddressFormComponent {
     {value: 'USA_OK', label: 'Oklahoma, USA'},
   ]);
 
+  get valid() {
+    return (
+          this.addressLineOneForm.valid
+      &&  this.addressLineTwoForm.valid
+      &&  this.cityForm.valid
+      &&  this.zipForm.valid
+      &&  this.territoryForm.valid
+    )
+  }
 
   // publics
   getAddress(): VendorAddressForm {
+
+    if (!this.valid) {
+      throw new Error('invalid product, refusing to submit');
+    }
+
     return {
-      addressLineOne: this.addressLineOneForm.value ?? "",
+      addressLineOne: this.addressLineOneForm.value!,
       addressLineTwo: this.addressLineTwoForm.value ?? undefined,
-      city: this.cityForm.value ?? "",
-      zip: this.zipForm.value ?? "",
+      city: this.cityForm.value!,
+      zip: this.zipForm.value!,
       territory: this.territoryForm?.value
     }
   }
