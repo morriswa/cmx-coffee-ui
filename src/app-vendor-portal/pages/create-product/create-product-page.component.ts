@@ -1,5 +1,5 @@
 import {Component, inject} from "@angular/core";
-import {FormControl, Validators} from "@angular/forms";
+import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {TaggedInputComponent} from "src/components/tagged-input/tagged-input.component";
 import {
   RadioButtonFormControl,
@@ -9,6 +9,7 @@ import {FancyButtonComponent} from "src/components/fancy-button/fancy-button.com
 import {VendorService} from "../../services/vendor.service";
 import {Router} from "@angular/router";
 import {NumberFormControl, NumberStepperComponent} from "src/components/number-stepper/number-stepper.component";
+import {DecimalPipe, NgIf} from "@angular/common";
 
 
 @Component({
@@ -18,9 +19,13 @@ import {NumberFormControl, NumberStepperComponent} from "src/components/number-s
     TaggedInputComponent,
     RadioButtonGroupComponent,
     FancyButtonComponent,
-    NumberStepperComponent
+    NumberStepperComponent,
+    ReactiveFormsModule,
+    DecimalPipe,
+    NgIf
   ],
-  standalone: true
+  standalone: true,
+  host: {class: 'flex-child'}
 })
 export class CreateProductPageComponent {
 
@@ -28,16 +33,18 @@ export class CreateProductPageComponent {
   vendorship = inject(VendorService);
   router = inject(Router);
 
-  productNameForm = new FormControl(null, [
+  productNameForm = new FormControl('', [
     Validators.required,
-    Validators.maxLength(256),
     Validators.minLength(4),
+    Validators.maxLength(128)
   ]);
   descriptionForm = new FormControl('', [
-    Validators.maxLength(256),
+    Validators.maxLength(10_000)
   ]);
   initialPriceForm = new FormControl(null, [
     Validators.required,
+    Validators.min(0),
+    Validators.max(999),
   ])
   tasteStrengthForm = new NumberFormControl(1, 10);
   decafForm = new RadioButtonFormControl([
@@ -53,7 +60,20 @@ export class CreateProductPageComponent {
     {value: 'n', label: 'Regional Blend'},
   ])
 
+
+  get formValid(): boolean {
+    return (
+          this.productNameForm.valid
+      &&  this.descriptionForm.valid
+      &&  this.initialPriceForm.valid
+    )
+  }
+
   async submitForm() {
+    if (!this.formValid) {
+      throw new Error('invalid product, refusing to submit')
+    }
+
     let product = {
       product_name: this.productNameForm.value,
       description: this.descriptionForm.value,
@@ -68,4 +88,5 @@ export class CreateProductPageComponent {
     await this.vendorship.listProduct(product)
     await this.router.navigate(["/vendor","products"])
   }
+
 }

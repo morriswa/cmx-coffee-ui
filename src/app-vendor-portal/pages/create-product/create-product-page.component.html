@@ -1,36 +1,62 @@
 
-<div class="flex-col align-items-center">
+<div class="flex-col flex-child pb-5 align-items-center space-between-items">
 
   <h1 class="header-font my-5">Create Product</h1>
 
-  <div class="flex-row flex-wrap vw-70">
-    <div class="flex-col ml-2-5">
-      <tagged-input label="Product Name" [form]="productNameForm"/>
-      <tagged-input label="Description" [form]="descriptionForm"/>
-      <tagged-input label="Price" [form]="initialPriceForm"/>
+  <div class="flex-row flex-wrap gap-2">
+    <div class="flex-col ml-2-5 gap-2">
+      <div class="flex-col">
+        <span class="app-form-label">Product Name</span>
+        <input
+          class="app-form-input"
+          [formControl]="productNameForm"
+          maxlength="128"
+        >
+        <span *ngIf="(productNameForm.value?.length ?? 0) < 4">Min length 4 characters</span>
+        <span>{{productNameForm.value?.length ?? 0 | number}} / 128 characters</span>
+      </div>
+
+      <div class="flex-col">
+        <span class="app-form-label">Description</span>
+        <textarea
+          class="app-form-input textarea"
+          [formControl]="descriptionForm"
+          maxlength="10000"
+        ></textarea>
+        <span>{{descriptionForm.value?.length ?? 0 | number}} / 10,000 characters</span>
+      </div>
+
+      <div class="flex-col">
+        <span class="app-form-label">Price</span>
+        <input
+          type="number"
+          class="app-form-input"
+          [formControl]="initialPriceForm"
+        >
+        <span class="app-form-error" *ngIf="!initialPriceForm.untouched && !initialPriceForm.valid">Must be $0-999</span>
+      </div>
+
       <number-stepper label="Coffee Strength" [form]="tasteStrengthForm"/>
     </div>
 
-    <div class="flex-col ml-2-5 mt-1">
+    <div class="flex-col ml-2-5 mt-1 gap-2">
       <div class="flex-col justify-content-flex-start">
-        <span class="app-form-label mb-1">Is product decaf?</span>
+        <span class="app-form-label">Is product decaf? Optional</span>
         <app-radio-button-group [radioButtonFormControl]="decafForm"/>
       </div>
-      <br>
 
       <div class="flex-col justify-content-flex-start">
-        <span class="app-form-label mb-1">Is product flavored?</span>
+        <span class="app-form-label">Is product flavored? Optional</span>
         <app-radio-button-group [radioButtonFormControl]="flavoredForm"/>
       </div>
-      <br>
 
       <div class="flex-col justify-content-flex-start">
-        <span class="app-form-label mb-1">Is product single-origin?</span>
+        <span class="app-form-label">Is product single-origin? Optional</span>
         <app-radio-button-group [radioButtonFormControl]="singleOriginForm"/>
       </div>
     </div>
   </div>
   <br>
 
-  <fancy-button class="mt-2" (click)="submitForm()">Submit</fancy-button>
+  <fancy-button class="mt-2" [disabled]="!formValid" (click)="submitForm()">Submit</fancy-button>
 </div>
