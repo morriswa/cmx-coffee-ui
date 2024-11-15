@@ -39,7 +39,7 @@ export class RadioButtonFormControl {
 }
 
 @Component({
-  selector: "app-radio-button-group",
+  selector: "radio-button-group",
   templateUrl: "./radio-button-group.component.html",
   styleUrl: "./radio-button-group.component.scss",
   imports: [

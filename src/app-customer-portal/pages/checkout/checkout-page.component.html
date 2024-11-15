@@ -24,7 +24,7 @@
 
       <h2>Select payment method</h2>
       <div class="mt-1">
-        <app-radio-button-group *ngIf="paymentSelectionForm" [radioButtonFormControl]="paymentSelectionForm"></app-radio-button-group>
+        <radio-button-group *ngIf="paymentSelectionForm" [radioButtonFormControl]="paymentSelectionForm"></radio-button-group>
       </div>
 
       <a class="app-link mt-1" (click)="handleCreatePaymentMethod()">Add Payment Method</a>
