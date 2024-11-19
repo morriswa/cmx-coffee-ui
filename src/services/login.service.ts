@@ -16,7 +16,7 @@ export class LoginService {
 
 
   // state
-  private _ready: WritableSignal<boolean> = signal(false);
+  _ready: WritableSignal<boolean> = signal(false);
   private _isAuthenticated: WritableSignal<boolean> = signal(false);
   private _user: WritableSignal<User|undefined> = signal(undefined);
   private _permissions: WritableSignal<string[]> = signal([]);
@@ -121,7 +121,7 @@ export class LoginService {
 
   private init() {
     this._ready.set(false);
-    const initialAuthCheck = this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
+    this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
       if (isAuthenticated) {
         console.log('AUTH0 DEBUG: is authenticated')
 
@@ -139,7 +139,6 @@ export class LoginService {
 
       this._isAuthenticated.set(isAuthenticated);
       this._ready.set(true);
-      initialAuthCheck.unsubscribe();
     });
   }
 
