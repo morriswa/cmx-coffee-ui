@@ -1,10 +1,11 @@
+// @ts-nocheck
+
 import {LoginService} from "./login.service";
 import {AuthService} from "@auth0/auth0-angular";
 import {ApiClient} from "./api-client.service";
 import {Router} from "@angular/router";
 import {TestBed} from "@angular/core/testing";
 import {BehaviorSubject,} from "rxjs";
-import {until} from "../utils";
 import {AppRouter} from "../config/routes.config";
 
 
@@ -16,14 +17,15 @@ describe('LoginService', () => {
 
   beforeEach(()=>{
 
-    const cr = jasmine.createSpyObj('AuthService', [''], {
+    const cr = jasmine.createSpyObj('AuthService', {}, {
       isAuthenticated$: new BehaviorSubject(true),
       idTokenClaims$: new BehaviorSubject({exp: new Date().getTime() + 10000}),
       user$: new BehaviorSubject({})
     });
 
-    const api = jasmine.createSpyObj('ApiClient', ['permissions']);
-    api.permissions.and.returnValue(Promise.resolve([]));
+    const api = jasmine.createSpyObj('ApiClient', {
+      permissions: Promise.resolve([])
+    });
 
     TestBed.configureTestingModule({
       providers: [
@@ -37,43 +39,25 @@ describe('LoginService', () => {
     auth0Mock = TestBed.inject(AuthService);
     apiMock = TestBed.inject(ApiClient);
     router = TestBed.inject(Router);
+    service = TestBed.inject(LoginService);
   })
 
   it('should be defined', () => {
-
-    service = TestBed.inject(LoginService);
-
     expect(service).toBeDefined();
   })
 
   it('should be authenticated if auth0 says so', async () => {
-
-    service = TestBed.inject(LoginService);
-
-    await until(()=>service.ready())
-
+    await service.init()
     expect(service.isAuthenticated).toBeTrue();
   })
 
   it('should not be authenticated is auth0 says so', async () => {
-
     auth0Mock.isAuthenticated$.next(false);
-
-    service = TestBed.inject(LoginService);
-
-    await until(()=>service.ready())
-
+    await service.init()
     expect(service.isAuthenticated).toBeFalse();
   })
 
   it('should throw an error if accessed before init', async () => {
-
-    service = TestBed.inject(LoginService);
-
-    await until(()=>service.ready())
-
-    service._ready.set(false)
-
     try {
       service.isAuthenticated
       fail('never should get here')
@@ -81,5 +65,4 @@ describe('LoginService', () => {
       expect((e as Error).message).toEqual('Login Service has NOT been properly initialized...')
     }
   })
-
 })

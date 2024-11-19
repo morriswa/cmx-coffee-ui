@@ -16,7 +16,7 @@ export class LoginService {
 
 
   // state
-  _ready: WritableSignal<boolean> = signal(false);
+  private _ready: WritableSignal<boolean> = signal(false);
   private _isAuthenticated: WritableSignal<boolean> = signal(false);
   private _user: WritableSignal<User|undefined> = signal(undefined);
   private _permissions: WritableSignal<string[]> = signal([]);
@@ -60,12 +60,6 @@ export class LoginService {
 
   get ready(): Signal<boolean> {
     return this._ready;
-  }
-
-
-  // lifecycle
-  constructor() {
-    this.init();
   }
 
 
@@ -119,26 +113,32 @@ export class LoginService {
     this._user.set(user);
   }
 
-  private init() {
-    this._ready.set(false);
-    this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
-      if (isAuthenticated) {
-        console.log('AUTH0 DEBUG: is authenticated')
+  init() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        throw new Error('took longer than 30 seconds to initialize LoginService')
+      }, 30_000);
+      this._ready.set(false);
+      this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
+        if (isAuthenticated) {
+          console.log('AUTH0 DEBUG: is authenticated')
 
-        if (await this.isTokenExpired()) {
-          console.log('AUTH0 DEBUG: token is expired, attempting logout')
-          this.logout()
+          if (await this.isTokenExpired()) {
+            console.log('AUTH0 DEBUG: token is expired, attempting logout')
+            this.logout()
+          } else {
+            await this.refreshPermissions();
+            await this.refreshUserCache();
+          }
         } else {
-          await this.refreshPermissions();
-          await this.refreshUserCache();
+          this._user.set(undefined);
+          this._permissions.set([]);
         }
-      } else {
-        this._user.set(undefined);
-        this._permissions.set([]);
-      }
 
-      this._isAuthenticated.set(isAuthenticated);
-      this._ready.set(true);
+        this._isAuthenticated.set(isAuthenticated);
+        this._ready.set(true);
+        resolve('initialized successfully');
+      });
     });
   }
 

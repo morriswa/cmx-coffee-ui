@@ -50,6 +50,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   // lifecycle
   ngOnInit() {
+    this.login.init()
     this.routerEventSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.resolvingRoute.set(true);
