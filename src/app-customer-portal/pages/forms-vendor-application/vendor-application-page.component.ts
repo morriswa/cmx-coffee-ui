@@ -15,7 +15,6 @@ import {TaggedInputComponent} from "src/components/tagged-input/tagged-input.com
         AddressFormComponent,
         ReactiveFormsModule,
         FancyButtonComponent,
-        TaggedInputComponent
     ],
     host: { class: 'flex-child' }
 })

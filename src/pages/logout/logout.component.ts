@@ -8,7 +8,6 @@ import {until} from "src/utils";
 @Component({
     selector: 'app-logout-page',
     imports: [
-        AsyncPipe,
         NgIf
     ],
     templateUrl: './logout.component.html',

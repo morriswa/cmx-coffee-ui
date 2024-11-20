@@ -12,7 +12,6 @@ import {UnlistProductDialogComponent} from "../../components/unlist-product-dial
     templateUrl: "./manage-products-page.component.html",
     imports: [
         LoaderComponent,
-        NgIf,
         CurrencyPipe,
         RouterLink
     ]

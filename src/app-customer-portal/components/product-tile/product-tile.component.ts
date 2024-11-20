@@ -9,7 +9,6 @@ import {RouterLink} from "@angular/router";
     styleUrl: "product-tile.component.scss",
     imports: [
         CurrencyPipe,
-        NgIf,
         RouterLink,
         NgOptimizedImage
     ]

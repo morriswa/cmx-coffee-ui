@@ -16,7 +16,6 @@ import {DecimalPipe, NgIf} from "@angular/common";
     selector: "app-create-product-details-page",
     templateUrl: "./create-product-page.component.html",
     imports: [
-        TaggedInputComponent,
         RadioButtonGroupComponent,
         FancyButtonComponent,
         NumberStepperComponent,

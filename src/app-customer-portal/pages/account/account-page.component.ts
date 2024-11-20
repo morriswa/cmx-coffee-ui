@@ -9,9 +9,7 @@ import {LoginService} from "src/services/login.service";
     selector: 'customer-account-page',
     templateUrl: './account-page.component.html',
     imports: [
-        NgOptimizedImage,
         RouterOutlet,
-        LoaderComponent,
         RouterLink
     ]
 })

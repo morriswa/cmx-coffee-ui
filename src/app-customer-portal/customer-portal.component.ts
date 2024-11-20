@@ -9,7 +9,6 @@ import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition} from "@angular
     selector: 'app-customer-portal',
     imports: [
         NgIf,
-        AsyncPipe,
         RouterLink,
         RouterOutlet,
         CdkConnectedOverlay,

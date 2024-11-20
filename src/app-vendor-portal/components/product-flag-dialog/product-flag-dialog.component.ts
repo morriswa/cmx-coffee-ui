@@ -15,7 +15,6 @@ import {VendorProduct} from "src/types/vendor.type";
     styleUrl: 'product-flag-dialog.component.scss',
     imports: [
         RadioButtonGroupComponent,
-        TaggedInputComponent,
         ReactiveFormsModule
     ]
 })

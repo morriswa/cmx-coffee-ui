@@ -16,8 +16,6 @@ import {NgIf} from "@angular/common";
     templateUrl: "./address-form.component.html",
     imports: [
         ReactiveFormsModule,
-        TaggedInputComponent,
-        CheckboxSelectorComponent,
         NgIf,
         RadioButtonGroupComponent,
     ]

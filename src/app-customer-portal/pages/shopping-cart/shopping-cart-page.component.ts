@@ -16,9 +16,7 @@ import {ShoppingCartItemComponent} from "../../components/shopping-cart-item/sho
         CurrencyPipe,
         FancyButtonComponent,
         RouterLink,
-        NgIf,
         LoaderComponent,
-        NumberStepperComponent,
         ShoppingCartItemComponent
     ],
     host: { 'class': 'flex-child' }
