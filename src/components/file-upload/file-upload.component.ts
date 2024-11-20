@@ -5,7 +5,6 @@ import {FormControl, ReactiveFormsModule} from "@angular/forms";
 @Component({
     selector: "file-upload",
     templateUrl: "./file-upload.component.html",
-    styleUrl: "./file-upload.component.scss",
     imports: [
         ReactiveFormsModule
     ]

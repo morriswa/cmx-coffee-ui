@@ -6,9 +6,9 @@
     "start": "ng serve -c lightsail",
     "start:lightsail": "ng serve -c lightsail",
     "start:development": "ng serve -c development",
-    "build": "ng build",
-    "build:lightsail": "ng build -c lightsail",
-    "build:www": "ng build --base-href /cmx/coffee/",
+    "build": "ng build --verbose",
+    "build:lightsail": "ng build -c lightsail --verbose",
+    "build:www": "ng build --base-href /cmx/coffee/ --verbose",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --no-watch --progress --browsers ChromeHeadless",
     "test:interactive": "ng test"
