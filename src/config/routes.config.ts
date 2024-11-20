@@ -1,5 +1,4 @@
-import {provideRouter, Routes} from "@angular/router";
-import {EnvironmentProviders} from "@angular/core";
+import {Routes} from "@angular/router";
 import {HasPermission} from "src/guards/permission.guard";
 import {Auth0CallbackComponent} from "src/components/auth0-callback/auth0-callback.component";
 import {AccessDeniedComponent} from "src/pages/access-denied/access-denied.component";
@@ -10,7 +9,7 @@ import {VendorService} from "../app-vendor-portal/services/vendor.service";
 import {ShoppingCartService} from "../app-customer-portal/services/shopping-cart.service";
 
 
-const routesConfig: Routes = [
+export const AppRoutes: Routes = [
   // declare portal routes
   {
     title: "K&M Co.",
@@ -176,9 +175,3 @@ const routesConfig: Routes = [
     redirectTo: ""
   }
 ]
-
-/**
- * provides application routing
- */
-export const AppRouter: EnvironmentProviders
-  = provideRouter(routesConfig);
