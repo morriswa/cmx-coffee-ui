@@ -28,6 +28,9 @@ import {DecimalPipe, NgIf} from "@angular/common";
   host: {class: 'flex-child'}
 })
 export class CreateProductPageComponent {
+  ngOnInit() {
+    throw new Error('Method not implemented.');
+  }
 
   // services
   vendorship = inject(VendorService);
@@ -38,15 +41,16 @@ export class CreateProductPageComponent {
     Validators.minLength(4),
     Validators.maxLength(128)
   ]);
-  descriptionForm = new FormControl('', [
+  descriptionForm:FormControl = new FormControl('', [
     Validators.maxLength(10_000)
   ]);
-  initialPriceForm = new FormControl(null, [
+  initialPriceForm:FormControl<number | null> = new FormControl(null, [
     Validators.required,
     Validators.min(0),
     Validators.max(999.99),
   ])
   tasteStrengthForm = new NumberFormControl(1, 10);
+  
   decafForm = new RadioButtonFormControl([
     {value: 'y', label: 'Decaf'},
     {value: 'n', label: 'Contains Caffeine'},
