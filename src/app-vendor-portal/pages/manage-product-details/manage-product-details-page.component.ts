@@ -14,22 +14,21 @@ import {DeleteImagesComponent} from "../../components/delete-images/delete-image
 
 
 @Component({
-  selector: "app-manage-product-details-details-page",
-  templateUrl: "./manage-product-details-page.component.html",
-  imports: [
-    NgIf,
-    CurrencyPipe,
-    LoaderComponent,
-    NgOptimizedImage,
-    FileUploadComponent,
-    ImageGalleryComponent,
-    CdkConnectedOverlay,
-    RouterLink,
-    CdkOverlayOrigin,
-    ReactiveFormsModule,
-    EditProductDetailsComponent
-  ],
-  standalone: true
+    selector: "app-manage-product-details-details-page",
+    templateUrl: "./manage-product-details-page.component.html",
+    imports: [
+        NgIf,
+        CurrencyPipe,
+        LoaderComponent,
+        NgOptimizedImage,
+        FileUploadComponent,
+        ImageGalleryComponent,
+        CdkConnectedOverlay,
+        RouterLink,
+        CdkOverlayOrigin,
+        ReactiveFormsModule,
+        EditProductDetailsComponent
+    ]
 })
 export class ManageProductDetailsPageComponent implements OnInit {
 

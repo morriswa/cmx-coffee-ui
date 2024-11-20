@@ -3,14 +3,13 @@ import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @Component({
-  selector: "tagged-input",
-  templateUrl: "./tagged-input.component.html",
-  styleUrl: "./tagged-input.component.scss",
-  imports: [
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  standalone: true,
+    selector: "tagged-input",
+    templateUrl: "./tagged-input.component.html",
+    styleUrl: "./tagged-input.component.scss",
+    imports: [
+        FormsModule,
+        ReactiveFormsModule
+    ]
 })
 export class TaggedInputComponent {
   @Input() label!: string;

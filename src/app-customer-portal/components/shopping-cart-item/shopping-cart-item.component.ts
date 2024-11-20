@@ -5,14 +5,13 @@ import {CurrencyPipe} from "@angular/common";
 
 
 @Component({
-  selector: "app-shopping-cart-item",
-  templateUrl: "./shopping-cart-item.component.html",
-  styleUrl: "shopping-cart-item.component.scss",
-  imports: [
-    NumberStepperComponent,
-    CurrencyPipe
-  ],
-  standalone: true
+    selector: "app-shopping-cart-item",
+    templateUrl: "./shopping-cart-item.component.html",
+    styleUrl: "shopping-cart-item.component.scss",
+    imports: [
+        NumberStepperComponent,
+        CurrencyPipe
+    ]
 })
 export class ShoppingCartItemComponent implements OnInit {
   quantityForm: NumberFormControl = new NumberFormControl(0, 99);

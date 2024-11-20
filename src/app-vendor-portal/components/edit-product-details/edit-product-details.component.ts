@@ -8,16 +8,15 @@ import {Dialog} from "@angular/cdk/dialog";
 
 
 @Component({
-  selector: "app-edit-product-details",
-  templateUrl: "./edit-product-details.component.html",
-  styleUrl: "./edit-product-details.component.scss",
-  imports: [
-    CdkConnectedOverlay,
-    CdkOverlayOrigin,
-    CurrencyPipe,
-    ReactiveFormsModule
-  ],
-  standalone: true
+    selector: "app-edit-product-details",
+    templateUrl: "./edit-product-details.component.html",
+    styleUrl: "./edit-product-details.component.scss",
+    imports: [
+        CdkConnectedOverlay,
+        CdkOverlayOrigin,
+        CurrencyPipe,
+        ReactiveFormsModule
+    ]
 })
 export class EditProductDetailsComponent implements OnInit{
 

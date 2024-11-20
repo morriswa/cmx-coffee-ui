@@ -4,14 +4,13 @@ import {ProductReviewStats} from "src/types/product.type";
 
 
 @Component({
-  selector: "review-stars",
-  templateUrl: "./review-stars.component.html",
-  styleUrl: "./review-stars.component.scss",
-  imports: [
-    NgClass,
-    DecimalPipe
-  ],
-  standalone: true
+    selector: "review-stars",
+    templateUrl: "./review-stars.component.html",
+    styleUrl: "./review-stars.component.scss",
+    imports: [
+        NgClass,
+        DecimalPipe
+    ]
 })
 export class ReviewStarsComponent {
   @Input() stats: ProductReviewStats = {review_count: 0};

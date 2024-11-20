@@ -8,15 +8,14 @@ import {UnlistProductDialogComponent} from "../../components/unlist-product-dial
 
 
 @Component({
-  selector: "app-manage-products-page",
-  templateUrl: "./manage-products-page.component.html",
-  standalone: true,
-  imports: [
-    LoaderComponent,
-    NgIf,
-    CurrencyPipe,
-    RouterLink
-  ],
+    selector: "app-manage-products-page",
+    templateUrl: "./manage-products-page.component.html",
+    imports: [
+        LoaderComponent,
+        NgIf,
+        CurrencyPipe,
+        RouterLink
+    ]
 })
 export class ManageProductsPageComponent implements OnInit {
 

@@ -36,14 +36,13 @@ export class CheckboxSelectorFormControl {
 
 
 @Component({
-  selector: "app-checkbox-selector",
-  templateUrl: "./checkbox-selector.component.html",
-  styleUrl: "./checkbox-selector.component.scss",
-  imports: [
-    NgClass
-  ],
-  standalone: true,
-  host: { 'class': 'flex-child' }
+    selector: "app-checkbox-selector",
+    templateUrl: "./checkbox-selector.component.html",
+    styleUrl: "./checkbox-selector.component.scss",
+    imports: [
+        NgClass
+    ],
+    host: { 'class': 'flex-child' }
 })
 export class CheckboxSelectorComponent implements OnInit {
   @Input() public checkboxSelectorFormControl!: CheckboxSelectorFormControl;

@@ -6,15 +6,14 @@ import {LoginService} from "src/services/login.service";
 
 
 @Component({
-  selector: 'customer-account-page',
-  templateUrl: './account-page.component.html',
-  standalone: true,
-  imports: [
-    NgOptimizedImage,
-    RouterOutlet,
-    LoaderComponent,
-    RouterLink
-  ]
+    selector: 'customer-account-page',
+    templateUrl: './account-page.component.html',
+    imports: [
+        NgOptimizedImage,
+        RouterOutlet,
+        LoaderComponent,
+        RouterLink
+    ]
 })
 export class AccountPageComponent {
 

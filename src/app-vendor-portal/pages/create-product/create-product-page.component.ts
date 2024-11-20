@@ -13,19 +13,18 @@ import {DecimalPipe, NgIf} from "@angular/common";
 
 
 @Component({
-  selector: "app-create-product-details-page",
-  templateUrl: "./create-product-page.component.html",
-  imports: [
-    TaggedInputComponent,
-    RadioButtonGroupComponent,
-    FancyButtonComponent,
-    NumberStepperComponent,
-    ReactiveFormsModule,
-    DecimalPipe,
-    NgIf
-  ],
-  standalone: true,
-  host: {class: 'flex-child'}
+    selector: "app-create-product-details-page",
+    templateUrl: "./create-product-page.component.html",
+    imports: [
+        TaggedInputComponent,
+        RadioButtonGroupComponent,
+        FancyButtonComponent,
+        NumberStepperComponent,
+        ReactiveFormsModule,
+        DecimalPipe,
+        NgIf
+    ],
+    host: { class: 'flex-child' }
 })
 export class CreateProductPageComponent {
 

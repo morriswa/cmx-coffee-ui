@@ -4,14 +4,13 @@ import {until} from "src/utils";
 
 
 @Component({
-  selector: "image-gallery",
-  templateUrl: "./image-gallery.component.html",
-  styleUrl: "./image-gallery.component.scss",
-  standalone: true,
-  imports: [
-    NgOptimizedImage,
-    NgIf
-  ],
+    selector: "image-gallery",
+    templateUrl: "./image-gallery.component.html",
+    styleUrl: "./image-gallery.component.scss",
+    imports: [
+        NgOptimizedImage,
+        NgIf
+    ]
 })
 export class ImageGalleryComponent implements OnInit {
 

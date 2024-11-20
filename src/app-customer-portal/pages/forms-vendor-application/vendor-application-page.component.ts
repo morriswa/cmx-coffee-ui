@@ -8,17 +8,16 @@ import {TaggedInputComponent} from "src/components/tagged-input/tagged-input.com
 
 
 @Component({
-  selector: "app-forms-vendor-application-page",
-  templateUrl: "./vendor-application-page.component.html",
-  styleUrl: "./vendor-application-page.component.scss",
-  imports: [
-    AddressFormComponent,
-    ReactiveFormsModule,
-    FancyButtonComponent,
-    TaggedInputComponent
-  ],
-  standalone: true,
-  host: {class: 'flex-child'}
+    selector: "app-forms-vendor-application-page",
+    templateUrl: "./vendor-application-page.component.html",
+    styleUrl: "./vendor-application-page.component.scss",
+    imports: [
+        AddressFormComponent,
+        ReactiveFormsModule,
+        FancyButtonComponent,
+        TaggedInputComponent
+    ],
+    host: { class: 'flex-child' }
 })
 export class VendorApplicationPageComponent {
 

@@ -4,12 +4,11 @@ import {NgOptimizedImage} from "@angular/common";
 
 
 @Component({
-  selector: "app-delete-images",
-  templateUrl: "./delete-images.component.html",
-  imports: [
-    NgOptimizedImage
-  ],
-  standalone: true
+    selector: "app-delete-images",
+    templateUrl: "./delete-images.component.html",
+    imports: [
+        NgOptimizedImage
+    ]
 })
 export class DeleteImagesComponent {
   data = inject(DIALOG_DATA);

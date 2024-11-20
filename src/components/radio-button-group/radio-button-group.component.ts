@@ -39,14 +39,13 @@ export class RadioButtonFormControl {
 }
 
 @Component({
-  selector: "radio-button-group",
-  templateUrl: "./radio-button-group.component.html",
-  styleUrl: "./radio-button-group.component.scss",
-  imports: [
-    NgClass
-  ],
-  standalone: true,
-  host: { 'class': 'flex-child' },
+    selector: "radio-button-group",
+    templateUrl: "./radio-button-group.component.html",
+    styleUrl: "./radio-button-group.component.scss",
+    imports: [
+        NgClass
+    ],
+    host: { 'class': 'flex-child' }
 })
 export class RadioButtonGroupComponent implements OnInit {
   @Input() public radioButtonFormControl!: RadioButtonFormControl;
