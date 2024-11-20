@@ -74,3 +74,13 @@ export class AddressFormComponent {
   }
 
 }
+
+
+@Component({
+  selector: "app-address-form",
+  template: ``,
+  standalone: true,
+})
+export class MockAddressFormComponent {
+  valid = true;
+}
