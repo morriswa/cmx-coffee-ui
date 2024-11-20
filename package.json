@@ -1,6 +1,6 @@
 {
   "name": "cmx-coffee-ui",
-  "version": "0.0.6",
+  "version": "0.0.6.post0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve -c lightsail",

@@ -4,7 +4,6 @@ import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ApiClient} from "src/services/api-client.service";
 import {VendorApplication} from "src/types/vendor.type";
 import { FancyButtonComponent } from "src/components/fancy-button/fancy-button.component";
-import {TaggedInputComponent} from "src/components/tagged-input/tagged-input.component";
 
 
 @Component({
