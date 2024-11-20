@@ -2,8 +2,8 @@
 <div class="app-shopping-cart-item flex-row space-between-items mb-1">
   <div class="flex-row col-gap-5">
     <number-stepper label="Quantity" [form]="quantityForm" (quantityChanged)="handleQuantityUpdated()">{{quantityForm.value}}x</number-stepper>
-    <span>{{item.product_name}} sold by {{item.vendor_name}}</span>
+    <span>{{item().product_name}} sold by {{item().vendor_name}}</span>
   </div>
 
-  <span>{{item.sale_price * quantityForm.value | currency}}</span>
+  <span>{{item().sale_price * quantityForm.value | currency}}</span>
 </div>

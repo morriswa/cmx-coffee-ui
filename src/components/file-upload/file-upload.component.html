@@ -1,9 +1,9 @@
 
-<div class="file-upload-wrapper flex-row align-items-center">
+<div class="app-file-upload-wrapper flex-row align-items-center">
   @if (!stagedFile()) {
     <input
       type="file"
-      class="file-upload-form"
+      class="app-file-upload-form"
       [formControl]="fileForm"
       (change)="stageFile($event)"
     >

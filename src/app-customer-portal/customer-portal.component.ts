@@ -6,20 +6,18 @@ import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition} from "@angular
 
 
 @Component({
-  selector: 'app-customer-portal',
-  standalone: true,
-  imports: [
-    NgIf,
-    AsyncPipe,
-    RouterLink,
-    RouterOutlet,
-    CdkConnectedOverlay,
-    CdkOverlayOrigin,
-    NgOptimizedImage
-  ],
-  templateUrl: './customer-portal.component.html',
-  styleUrl: './customer-portal.component.scss',
-  host: {'class': 'flex-child'}
+    selector: 'app-customer-portal',
+    imports: [
+        NgIf,
+        RouterLink,
+        RouterOutlet,
+        CdkConnectedOverlay,
+        CdkOverlayOrigin,
+        NgOptimizedImage
+    ],
+    templateUrl: './customer-portal.component.html',
+    styleUrl: './customer-portal.component.scss',
+    host: { 'class': 'flex-child' }
 })
 export class CustomerPortalComponent implements OnInit {
 

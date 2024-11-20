@@ -11,16 +11,15 @@ import {
 } from "../../components/customer-message-dialog/customer-message-dialog.component";
 
 @Component({
-  selector: 'app-browse-products',
-  templateUrl: './browse-products-page.component.html',
-  styleUrl: './browse-products-page.component.scss',
-  standalone: true,
-  host: {'class': 'flex-col align-items-center'},
-  imports: [
-    ProductTileComponent,
-    FancyButtonComponent,
-    RouterLink
-  ],
+    selector: 'app-browse-products',
+    templateUrl: './browse-products-page.component.html',
+    styleUrl: './browse-products-page.component.scss',
+    host: { 'class': 'flex-col align-items-center' },
+    imports: [
+        ProductTileComponent,
+        FancyButtonComponent,
+        RouterLink
+    ]
 })
 export class BrowseProductsPageComponent implements OnInit {
 

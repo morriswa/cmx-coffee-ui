@@ -9,20 +9,17 @@ import {ShoppingCartItemComponent} from "../../components/shopping-cart-item/sho
 
 
 @Component({
-  selector: "app-shopping-cart-page",
-  templateUrl: "./shopping-cart-page.component.html",
-  styleUrl: "./shopping-cart-page.component.scss",
-  standalone: true,
-  imports: [
-    CurrencyPipe,
-    FancyButtonComponent,
-    RouterLink,
-    NgIf,
-    LoaderComponent,
-    NumberStepperComponent,
-    ShoppingCartItemComponent
-  ],
-  host: {'class': 'flex-child'}
+    selector: "app-shopping-cart-page",
+    templateUrl: "./shopping-cart-page.component.html",
+    styleUrl: "./shopping-cart-page.component.scss",
+    imports: [
+        CurrencyPipe,
+        FancyButtonComponent,
+        RouterLink,
+        LoaderComponent,
+        ShoppingCartItemComponent
+    ],
+    host: { 'class': 'flex-child' }
 })
 export class ShoppingCartPageComponent implements OnInit {
   cart = inject(ShoppingCartService);

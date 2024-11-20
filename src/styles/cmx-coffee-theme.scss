@@ -133,3 +133,25 @@
 .app-form-label {
   font-style: italic;
 }
+
+.app-file-upload-form {
+
+  font-size: $font-size-med;
+  color: $black;
+
+  &::file-selector-button {
+    @extend .app-button !optional;
+
+    width: 150px !important;
+    margin-right: 20px;
+  }
+}
+
+.app-file-upload-wrapper {
+  font-size: $font-size-med;
+  color: $primary-color;
+  background-color: $surface-color;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 500px;
+}
