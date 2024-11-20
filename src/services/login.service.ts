@@ -114,9 +114,9 @@ export class LoginService {
   }
 
   init() {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       setTimeout(() => {
-        throw new Error('took longer than 30 seconds to initialize LoginService')
+        reject(new Error('took longer than 30 seconds to initialize LoginService'));
       }, 30_000);
       this._ready.set(false);
       this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {

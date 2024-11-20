@@ -3,10 +3,10 @@
 import {LoginService} from "./login.service";
 import {AuthService} from "@auth0/auth0-angular";
 import {ApiClient} from "./api-client.service";
-import {Router} from "@angular/router";
+import {provideRouter, Router} from "@angular/router";
 import {TestBed} from "@angular/core/testing";
 import {BehaviorSubject,} from "rxjs";
-import {AppRouter} from "../config/routes.config";
+import {AppRoutes} from "../config/routes.config";
 
 
 describe('LoginService', () => {
@@ -29,7 +29,7 @@ describe('LoginService', () => {
 
     TestBed.configureTestingModule({
       providers: [
-        AppRouter,
+        provideRouter(AppRoutes),
         {provide: AuthService, useValue: cr},
         {provide: ApiClient, useValue: api},
         LoginService,
