@@ -1,10 +1,10 @@
 
 <div class="flex-col align-items-center" style="width: 300px">
 
-  <img class="product-image" [ngSrc]="product.first_image ?? 'static/bag_of_coffee.png'" height="400" width="300" alt="coffee">
-  <a class="app-link mt-3" [routerLink]="['/shop', 'product', product.product_id]">{{ product.product_name }}</a>
-  <span class="font-med">{{ product.description }}</span>
-  <span class="mt-1 font-med font-bold">{{ product.price | currency }}</span>
+  <img class="product-image" [ngSrc]="product().first_image ?? 'static/bag_of_coffee.png'" height="400" width="300" alt="coffee">
+  <a class="app-link mt-3" [routerLink]="['/shop', 'product', product().product_id]">{{ product().product_name }}</a>
+  <span class="font-med">{{ product().description }}</span>
+  <span class="mt-1 font-med font-bold">{{ product().price | currency }}</span>
 
 <!--  <p *ngIf="product-details.decaf === 'y'">Decaf</p>-->
   <!--<p *ngIf="product-details.single_origin === 'y'">Single Origin</p>-->

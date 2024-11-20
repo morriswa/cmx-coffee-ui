@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, input} from "@angular/core";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
@@ -12,6 +12,6 @@ import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
     ]
 })
 export class TaggedInputComponent {
-  @Input() label!: string;
-  @Input() form!: FormControl<any>;
+  readonly label = input.required<string>();
+  readonly form = input.required<FormControl<any>>();
 }

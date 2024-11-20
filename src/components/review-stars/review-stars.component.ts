@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, input} from "@angular/core";
 import {DecimalPipe, NgClass} from "@angular/common";
 import {ProductReviewStats} from "src/types/product.type";
 
@@ -13,9 +13,9 @@ import {ProductReviewStats} from "src/types/product.type";
     ]
 })
 export class ReviewStarsComponent {
-  @Input() stats: ProductReviewStats = {review_count: 0};
+  readonly stats = input<ProductReviewStats>({ review_count: 0 });
 
   highlighted(num: number): boolean {
-    return num < (this.stats.average_review_score ?? 0);
+    return num < (this.stats().average_review_score ?? 0);
   }
 }

@@ -4,11 +4,11 @@
     @for (image of _images(); track image; let idx = $index) {
       <img
         class="gallery-mini"
-        (click)="selectImage(image, alt ?? (alts ? alts[idx] : 'not provided'))"
+        (click)="selectImage(image, alt() ?? (alts()?.[idx] ?? 'not provided'))"
         [ngSrc]="image"
         height="125"
         width="100"
-        [alt]="alt ?? (alts ? alts[idx] : 'not provided')"
+        [alt]="alt() ?? (alts()?.[idx] ?? 'not provided')"
       >
     }
   </div>

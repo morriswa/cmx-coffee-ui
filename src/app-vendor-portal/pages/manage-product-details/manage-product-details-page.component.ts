@@ -60,8 +60,10 @@ export class ManageProductDetailsPageComponent implements OnInit {
     this.productImages.set(images ?? []);
   }
 
-  async handleUpdateProductDetails($event: { changes:any, updatedProduct:any }) {
+  async handleUpdateProductDetails($event: { changes:any, updatedProduct:VendorProduct }) {
+    console.log($event.changes)
     await this.vendorship.updateProduct(this.productId, $event.changes);
+    console.log($event.updatedProduct);
     this.productDetails = $event.updatedProduct;
   }
 

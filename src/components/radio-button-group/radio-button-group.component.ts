@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, signal, WritableSignal} from "@angular/core";
+import {Component, OnInit, signal, WritableSignal, input} from "@angular/core";
 import {NgClass} from "@angular/common";
 
 
@@ -48,13 +48,13 @@ export class RadioButtonFormControl {
     host: { 'class': 'flex-child' }
 })
 export class RadioButtonGroupComponent implements OnInit {
-  @Input() public radioButtonFormControl!: RadioButtonFormControl;
+  public readonly radioButtonFormControl = input.required<RadioButtonFormControl>();
 
   ngOnInit(): void {
-    if (!this.radioButtonFormControl) throw new Error("radioButtonFormControl is required");
+    if (!this.radioButtonFormControl()) throw new Error("radioButtonFormControl is required");
   }
 
   selectOption(button: RadioButtonOptions) {
-    this.radioButtonFormControl._value.set(button);
+    this.radioButtonFormControl()._value.set(button);
   }
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
+import {Component, EventEmitter, OnInit, Output, input} from "@angular/core";
 import {NumberFormControl, NumberStepperComponent} from "../../../components/number-stepper/number-stepper.component";
 import {CartItem} from "../../../types/product.type";
 import {CurrencyPipe} from "@angular/common";
@@ -15,11 +15,11 @@ import {CurrencyPipe} from "@angular/common";
 })
 export class ShoppingCartItemComponent implements OnInit {
   quantityForm: NumberFormControl = new NumberFormControl(0, 99);
-  @Input() item!: CartItem;
+  readonly item = input.required<CartItem>();
   @Output() quantityChanged = new EventEmitter<number>();
 
   ngOnInit() {
-    this.quantityForm.value = this.item.quantity;
+    this.quantityForm.value = this.item().quantity;
   }
 
   handleQuantityUpdated() {

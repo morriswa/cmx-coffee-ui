@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, input} from "@angular/core";
 import {Product} from 'src/types/product.type';
 import {CurrencyPipe, NgIf, NgOptimizedImage} from "@angular/common";
 import {RouterLink} from "@angular/router";
@@ -14,5 +14,5 @@ import {RouterLink} from "@angular/router";
     ]
 })
 export class ProductTileComponent {
-  @Input() product!: Product;
+  readonly product = input.required<Product>();
 }
