@@ -7,19 +7,16 @@ import { FancyButtonComponent } from 'src/components/fancy-button/fancy-button.c
 import { NumberStepperComponent } from 'src/components/number-stepper/number-stepper.component';
 import { DecimalPipe, NgIf } from '@angular/common';
 import { VendorService } from '../../services/vendor.service';
-import { AppComponent } from 'src/components/root/app.component';
-// import { Router } from '@angular/router';
 
 describe('CreateProductPageComponent', () => {
   let fixture: ComponentFixture<CreateProductPageComponent>;
   let component: CreateProductPageComponent;
   let vendorServiceSpy: jasmine.SpyObj<VendorService>;
-  //let routerSpy: jasmine.SpyObj<Router>;
+
 
   beforeEach(fakeAsync(() => {
     // Create spies for VendorService
     vendorServiceSpy = jasmine.createSpyObj('VendorService', ['getVendors', 'createProduct']);
-    //routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     TestBed.configureTestingModule({
       imports: [
