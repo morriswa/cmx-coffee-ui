@@ -9,7 +9,8 @@ export type CustomerProductPreferences = {
   "decaf"?: YesNo,
   "flavored"?: YesNo,
   "single_origin"?: YesNo,
-  "origin_blend"?: YesNo
+  "origin_blend"?: YesNo,
+  "newsletter_subscription"?:YesNo
 }
 
 export type CustomerPayment = {
