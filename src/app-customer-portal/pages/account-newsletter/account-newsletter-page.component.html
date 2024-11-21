@@ -1,0 +1,38 @@
+<h2 style="text-align: center;">Your Coffee Break Just Got Better.<br>Join Our Newsletter for Deals, Tips, and More!</h2>
+<div class="logo-container">
+  <img src="/static/KMcoffee.png" alt="The logo of K&M co"/>
+</div>
+
+<div class="call-to-action">
+  <h3>Exclusive Offers You’ll Love</h3>
+  <ul>
+    <li>Get <strong>15% off your first order</strong> just for signing up.</li>
+    <li>Enjoy members-only discounts on our premium coffee blends, brewing accessories, and merchandise.    </li>
+    <li>Be the first to know about flash sales and limited-edition products.</li>
+  </ul>
+
+  <h3>Stay in the Know</h3>
+  <ul>
+    <li>Discover the latest trends in the coffee world, from brewing techniques to sustainable practices.</li>
+    <li>Learn the secrets of expert baristas with our detailed guides and tutorials.</li>
+    <li>Get sneak peeks of our newest products and innovations before they hit the shelves.</li>
+  </ul>
+
+  <h3>A Rewarding Subscription Awaits</h3>
+  <p>By joining our newsletter, you’re not just getting emails—you’re gaining a VIP pass to the K&M Coffee experience.<br>Every subscriber becomes part of a passionate community where quality, flavor, and connection come first.</p>
+  <p>Ready to brew up something special? Sign up today and get your first perk—a discount that will make your next cup taste even better!<br><br>
+
+    <strong>Join now and let’s make every coffee moment extraordinary.</strong></p>
+</div>
+
+@if (newsletterStatusForm; as form) {
+
+  <div class="flex-col justify-content-flex-start" style="margin-top: 50px;">
+    <span class="app-form-label"><strong>Subscription Status: {{status()}}</strong></span>
+    <app-checkbox-selector [checkboxSelectorFormControl]="form" (onChange)="handleCheckboxToggle()"></app-checkbox-selector>
+    <button class="app-button" (click)="handleSaveNewsletterPreference()">Save Preference</button>
+  </div>
+
+}
+
+<br>

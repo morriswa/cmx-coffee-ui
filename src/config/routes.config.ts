@@ -9,6 +9,7 @@ import {VendorService} from "../app-vendor-portal/services/vendor.service";
 import {ShoppingCartService} from "../app-customer-portal/services/shopping-cart.service";
 
 
+
 export const AppRoutes: Routes = [
   // declare portal routes
   {
@@ -72,6 +73,11 @@ export const AppRoutes: Routes = [
             path: "payments",
             loadComponent: () => import('src/app-customer-portal/pages/account-payments/account-payments-page.component')
               .then(m=>m.AccountPaymentsPageComponent),
+          },
+          {
+            path: "newsletter",
+            loadComponent: () => import('src/app-customer-portal/pages/account-newsletter/account-newsletter-page.component')
+              .then(m=>m.AccountNewsletterPageComponent),
           },
           {
             path: "advanced",

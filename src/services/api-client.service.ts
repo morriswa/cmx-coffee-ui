@@ -107,7 +107,7 @@ export class ApiClient {
   }
 
   getCustomerPreferences() {
-    return this.request('GET', `s/profile/product-preferences`);
+    return this.request<any>('GET', `s/profile/product-preferences`);
   }
 
   updateProduct(productId: number, changes: VendorProduct) {

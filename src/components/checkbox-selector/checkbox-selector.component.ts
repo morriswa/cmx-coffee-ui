@@ -1,4 +1,4 @@
-import {Component, OnInit, signal, WritableSignal, input} from "@angular/core";
+import {Component, OnInit, signal, WritableSignal, input, Output, EventEmitter} from "@angular/core";
 import {NgClass} from "@angular/common";
 
 
@@ -45,6 +45,8 @@ export class CheckboxSelectorFormControl {
     host: { 'class': 'flex-child' }
 })
 export class CheckboxSelectorComponent {
+  @Output() onChange = new EventEmitter<null>();
+
   public readonly checkboxSelectorFormControl = input.required<CheckboxSelectorFormControl>();
 
   toggleOption(button: CheckboxSelectorOptions) {
@@ -56,5 +58,6 @@ export class CheckboxSelectorComponent {
         return val;
       }
     });
+    this.onChange.emit()
   }
 }
