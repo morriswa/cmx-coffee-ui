@@ -114,10 +114,11 @@ describe('VendorApplicationPageComponent', () => {
     expect(component.valid).toBeFalse();
   });
 
-  // edge cases - inputs can not exceed 256 characters
+  // edge cases //
+
   // test case for when business is over 256 characters (submit button should be invalid)
-  it('should disable the submit button when the phone number is invalid', () => {
-    component.businessNameForm.setValue('name');
+  it('should disable the submit button when business is over 256 characters', () => {
+    component.businessNameForm.setValue('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.');
     component.businessEmailForm.setValue('makenna@gmail.com');
     component.businessPhoneForm.setValue('9136081981');
     // mock address input -> returns valid input
@@ -125,8 +126,32 @@ describe('VendorApplicationPageComponent', () => {
     expect(component.addressForm).toBeDefined();
     expect(component.addressForm?.valid).toBeTrue();
 
-    expect(component.valid).toBeTrue();
+    expect(component.valid).toBeFalse();
   });
 
+  // test case for when email is over 256 characters (submit button should be invalid)
+  it('should disable the submit button when business is over 256 characters', () => {
+    component.businessNameForm.setValue('makenna');
+    component.businessEmailForm.setValue('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.');
+    component.businessPhoneForm.setValue('9136081981');
+    // mock address input -> returns valid input
+    console.log(component.addressForm)
+    expect(component.addressForm).toBeDefined();
+    expect(component.addressForm?.valid).toBeTrue();
 
+    expect(component.valid).toBeFalse();
+  });
+
+  // test case for when phone is over 12 characters (submit button should be invalid)
+  it('should disable the submit button when business is over 256 characters', () => {
+    component.businessNameForm.setValue('makenna');
+    component.businessEmailForm.setValue('makenna@gmail.com');
+    component.businessPhoneForm.setValue('9136081981111');
+    // mock address input -> returns valid input
+    console.log(component.addressForm)
+    expect(component.addressForm).toBeDefined();
+    expect(component.addressForm?.valid).toBeTrue();
+
+    expect(component.valid).toBeFalse();
+  });
 });
