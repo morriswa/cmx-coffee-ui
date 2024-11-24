@@ -40,10 +40,7 @@ body {
   margin-top: 70px;
   border: 5px solid $black;
 }
-.details-heading {
-  height: 20px;
-  background-color: $white;
-}
+
 .order-details {
   font-family: $text-font-family;
   color: $black;
@@ -196,7 +193,7 @@ hr {
 // bottom banner
 
 .keep-shopping-banner {
-  height: 2000px;
+  min-height: 370px;
   background-color: $primary-color;
 }
 
