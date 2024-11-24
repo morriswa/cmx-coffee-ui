@@ -22,10 +22,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-2
 
-    - name: Get Package Version
-      id: package-version
-      uses: martinbeentjes/npm-get-version-action@main
-
     - name: Build, Test
       run: |
         npm ci
@@ -34,13 +30,15 @@ jobs:
 
     - name: Publish
       run: |
+        export PACKAGE_VERSION=$(./package-version.sh)
+
         cd ./dist
         tar -czvf cmx-coffee-dist.tar.gz ./cmx-coffee
         export ASSET_SHA256=$(sha256sum cmx-coffee-dist.tar.gz | awk '{print $1;}')
         aws codeartifact publish-package-version \
           --domain morriswa-org --repository morriswa-central \
           --format generic --namespace org.morriswa --package cmx-coffee-dist \
-          --package-version ${{ steps.package-version.outputs.current-version}} \
+          --package-version "$PACKAGE_VERSION" \
           --asset-content cmx-coffee-dist.tar.gz \
           --asset-name cmx-coffee-dist.tar.gz \
           --asset-sha256 "$ASSET_SHA256" --unfinished

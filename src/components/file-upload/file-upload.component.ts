@@ -3,13 +3,11 @@ import {FormControl, ReactiveFormsModule} from "@angular/forms";
 
 
 @Component({
-  selector: "file-upload",
-  templateUrl: "./file-upload.component.html",
-  styleUrl: "./file-upload.component.scss",
-  imports: [
-    ReactiveFormsModule
-  ],
-  standalone: true
+    selector: "file-upload",
+    templateUrl: "./file-upload.component.html",
+    imports: [
+        ReactiveFormsModule
+    ]
 })
 export class FileUploadComponent {
 
@@ -23,11 +21,17 @@ export class FileUploadComponent {
     const file = this.stagedFile();
     if (file) {
       this.onConfirm.emit(file);
-      this.fileForm.reset()
     }
+
+    this.discard()
   }
 
   stageFile($event: any) {
     this.stagedFile.set($event.target.files[0])
+  }
+
+  discard() {
+    this.fileForm.reset();
+    this.stagedFile.set(undefined);
   }
 }

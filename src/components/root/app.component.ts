@@ -20,20 +20,19 @@ import {LoginService} from "src/services/login.service";
 
 
 @Component({
-  selector: "app-root",
-  template: `
+    selector: "app-root",
+    template: `
     @if (resolvingRoute() || !login.ready()) {
       <app-fullscreen-loader/>
     } @else {
       <router-outlet/>
     }
   `,
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    FullscreenAppLoaderComponent
-  ],
-  host: {'class': 'flex-child'}
+    imports: [
+        RouterOutlet,
+        FullscreenAppLoaderComponent
+    ],
+    host: { 'class': 'flex-child' }
 })
 export class AppComponent implements OnInit, OnDestroy {
 
@@ -50,6 +49,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   // lifecycle
   ngOnInit() {
+    this.login.init()
     this.routerEventSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.resolvingRoute.set(true);

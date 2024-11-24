@@ -7,14 +7,13 @@ import {LoginService} from "src/services/login.service";
 
 
 @Component({
-  selector: "app-profile-page",
-  templateUrl: "./profile-page.component.html",
-  imports: [
-    NgOptimizedImage
-  ],
-  standalone: true
+    selector: "app-account-profile-page",
+    templateUrl: "./account-profile-page.component.html",
+    imports: [
+        NgOptimizedImage
+    ]
 })
-export class ProfilePageComponent{
+export class AccountProfilePageComponent {
 
   // services
   api = inject(ApiClient);

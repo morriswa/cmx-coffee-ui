@@ -1,5 +1,4 @@
-import {provideRouter, Routes} from "@angular/router";
-import {EnvironmentProviders} from "@angular/core";
+import {Routes} from "@angular/router";
 import {HasPermission} from "src/guards/permission.guard";
 import {Auth0CallbackComponent} from "src/components/auth0-callback/auth0-callback.component";
 import {AccessDeniedComponent} from "src/pages/access-denied/access-denied.component";
@@ -10,7 +9,7 @@ import {VendorService} from "../app-vendor-portal/services/vendor.service";
 import {ShoppingCartService} from "../app-customer-portal/services/shopping-cart.service";
 
 
-const routesConfig: Routes = [
+export const AppRoutes: Routes = [
   // declare portal routes
   {
     title: "K&M Co.",
@@ -27,14 +26,25 @@ const routesConfig: Routes = [
       },
       {
         path: "shop",
-        loadComponent: () => import('src/app-customer-portal/pages/shop/shop-page.component')
-          .then(m=>m.ShopPageComponent)
+        loadComponent: () => import('src/app-customer-portal/pages/browse-products/browse-products-page.component')
+          .then(m=>m.BrowseProductsPageComponent)
+      },
+      {
+        path: "shop/product/:product_id",
+        loadComponent: () => import('src/app-customer-portal/pages/product-details/product-page.component')
+          .then(m=>m.ProductDetailsPageComponent)
       },
       {
         path: "shop/cart",
         canActivate: [HasPermission('cmx_coffee:appuser')],
         loadComponent: () => import('src/app-customer-portal/pages/shopping-cart/shopping-cart-page.component')
           .then(m=>m.ShoppingCartPageComponent)
+      },
+      {
+        path: "shop/checkout",
+        canActivate: [HasPermission('cmx_coffee:appuser')],
+        loadComponent: ()=>import('src/app-customer-portal/pages/checkout/checkout-page.component')
+          .then(m=>m.CheckoutPageComponent)
       },
       {
         path: "plans",
@@ -50,25 +60,30 @@ const routesConfig: Routes = [
         children: [
           {
             path: "profile",
-            loadComponent: () => import('src/app-customer-portal/pages/profile/profile-page.component')
-              .then(m=>m.ProfilePageComponent),
+            loadComponent: () => import('src/app-customer-portal/pages/account-profile/account-profile-page.component')
+              .then(m=>m.AccountProfilePageComponent),
           },
           {
             path: "orders",
-            loadComponent: () => import('src/app-customer-portal/pages/order/order-page.component')
-              .then(m=>m.OrderPageComponent),
+            loadComponent: () => import('src/app-customer-portal/pages/account-orders/account-orders-page.component')
+              .then(m=>m.AccountOrdersPageComponent),
           },
           {
             path: "payments",
-            loadComponent: () => import('src/app-customer-portal/pages/payments/payments-page.component')
-              .then(m=>m.PaymentsPageComponent),
+            loadComponent: () => import('src/app-customer-portal/pages/account-payments/account-payments-page.component')
+              .then(m=>m.AccountPaymentsPageComponent),
+          },
+          {
+            path: "advanced",
+            loadComponent: () => import('src/app-customer-portal/pages/account-advanced-actions/account-advanced-actions-page.component')
+              .then(m=>m.AccountAdvancedActionsPageComponent),
           },
         ]
       },
       {
         path: "forms/vendor-application",
         canActivate: [HasPermission('cmx_coffee:appuser')],
-        loadComponent: () => import('src/app-customer-portal/pages/vendor-application/vendor-application-page.component')
+        loadComponent: () => import('src/app-customer-portal/pages/forms-vendor-application/vendor-application-page.component')
           .then(m=>m.VendorApplicationPageComponent)
       },
       {
@@ -165,9 +180,3 @@ const routesConfig: Routes = [
     redirectTo: ""
   }
 ]
-
-/**
- * provides application routing
- */
-export const AppRouter: EnvironmentProviders
-  = provideRouter(routesConfig);

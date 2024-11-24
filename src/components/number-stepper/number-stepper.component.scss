@@ -1,0 +1,12 @@
+@use "src/styles/variables" as *;
+
+
+.app-number-stepper-input {
+  width: 30px;
+  text-align: center;
+  outline: none;
+  border: none;
+  background: none;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+}

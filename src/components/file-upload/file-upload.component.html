@@ -1,9 +1,15 @@
 
-<input
-  type="file"
-  class="file-upload-form"
-  [formControl]="fileForm"
-  (change)="stageFile($event)"
->
-
-<button class="app-button" [disabled]="!stagedFile()" (click)="confirm()">Upload</button>
+<div class="app-file-upload-wrapper flex-row align-items-center">
+  @if (!stagedFile()) {
+    <input
+      type="file"
+      class="app-file-upload-form"
+      [formControl]="fileForm"
+      (change)="stageFile($event)"
+    >
+  } @else {
+    <button class="app-button short mr-2" (click)="discard()">Cancel</button>
+    <button class="app-button short mr-2" (click)="confirm()">Upload</button>
+    <span>{{stagedFile()?.name}}</span>
+  }
+</div>

@@ -2,8 +2,8 @@ import { inject, Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http"; // HttpClient and HttpHeaders for HTTP requests
 import { firstValueFrom } from "rxjs"; // Used to convert observables to promises
 import { environment } from "src/environments/environment";
-import {CartItem, Product} from "src/types/product.type";
-import {CustomerProductPreferences} from "src/types/customer.type";
+import {CartItem, Order, Product} from "src/types/product.type";
+import {CustomerPayment, CustomerProductPreferences} from "src/types/customer.type";
 import {VendorProduct} from "src/types/vendor.type"; // Import environment variables
 
 
@@ -79,6 +79,10 @@ export class ApiClient {
     return this.request<string[]>('GET', `product/${productId}/image`);
   }
 
+  getProductDetailsForCustomer(productId: number) {
+    return this.request('GET', `product/${productId}`)
+  }
+
   getProductsForCustomer() {
     return this.request<Product[]>('GET', `products`);
   }
@@ -91,7 +95,7 @@ export class ApiClient {
     let postBody = new FormData();
     postBody.append("image_upload",image);
 
-    return this.request('POST', `s/vendor/product/${productId}/image`, postBody);
+    return this.request('POST', `s/vendor/product/${productId}/images`, postBody);
   }
 
   unlistProduct(product_id: number) {
@@ -115,18 +119,58 @@ export class ApiClient {
   }
 
   getPaymentMethods() {
-    return this.request<any[]>('GET', 's/payment');
+    return this.request<CustomerPayment[]>('GET', 's/payment');
   }
 
   deletePaymentMethod(payment_id: string) {
     return this.request('DELETE', 's/payment', {'payment_id': payment_id})
   }
 
-  createPaymentMethod(nickname: string) {
-    return this.request('POST', 's/payment', {'nickname': nickname});
+  createPaymentMethod(nickname: string, territory: string) {
+    return this.request('POST', 's/payment', {'nickname': nickname, 'territory': territory});
   }
 
   getShoppingCart() {
     return this.request<CartItem[]>('GET', 's/cart');
+  }
+
+  async getProductReviewState(productId: any) {
+    return this.request<any>('GET', `product/${productId}/review-stats`);
+  }
+
+  getProductImagesForVendor(productId: number) {
+    return this.request<any[]>('GET', `s/vendor/product/${productId}/images`)
+  }
+
+  deleteProductImage(productId: number, imageId: string) {
+    return this.request('DELETE', `s/vendor/product/${productId}/image/${imageId}`);
+  }
+
+  updateShoppingCart(productId: number, quantity: number) {
+    return this.request('PATCH', 's/cart', [{product_id: productId, quantity: quantity}]);
+  }
+
+  resetShoppingCart(): Promise<void> {
+    return this.request('DELETE', 's/cart')
+  }
+
+  getOrderDetails(orderId: string) {
+    return this.request<Order>('GET', `s/checkout/${orderId}`)
+  }
+
+  checkout() {
+    return this.request('POST', 's/checkout');
+  }
+
+  deleteOrder(orderId: string) {
+    return this.request('DELETE', `s/checkout/${orderId}`)
+  }
+
+  completeOrder(orderId: string, paymentId: string) {
+    return this.request('POST', `s/checkout/${orderId}?payment_id=${paymentId}`);
+  }
+
+  getCustomerOrders() {
+    return this.request('GET', 's/orders')
   }
 }

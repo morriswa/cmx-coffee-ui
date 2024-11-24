@@ -1,12 +1,12 @@
 
 <div class="flex-col checkbox-selector">
   <span class="mb-1">Select All</span>
-  @for (button of checkboxSelectorFormControl.options; track button.value) {
+  @for (button of checkboxSelectorFormControl().options; track button.value) {
     <div class="checkbox-wrapper flex-row align-items-center">
       <div
         class="checkbox-button"
         [ngClass]="{
-          'activated-checkbox-button': checkboxSelectorFormControl.value.includes(button.value)
+          'activated-checkbox-button': checkboxSelectorFormControl().value.includes(button.value)
         }"
         (keydown)="toggleOption(button)"
         (click)="toggleOption(button)"

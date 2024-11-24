@@ -5,18 +5,22 @@
 }
 
 .app-fancy-button {
+
+  $height: 48px;
+
+  position: relative;
+  padding: 0 25px;
   align-items: center;
+
   border-radius: 8px;
+  border: 2px solid $black;
+  outline: 0;
   cursor: pointer;
+
   font-family: $font-family;
   font-size: $font-size-med;
-  height: 48px;
-  line-height: 24px;
-  padding: 0 25px;
-  position: relative;
-  outline: 0;
-
-  border: 2px solid $black;
+  height: $height;
+  line-height: calc($font-size-med + 6px);
 
   &.neutral {
     background-color: $white;
@@ -28,21 +32,28 @@
     color: $white;
   }
 
-  &:after {
+  &.disabled {
+    background-color: $neutral-color;
+    color: $black;
+    cursor: not-allowed;
+  }
+
+  &:not(.disabled):after,  {
+    position: absolute;
     z-index: -1;
     top: -2px;
     left: 0;
+    height: $height;
+    width: 100%;
 
     content: "";
 
+    cursor: default;
     background-color: $black;
     border-radius: 8px;
-    height: 48px;
-    width: 100%;
-    position: absolute;
+
     transform: translate(8px, 8px);
     transition: transform .2s ease-out;
-    cursor: default;
   }
 
   &:active:after {

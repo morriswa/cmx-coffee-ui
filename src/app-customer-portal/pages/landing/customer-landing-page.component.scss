@@ -4,75 +4,33 @@
 .statement-header {
   font-family: $header-font-family;
   color: $primary-color;
-  font-size: $font-size-xl;
+  font-size: $font-size-xxl;
+  line-height: 1;
   text-shadow: 5px 5px 0 rgba(0,0,0,0.2);
 }
 
-.landing-header-2 {
-  color: $primary-color;
-  text-align: center;
-  font-size: $font-size-lg;
-}
-
-.background-overlay-2 {
-  margin: 100px 0 0 0;
-  background-color: $white;
-  color: $text-color;
-}
-
-.fun-facts {
-  width: 90vw;
-  background-color: $body-background-color;
-  margin-top: 100px;
-  padding: 25px;
-}
-
-.top-facts{
-  width: 49%;
-  margin-bottom: 25px;
+.coffee-image1 {
+  position: absolute;
+  top: 200px;
+  left: 900px;
 }
 
 .page-divider-image {
   width: 100vw;
 }
 
-.coffee-image1{
-  position: absolute;
-  top: 200px;
-  left: 900px;
-}
-
-.opening-pitch {
-  width: 60%;
-  font-size: $font-size-subtitle;
-  color: $text-color;
-}
-
-.featured-coffee-1 {
-  min-height: 80vh;
+.featured-coffee-1-wrapper {
+  min-height: 50vh;
   background-color: $primary-color;
   color: $white;
 }
 
-.feature-coffee-2{
-  min-height: 80vh;
+.feature-coffee-2-wrapper {
+  min-height: 50vh;
   background-color: $body-background-color;
 }
 
-.feature-content {
-  width: 55%;
-  font-size: $font-size-med;
-
-  .header {
-    font-size: $font-size-lg
-  }
-}
-
-.coffee-journey{
+.coffee-journey-wrapper {
   min-height: 70vh;
   background-color: $white;
-}
-
-.journey-content{
-  width: 70%;
 }

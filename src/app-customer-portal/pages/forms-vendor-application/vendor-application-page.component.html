@@ -1,0 +1,45 @@
+
+<div class="flex-col align-items-center vw-90 mx-auto pb-5">
+
+  <h1 class="mt-3">Vendor Application Form</h1>
+  <h2 class="mb-3">Let's become partners</h2>
+  <hr class="mb-3 wfill">
+
+  @switch (pageState()) {
+    @case ('form') {
+      <div class="flex-row flex-wrap mx-1 gap-2 justify-content-center">
+        <div class="flex-col app-form-wrapper">
+          <span class="app-form-label">Business Name</span>
+          <input class="app-form-input" [formControl]="businessNameForm">
+          <span>Required</span>
+        </div>
+
+        <div class="flex-col app-form-wrapper">
+          <span class="app-form-label">Business Email</span>
+          <input class="app-form-input" [formControl]="businessEmailForm">
+          <span>Required</span>
+        </div>
+
+        <div class="flex-col app-form-wrapper">
+          <span class="app-form-label">Phone</span>
+          <input
+            class="app-form-input"
+            [formControl]="businessPhoneForm"
+          >
+          <span>Required, 10 digit</span>
+        </div>
+      </div>
+
+      <app-address-form class="mt-2 wfill" #addressForm></app-address-form>
+
+      <fancy-button class="mt-5" color="primary" [disabled]="!valid" (click)="handleSubmit()">Submit</fancy-button>
+    }
+    @case ('success') {
+      <h1>Successfully submitted application!</h1>
+    }
+    @case ('error') {
+      <p>Could not submit your vendor application!</p>
+      <button class="app-button" (click)="pageState.set('form')">Try again</button>
+    }
+  }
+</div>

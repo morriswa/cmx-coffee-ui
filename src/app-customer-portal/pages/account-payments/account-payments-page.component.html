@@ -1,8 +1,8 @@
 
-<h3>Payment methods</h3>
+<h2>Payment methods</h2>
 
 <div class="flex-col">
-  @for (pay of paymentMethods(); track pay.payment_id) {
+  @for (pay of cart.paymentMethods(); track pay.payment_id) {
     <div class="flex-col card-box space-between-items mt-3 p-2 ">
       <div>
         <div>

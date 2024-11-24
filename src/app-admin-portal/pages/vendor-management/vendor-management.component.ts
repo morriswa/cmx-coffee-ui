@@ -3,13 +3,12 @@ import {AdminService} from "../../services/admin.service";
 import {DatePipe} from "@angular/common";
 
 @Component({
-  selector: 'app-vendor-management',
-  standalone: true,
-  imports: [
-    DatePipe
-  ],
-  templateUrl: './vendor-management.component.html',
-  styleUrl: './vendor-management.component.scss'
+    selector: 'app-vendor-management',
+    imports: [
+        DatePipe
+    ],
+    templateUrl: './vendor-management.component.html',
+    styleUrl: './vendor-management.component.scss'
 })
 export class VendorManagementComponent implements OnInit{
 

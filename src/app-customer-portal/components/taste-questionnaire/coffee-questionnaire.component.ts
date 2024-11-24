@@ -15,14 +15,13 @@ import {yn} from "../../../types";
 
 
 @Component({
-  selector: "app-taste-questionnaire",
-  templateUrl: "./coffee-questionnaire.component.html",
-  imports: [
-    RadioButtonGroupComponent,
-    NgIf,
-    CheckboxSelectorComponent
-  ],
-  standalone: true
+    selector: "app-taste-questionnaire",
+    templateUrl: "./coffee-questionnaire.component.html",
+    imports: [
+        RadioButtonGroupComponent,
+        NgIf,
+        CheckboxSelectorComponent
+    ]
 })
 export class CoffeeQuestionnaireComponent {
 

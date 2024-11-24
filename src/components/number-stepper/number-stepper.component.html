@@ -1,0 +1,9 @@
+
+<span class="app-form-label">{{label()}} ({{form().min}}-{{form().max}})</span>
+<div class="flex-row">
+  <i class="fa fa-angle-left fa-2x" (click)="decrement()"></i>
+  <input class="app-number-stepper-input mx-1"
+         [value]="form().value"
+         (change)="handleUpdate($event)">
+  <i class="fa fa-angle-right fa-2x" (click)="increment()"></i>
+</div>

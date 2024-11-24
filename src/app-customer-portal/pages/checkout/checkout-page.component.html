@@ -1,0 +1,69 @@
+
+<div class="flex-col align-items-center vw-90 mx-auto my-5">
+@if (orderDetails(); as order) {
+  <h1>Checkout</h1>
+  <span>Order {{order.order_id}}</span>
+  <hr/>
+
+  <div class="flex-row justify-content-center align-items-flex-start gap-5 mt-3 wfill">
+    <div style="width: 60%" class="flex-col">
+      <h2>Items</h2>
+
+      @for (item of order.items; track item.product_id) {
+        <h3 class="checkout-item mt-2">
+          {{item.quantity}}x
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          {{item.each_price | currency}}
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          {{item.product_name}} sold by {{item.vendor_name}}
+        </h3>
+      }
+
+    </div>
+    <div class="flex-col">
+
+      <h2>Select payment method</h2>
+      <div class="mt-1">
+        <radio-button-group *ngIf="paymentSelectionForm" [radioButtonFormControl]="paymentSelectionForm"></radio-button-group>
+      </div>
+
+      <a class="app-link mt-1" (click)="handleCreatePaymentMethod()">Add Payment Method</a>
+
+      <table class="checkout-table mt-2">
+        <thead style="display: none"><th></th></thead>
+        <tbody>
+        <tr>
+          <td>Items: </td>
+          <td>{{items()}}</td>
+        </tr>
+        <tr>
+          <td>Subtotal: </td>
+          <td>{{order.subtotal | currency}}</td>
+        </tr>
+        <tr>
+          <td>Sales tax: </td>
+          <td>{{order.tax | currency}}</td>
+        </tr>
+        <tr>
+          <td>Total: </td>
+          <td>{{order.total | currency}}</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <div class="app-button-group mt-5">
+        <fancy-button
+          color="primary"
+          [disabled]="!paymentSelectionForm?.valid"
+          (click)="handlePurchase()"
+        >
+          Purchase
+        </fancy-button>
+        <fancy-button color="neutral" (click)="handleDeleteOrder()">Delete Order</fancy-button>
+      </div>
+    </div>
+  </div>
+} @else {
+  <app-loader/>
+}
+</div>

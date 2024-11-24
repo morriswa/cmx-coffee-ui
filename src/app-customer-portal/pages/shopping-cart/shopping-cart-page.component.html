@@ -1,18 +1,13 @@
 
-<div class="flex-col vw-90 mx-auto my-5 align-items-center">
+<div class="flex-col vw-90 mx-auto mt-5 pb-5 align-items-center">
   @if (cart.cart(); as items) {
-    @if (items.length > 0) {
+    @if (cart.cartItems() > 0) {
       <h1>Your cart</h1>
       <div class="app-shopping-cart mt-5 wfill">
         @for (item of items; track item.product_id) {
-          <div class="app-shopping-cart-item flex-row space-between-items mb-1">
-            <div class="flex-row">
-              <span style="display: block; width: 100px">{{item.quantity}}x</span>
-              <span>{{item.product_name}} sold by {{item.vendor_name}}</span>
-            </div>
-
-            <span>{{item.sale_price * item.quantity | currency}}</span>
-          </div>
+          @if (item.quantity > 0) {
+            <app-shopping-cart-item [item]="item" (quantityChanged)="handleUpdateItemQuantity(item.product_id, $event)"></app-shopping-cart-item>
+          }
         }
       </div>
 
@@ -22,22 +17,25 @@
         <table class="app-shopping-cart">
           <thead style="display: none"><th></th></thead>
           <tbody>
-          <tr>
-            <td>Items: </td>
-            <td>{{cart.cartItems()}}</td>
-          </tr>
-          <tr>
-            <td>Cart Total: </td>
-            <td>{{cart.cartTotal() | currency}}</td>
-          </tr>
+            <tr>
+              <td>Items: </td>
+              <td>{{cart.cartItems()}}</td>
+            </tr>
+            <tr>
+              <td>Cart Total: </td>
+              <td>{{cart.cartTotal() | currency}}</td>
+            </tr>
           </tbody>
         </table>
-        <fancy-button color="primary" class="mt-5" routerLink="/not-implemented">Checkout</fancy-button>
+        <div class="app-button-group mt-5">
+          <fancy-button color="primary" (click)="handleCheckout()">Checkout</fancy-button>
+          <fancy-button color="neutral" (click)="handleResetCart()">Delete all items</fancy-button>
+        </div>
       </div>
     }
     @else {
       <h1 class="my-5">Your cart is empty!</h1>
-      <fancy-button color="primary" routerLink="/shop/cart">Go to Shop</fancy-button>
+      <fancy-button color="primary" routerLink="/shop">Go to Shop</fancy-button>
     }
   }
   @else {

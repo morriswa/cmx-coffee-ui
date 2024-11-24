@@ -9,14 +9,13 @@ import {NgIf} from "@angular/common";
 
 
 @Component({
-  selector: 'app-vendor-applicants',
-  standalone: true,
-  imports: [
-    LoaderComponent,
-    NgIf
-  ],
-  templateUrl: './vendor-applicants.component.html',
-  styleUrl: './vendor-applicants.component.scss'
+    selector: 'app-vendor-applicants',
+    imports: [
+        LoaderComponent,
+        NgIf
+    ],
+    templateUrl: './vendor-applicants.component.html',
+    styleUrl: './vendor-applicants.component.scss'
 })
 export class VendorApplicantsComponent implements OnInit{
 

@@ -13,7 +13,7 @@
   color: $primary-color;
   font-family: $font-family;
   font-size: $font-size-med;
-  font-weight: $bold-font-weight;
+  font-weight: $font-weight-bold;
   cursor: pointer;
   text-decoration: none;
 }
@@ -49,15 +49,23 @@
 .app-button {
   padding: 10px 20px;
   font-size: 15px;
-  outline: none !important;
 
   &.primary {
-    background-color: $primary-color;
+    outline: $white;
+    border: solid 1px $clear;
     color: $white;
+    background-color: $primary-color;
   }
 
   &:not(.primary) {
-    background-color: $white;
+    outline: $text-color;
+    border: solid 1px $text-color;
+    color: $text-color;
+    background-color: $surface-color;
+  }
+
+  &:disabled {
+    background-color: $neutral-color !important;
   }
 
   &.short {
@@ -69,10 +77,6 @@
   }
 }
 
-.header-font{
-  font-family: $header-font-family;
-}
-
 .app-table {
   text-align: left;
 
@@ -82,32 +86,43 @@
   }
 }
 
-.surface {
-  background-color: $surface-color;
-}
-
 .app-form-popup {
   background-color: $surface-color;
   padding: 20px;
 }
 
+.app-form-error {
+  color: $error-color;
+}
+
 .app-form-input {
-  width: 300px;
-  max-width: 300px;
+
+  $form-width: 300px;
+  $form-height: 48px;
+
+  width: $form-width;
+  max-width: $form-width;
+  height: $form-height;
+  min-height: $form-height;
+
   cursor: text;
-  font-size: 14px;
-  line-height: 20px;
-  padding: 0 16px;
-  height: 48px;
+
+  color: rgb(35, 38, 59);
+  font-size: $font-size-med;
+  font-family: $font-family;
+  line-height: calc($font-size-med + 6px);
 
   background-color: $white;
-  border: 1px solid #d6d6e7;
+  padding: 0 16px;
+  border: 1px solid $neutral-color;
   border-radius: 3px;
-  color: rgb(35, 38, 59);
 
   box-shadow: inset 0 1px 4px 0 rgb(119 122 175 / 30%);
-  //overflow: hidden;
-  transition: all 100ms ease-in-out;
+
+  &.textarea {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
 
   &:focus {
     border-color: #3c4fe0;
@@ -117,4 +132,26 @@
 
 .app-form-label {
   font-style: italic;
+}
+
+.app-file-upload-form {
+
+  font-size: $font-size-med;
+  color: $black;
+
+  &::file-selector-button {
+    @extend .app-button !optional;
+
+    width: 150px !important;
+    margin-right: 20px;
+  }
+}
+
+.app-file-upload-wrapper {
+  font-size: $font-size-med;
+  color: $primary-color;
+  background-color: $surface-color;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 500px;
 }

@@ -10,15 +10,13 @@ import {VendorProduct} from "src/types/vendor.type";
 
 
 @Component({
-  selector: 'app-product-flag-dialog',
-  templateUrl: './product-flag-dialog.component.html',
-  styleUrl: 'product-flag-dialog.component.scss',
-  imports: [
-    RadioButtonGroupComponent,
-    TaggedInputComponent,
-    ReactiveFormsModule
-  ],
-  standalone: true
+    selector: 'app-product-details-flag-dialog',
+    templateUrl: './product-flag-dialog.component.html',
+    styleUrl: 'product-flag-dialog.component.scss',
+    imports: [
+        RadioButtonGroupComponent,
+        ReactiveFormsModule
+    ]
 })
 export class ProductFlagDialogComponent implements OnInit {
 

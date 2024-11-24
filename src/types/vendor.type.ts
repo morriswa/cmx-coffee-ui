@@ -6,9 +6,8 @@ export type VendorApplication = {
   address_line_one: string,
   address_line_two?: string,
   city: string,
-  state: string,
   zip: string,
-  country: string,
+  territory: number,
 }
 
 export type VendorProduct = {

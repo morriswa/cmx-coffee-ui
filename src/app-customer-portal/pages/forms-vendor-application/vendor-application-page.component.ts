@@ -4,20 +4,18 @@ import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ApiClient} from "src/services/api-client.service";
 import {VendorApplication} from "src/types/vendor.type";
 import { FancyButtonComponent } from "src/components/fancy-button/fancy-button.component";
-import {TaggedInputComponent} from "src/components/tagged-input/tagged-input.component";
 
 
 @Component({
-  selector: "app-vendor-application-page",
-  templateUrl: "./vendor-application-page.component.html",
-  styleUrl: "./vendor-application-page.component.scss",
-  imports: [
-    AddressFormComponent,
-    ReactiveFormsModule,
-    FancyButtonComponent,
-    TaggedInputComponent
-  ],
-  standalone: true
+    selector: "app-forms-vendor-application-page",
+    templateUrl: "./vendor-application-page.component.html",
+    styleUrl: "./vendor-application-page.component.scss",
+    imports: [
+        AddressFormComponent,
+        ReactiveFormsModule,
+        FancyButtonComponent,
+    ],
+    host: { class: 'flex-child' }
 })
 export class VendorApplicationPageComponent {
 
@@ -33,12 +31,15 @@ export class VendorApplicationPageComponent {
 
   @ViewChild("addressForm") addressForm?: AddressFormComponent;
 
-  handleConsolePrint() {
-    console.log(this.businessNameForm.value)
-    console.log(this.businessEmailForm.value)
-    console.log(this.businessPhoneForm.value)
-    console.log(this.addressForm?.getAddress());
+  get valid(): boolean {
+    return (
+          this.businessNameForm.valid
+      &&  this.businessEmailForm.valid
+      &&  this.businessPhoneForm.valid
+      &&  (this.addressForm?.valid ?? false)
+    )
   }
+
 
   async handleSubmit() {
     const address = this.addressForm?.getAddress()!;
@@ -49,9 +50,8 @@ export class VendorApplicationPageComponent {
       address_line_one: address.addressLineOne,
       address_line_two: address.addressLineTwo,
       city: address.city,
-      state: address.state,
       zip: address.zip,
-      country: address.country,
+      territory: address.territory!,
     }
 
     try {
