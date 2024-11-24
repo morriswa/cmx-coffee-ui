@@ -118,7 +118,11 @@ describe('VendorApplicationPageComponent', () => {
 
   // test case for when business is over 256 characters (submit button should be invalid)
   it('should disable the submit button when business is over 256 characters', () => {
-    component.businessNameForm.setValue('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.');
+
+    const lens = 'i'.repeat(257)
+    expect(lens.length).toEqual(257)
+
+    component.businessNameForm.setValue(lens);
     component.businessEmailForm.setValue('makenna@gmail.com');
     component.businessPhoneForm.setValue('9136081981');
     // mock address input -> returns valid input
@@ -131,8 +135,12 @@ describe('VendorApplicationPageComponent', () => {
 
   // test case for when email is over 256 characters (submit button should be invalid)
   it('should disable the submit button when business is over 256 characters', () => {
+
+    const lens = 'i'.repeat(257)
+    expect(lens.length).toEqual(257)
+
     component.businessNameForm.setValue('makenna');
-    component.businessEmailForm.setValue('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in.');
+    component.businessEmailForm.setValue(lens)
     component.businessPhoneForm.setValue('9136081981');
     // mock address input -> returns valid input
     console.log(component.addressForm)
@@ -143,7 +151,7 @@ describe('VendorApplicationPageComponent', () => {
   });
 
   // test case for when phone is over 12 characters (submit button should be invalid)
-  it('should disable the submit button when business is over 256 characters', () => {
+  it('should disable the submit button when phone is over 12 characters', () => {
     component.businessNameForm.setValue('makenna');
     component.businessEmailForm.setValue('makenna@gmail.com');
     component.businessPhoneForm.setValue('9136081981111');
