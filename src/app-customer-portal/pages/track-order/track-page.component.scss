@@ -32,8 +32,27 @@ body {
 
 // right side //
 
-//  needs to be done
-
+.order-details-box {
+  width: 40%;
+  height: 400px;
+  float:right;
+  margin-right: 70px;
+  margin-top: 70px;
+  border: 5px solid $black;
+}
+.details-heading {
+  height: 20px;
+  background-color: $white;
+}
+.order-details {
+  font-family: $text-font-family;
+  color: $black;
+  font-size: $font-size-med;
+  font-weight: bold;
+}
+.details {
+  line-height: 50px;
+}
 
 // tracking line with dots //
 * {
@@ -117,6 +136,7 @@ hr {
   height: 1000px;
 }
 
+// delivery date side (left)
 .box {
   width: 40%;
   height: 700px;
@@ -126,6 +146,24 @@ hr {
   border-radius: 100px;
 }
 
+.date-caption {
+  text-align: center;
+  font-family: $text-font-family;
+  color: $white;
+  font-weight: bold;
+  font-size: $font-size-20;
+}
+
+.date {
+  text-align: center;
+  font-family: $text-font-family;
+  color: $white;
+  font-weight: bold;
+  font-size: $font-size-xxl;
+}
+
+
+// map side (right)
 .map-side {
   width: 52%;
   height: 700px;
@@ -155,8 +193,20 @@ hr {
 }
 
 
+// bottom banner
 
-// .smaller-heading {
-//   font-family: $text-font-family;
-//   color: $white;
-// }
+.keep-shopping-banner {
+  height: 2000px;
+  background-color: $primary-color;
+}
+
+.forgot {
+  color: $white;
+  font-weight: bold;
+}
+
+.keep-shopping {
+  font-family: $header-font-family;
+  color: $white;
+  font-size: $font-size-xxl;
+}
