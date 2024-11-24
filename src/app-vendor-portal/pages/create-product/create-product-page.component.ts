@@ -50,7 +50,7 @@ export class CreateProductPageComponent {
     Validators.max(999.99),
   ])
   tasteStrengthForm = new NumberFormControl(1, 10);
-  
+
   decafForm = new RadioButtonFormControl([
     {value: 'y', label: 'Decaf'},
     {value: 'n', label: 'Contains Caffeine'},

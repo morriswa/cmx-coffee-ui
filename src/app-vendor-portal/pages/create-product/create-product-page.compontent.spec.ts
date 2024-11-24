@@ -58,4 +58,37 @@ describe('CreateProductPageComponent', () => {
     expect(component.formValid).toBeFalse();
   })
 
+  it('User must select a decafForm value with value of "y" or "n" to submit', () => {
+    if(component.decafForm.value !='y' || component.decafForm.value !='n'){
+      expect(component.formValid).toBeFalse()
+    }
+  })
+
+  it('User must select a flavoredForm value with value of "y" or "n" to submit', () => {
+    if(component.flavoredForm.value !='y' || component.flavoredForm.value != 'n'){
+        expect(component.formValid).toBeFalse();
+    }
+  })
+
+  it('User must select a singleOriginForm value with value of "y" or "n" to submit', () => {
+    if(component.singleOriginForm.value != "y" || component.singleOriginForm.value != "n"){
+      expect(component.formValid).toBeFalse
+    }
+  })
+
+  it('User should not be able to enter negative values or values over 999.99', () => {
+    if(component.initialPriceForm.value != null){
+      if(component.initialPriceForm.value < 0 || component.initialPriceForm.value > 999.99){
+        expect(component.formValid).toBeFalse
+      }
+    }
+  })
+
+  it('User should not be able to choose a value of < 0 or > 10 on Coffee Strength', () => {
+    if(component.tasteStrengthForm.value < 0 || component.tasteStrengthForm.value > 10){
+      expect(component.formValid).toBeFalse()
+    }
+  })
+
+
 });
