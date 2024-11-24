@@ -4,12 +4,11 @@ import {CurrencyPipe} from "@angular/common";
 
 
 @Component({
-  selector: "app-unlist-product-details-dialog",
-  templateUrl: "./unlist-product-dialog.component.html",
-  imports: [
-    CurrencyPipe
-  ],
-  standalone: true
+    selector: "app-unlist-product-details-dialog",
+    templateUrl: "./unlist-product-dialog.component.html",
+    imports: [
+        CurrencyPipe
+    ]
 })
 export class UnlistProductDialogComponent {
   ref = inject(DialogRef);

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, signal, WritableSignal} from "@angular/core";
+import {Component, OnInit, signal, WritableSignal, input} from "@angular/core";
 import {NgClass} from "@angular/common";
 
 
@@ -36,24 +36,19 @@ export class CheckboxSelectorFormControl {
 
 
 @Component({
-  selector: "app-checkbox-selector",
-  templateUrl: "./checkbox-selector.component.html",
-  styleUrl: "./checkbox-selector.component.scss",
-  imports: [
-    NgClass
-  ],
-  standalone: true,
-  host: { 'class': 'flex-child' }
+    selector: "app-checkbox-selector",
+    templateUrl: "./checkbox-selector.component.html",
+    styleUrl: "./checkbox-selector.component.scss",
+    imports: [
+        NgClass
+    ],
+    host: { 'class': 'flex-child' }
 })
-export class CheckboxSelectorComponent implements OnInit {
-  @Input() public checkboxSelectorFormControl!: CheckboxSelectorFormControl;
-
-  ngOnInit(): void {
-    if (!this.checkboxSelectorFormControl) throw new Error("radioButtonFormControl is required");
-  }
+export class CheckboxSelectorComponent {
+  public readonly checkboxSelectorFormControl = input.required<CheckboxSelectorFormControl>();
 
   toggleOption(button: CheckboxSelectorOptions) {
-    this.checkboxSelectorFormControl._value.update(val=>{
+    this.checkboxSelectorFormControl()._value.update(val=>{
       if (val.includes(button)) {
         return val.filter((v=>v.value!==button.value));
       } else {

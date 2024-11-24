@@ -1,5 +1,5 @@
 
-@if (displayDetails(); as draft) {
+@if (updatedProductDetails(); as draft) {
 
   <p>PID: {{draft.product_id}}</p>
 
@@ -93,7 +93,7 @@
   </ng-template>
 
   <ul>
-    @for (flag of productFlags; track flag) {
+    @for (flag of productFlags(); track flag) {
       <li>{{flag}}</li>
     }
   </ul>

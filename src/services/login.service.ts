@@ -63,12 +63,6 @@ export class LoginService {
   }
 
 
-  // lifecycle
-  constructor() {
-    this.init();
-  }
-
-
   // publics
   async login(dest: string[] = ['/']): Promise<void> {
     localStorage.setItem('login-service.login.dest', JSON.stringify(dest))
@@ -119,27 +113,32 @@ export class LoginService {
     this._user.set(user);
   }
 
-  private init() {
-    this._ready.set(false);
-    const initialAuthCheck = this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
-      if (isAuthenticated) {
-        console.log('AUTH0 DEBUG: is authenticated')
+  init() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject(new Error('took longer than 30 seconds to initialize LoginService'));
+      }, 30_000);
+      this._ready.set(false);
+      this.auth0.isAuthenticated$.subscribe(async (isAuthenticated) => {
+        if (isAuthenticated) {
+          console.log('AUTH0 DEBUG: is authenticated')
 
-        if (await this.isTokenExpired()) {
-          console.log('AUTH0 DEBUG: token is expired, attempting logout')
-          this.logout()
+          if (await this.isTokenExpired()) {
+            console.log('AUTH0 DEBUG: token is expired, attempting logout')
+            this.logout()
+          } else {
+            await this.refreshPermissions();
+            await this.refreshUserCache();
+          }
         } else {
-          await this.refreshPermissions();
-          await this.refreshUserCache();
+          this._user.set(undefined);
+          this._permissions.set([]);
         }
-      } else {
-        this._user.set(undefined);
-        this._permissions.set([]);
-      }
 
-      this._isAuthenticated.set(isAuthenticated);
-      this._ready.set(true);
-      initialAuthCheck.unsubscribe();
+        this._isAuthenticated.set(isAuthenticated);
+        this._ready.set(true);
+        resolve('initialized successfully');
+      });
     });
   }
 

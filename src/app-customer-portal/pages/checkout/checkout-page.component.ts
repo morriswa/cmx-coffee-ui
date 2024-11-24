@@ -17,18 +17,17 @@ import {Dialog} from "@angular/cdk/dialog";
 
 
 @Component({
-  selector: "app-checkout-page",
-  templateUrl: "./checkout-page.component.html",
-  styleUrl: "./checkout-page.component.scss",
-  standalone: true,
-  imports: [
-    CurrencyPipe,
-    LoaderComponent,
-    RadioButtonGroupComponent,
-    NgIf,
-    FancyButtonComponent
-  ],
-  host: {class: 'flex-child'}
+    selector: "app-checkout-page",
+    templateUrl: "./checkout-page.component.html",
+    styleUrl: "./checkout-page.component.scss",
+    imports: [
+        CurrencyPipe,
+        LoaderComponent,
+        RadioButtonGroupComponent,
+        NgIf,
+        FancyButtonComponent
+    ],
+    host: { class: 'flex-child' }
 })
 export class CheckoutPageComponent implements OnInit{
 

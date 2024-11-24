@@ -6,14 +6,12 @@ import {until} from "src/utils";
 
 
 @Component({
-  selector: 'app-logout-page',
-  standalone: true,
-  imports: [
-    AsyncPipe,
-    NgIf
-  ],
-  templateUrl: './logout.component.html',
-  styleUrl: './logout.component.scss'
+    selector: 'app-logout-page',
+    imports: [
+        NgIf
+    ],
+    templateUrl: './logout.component.html',
+    styleUrl: './logout.component.scss'
 })
 export class LogoutComponent implements OnInit {
 

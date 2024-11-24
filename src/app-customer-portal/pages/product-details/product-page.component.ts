@@ -15,12 +15,18 @@ import {
 
 
 @Component({
-  selector: 'app-product-details-page',
-  templateUrl: './product-page.component.html',
-  styleUrl: './product-page.component.scss',
-  standalone: true,
-  imports: [LoaderComponent, NgClass, CurrencyPipe, ImageGalleryComponent, NgIf, NumberStepperComponent, ReviewStarsComponent],
-  host: {'class': 'flex-child'}
+    selector: 'app-product-details-page',
+    templateUrl: './product-page.component.html',
+    styleUrl: './product-page.component.scss',
+    imports: [
+      LoaderComponent,
+      CurrencyPipe,
+      ImageGalleryComponent,
+      NgIf,
+      NumberStepperComponent,
+      ReviewStarsComponent
+    ],
+    host: { 'class': 'flex-child' }
 })
 export class ProductDetailsPageComponent implements OnInit {
 

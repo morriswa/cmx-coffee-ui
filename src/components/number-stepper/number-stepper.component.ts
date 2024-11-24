@@ -1,8 +1,9 @@
 import {
   Component, EventEmitter,
-  Input, Output,
+  Output,
   signal,
-  WritableSignal
+  WritableSignal,
+  input
 } from "@angular/core";
 
 
@@ -50,26 +51,29 @@ export class NumberFormControl {
 })
 export class NumberStepperComponent {
 
-  @Input() form = new NumberFormControl()
-  @Input() label = "";
+  readonly form = input(new NumberFormControl());
+  readonly label = input("");
   @Output() quantityChanged = new EventEmitter<number>();
 
   handleUpdate($event: any) {
-    this.form.value = $event.target.value;
-    this.quantityChanged.emit(this.form.value);
+    const form = this.form();
+    form.value = $event.target.value;
+    this.quantityChanged.emit(form.value);
   }
 
   increment() {
-    if (this.form.value<this.form.max) {
-      this.form.value = this.form.value + 1;
+    const form = this.form();
+    if (this.form().value<this.form().max) {
+      form.value = form.value + 1;
     }
-    this.quantityChanged.emit(this.form.value);
+    this.quantityChanged.emit(form.value);
   }
 
   decrement() {
-    if (this.form.value>this.form.min) {
-      this.form.value = this.form.value - 1;
+    const form = this.form();
+    if (this.form().value>this.form().min) {
+      form.value = form.value - 1;
     }
-    this.quantityChanged.emit(this.form.value);
+    this.quantityChanged.emit(form.value);
   }
 }

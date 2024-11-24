@@ -6,18 +6,17 @@ import {NgIf} from "@angular/common";
 
 
 @Component({
-  selector: 'app-app-admin-portal',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    RouterLink,
-    CdkConnectedOverlay,
-    CdkOverlayOrigin,
-    NgIf
-  ],
-  templateUrl: './admin-portal.component.html',
-  styleUrl: './admin-portal.component.scss',
-  host: {'class': 'flex-child'},
+    selector: 'app-app-admin-portal',
+    imports: [
+        RouterOutlet,
+        RouterLink,
+        CdkConnectedOverlay,
+        CdkOverlayOrigin,
+        NgIf
+    ],
+    templateUrl: './admin-portal.component.html',
+    styleUrl: './admin-portal.component.scss',
+    host: { 'class': 'flex-child' }
 })
 export class AdminPortalComponent implements OnInit {
 
