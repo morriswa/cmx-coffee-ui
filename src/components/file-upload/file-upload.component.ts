@@ -3,13 +3,11 @@ import {FormControl, ReactiveFormsModule} from "@angular/forms";
 
 
 @Component({
-  selector: "file-upload",
-  templateUrl: "./file-upload.component.html",
-  styleUrl: "./file-upload.component.scss",
-  imports: [
-    ReactiveFormsModule
-  ],
-  standalone: true
+    selector: "file-upload",
+    templateUrl: "./file-upload.component.html",
+    imports: [
+        ReactiveFormsModule
+    ]
 })
 export class FileUploadComponent {
 

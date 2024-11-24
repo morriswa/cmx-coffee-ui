@@ -9,13 +9,12 @@ import {
 
 
 @Component({
-  selector: "app-create-mock-payment-dialog",
-  templateUrl: "./create-mock-payment-dialog.component.html",
-  imports: [
-    TaggedInputComponent,
-    RadioButtonGroupComponent
-  ],
-  standalone: true
+    selector: "app-create-mock-payment-dialog",
+    templateUrl: "./create-mock-payment-dialog.component.html",
+    imports: [
+        TaggedInputComponent,
+        RadioButtonGroupComponent
+    ]
 })
 export class CreateMockPaymentDialogComponent implements OnDestroy{
 

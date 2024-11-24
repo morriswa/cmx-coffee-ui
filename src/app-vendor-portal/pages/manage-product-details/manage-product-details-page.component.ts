@@ -14,22 +14,15 @@ import {DeleteImagesComponent} from "../../components/delete-images/delete-image
 
 
 @Component({
-  selector: "app-manage-product-details-details-page",
-  templateUrl: "./manage-product-details-page.component.html",
-  imports: [
-    NgIf,
-    CurrencyPipe,
-    LoaderComponent,
-    NgOptimizedImage,
-    FileUploadComponent,
-    ImageGalleryComponent,
-    CdkConnectedOverlay,
-    RouterLink,
-    CdkOverlayOrigin,
-    ReactiveFormsModule,
-    EditProductDetailsComponent
-  ],
-  standalone: true
+    selector: "app-manage-product-details-details-page",
+    templateUrl: "./manage-product-details-page.component.html",
+    imports: [
+        LoaderComponent,
+        FileUploadComponent,
+        ImageGalleryComponent,
+        ReactiveFormsModule,
+        EditProductDetailsComponent
+    ]
 })
 export class ManageProductDetailsPageComponent implements OnInit {
 
@@ -67,8 +60,10 @@ export class ManageProductDetailsPageComponent implements OnInit {
     this.productImages.set(images ?? []);
   }
 
-  async handleUpdateProductDetails($event: { changes:any, updatedProduct:any }) {
+  async handleUpdateProductDetails($event: { changes:any, updatedProduct:VendorProduct }) {
+    console.log($event.changes)
     await this.vendorship.updateProduct(this.productId, $event.changes);
+    console.log($event.updatedProduct);
     this.productDetails = $event.updatedProduct;
   }
 

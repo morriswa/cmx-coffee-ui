@@ -4,21 +4,18 @@ import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ApiClient} from "src/services/api-client.service";
 import {VendorApplication} from "src/types/vendor.type";
 import { FancyButtonComponent } from "src/components/fancy-button/fancy-button.component";
-import {TaggedInputComponent} from "src/components/tagged-input/tagged-input.component";
 
 
 @Component({
-  selector: "app-forms-vendor-application-page",
-  templateUrl: "./vendor-application-page.component.html",
-  styleUrl: "./vendor-application-page.component.scss",
-  imports: [
-    AddressFormComponent,
-    ReactiveFormsModule,
-    FancyButtonComponent,
-    TaggedInputComponent
-  ],
-  standalone: true,
-  host: {class: 'flex-child'}
+    selector: "app-forms-vendor-application-page",
+    templateUrl: "./vendor-application-page.component.html",
+    styleUrl: "./vendor-application-page.component.scss",
+    imports: [
+        AddressFormComponent,
+        ReactiveFormsModule,
+        FancyButtonComponent,
+    ],
+    host: { class: 'flex-child' }
 })
 export class VendorApplicationPageComponent {
 

@@ -12,16 +12,13 @@ import {NgIf} from "@angular/common";
 
 
 @Component({
-  selector: "app-address-form",
-  templateUrl: "./address-form.component.html",
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    TaggedInputComponent,
-    CheckboxSelectorComponent,
-    NgIf,
-    RadioButtonGroupComponent,
-  ],
+    selector: "app-address-form",
+    templateUrl: "./address-form.component.html",
+    imports: [
+        ReactiveFormsModule,
+        NgIf,
+        RadioButtonGroupComponent,
+    ]
 })
 export class AddressFormComponent {
 
