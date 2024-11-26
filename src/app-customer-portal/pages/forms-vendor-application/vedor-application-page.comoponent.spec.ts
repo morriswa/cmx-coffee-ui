@@ -3,9 +3,19 @@ import { VendorApplicationPageComponent } from './vendor-application-page.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApiClient } from 'src/services/api-client.service';
 import { FancyButtonComponent } from 'src/components/fancy-button/fancy-button.component';
-import { AddressFormComponent, MockAddressFormComponent } from 'src/components/address-form/address-form.component';
-import { of, throwError } from 'rxjs';
-import { By } from '@angular/platform-browser';
+import { AddressFormComponent } from 'src/components/address-form/address-form.component';
+import {Component} from "@angular/core";
+
+
+@Component({
+  selector: "app-address-form",
+  template: ``,
+  standalone: true,
+})
+export class MockAddressFormComponent {
+  valid = true;
+}
+
 
 describe('VendorApplicationPageComponent', () => {
   let component: VendorApplicationPageComponent;
