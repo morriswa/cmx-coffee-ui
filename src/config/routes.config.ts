@@ -49,8 +49,8 @@ export const AppRoutes: Routes = [
       {
         path: "plans",
         canActivate: [HasPermission('cmx_coffee:appuser')],
-        loadComponent: () => import('src/app-customer-portal/pages/subscription-plans/subscription-plans-page.component')
-          .then(m=>m.SubscriptionPlansPageComponent)
+        loadComponent: () => import('src/app-customer-portal/pages/match-maker/match-maker-page.component')
+          .then(m=>m.MatchMakerPageComponent)
       },
       {
         path: "account",
@@ -118,13 +118,6 @@ export const AppRoutes: Routes = [
     ]
   },
   {
-    title: "CMX Developer",
-    path: "developer",
-    canActivate: [HasPermission('cmx_coffee:admin')],
-    loadComponent: ()=>import('src/app-developer-portal/pages/developer-landing-page/developer-landing-page.component')
-      .then(m=>m.DeveloperLandingPageComponent)
-  },
-  {
     title: "K&M Admin",
     path: "admin",
     canActivate: [HasPermission('cmx_coffee:admin')],
@@ -132,11 +125,6 @@ export const AppRoutes: Routes = [
     loadComponent: ()=>import('src/app-admin-portal/admin-portal.component')
       .then(m=>m.AdminPortalComponent),
     children: [
-      {
-        path: "sales",
-        loadComponent: ()=>import('src/app-admin-portal/pages/admin-sales-dashboard/admin-sales-dashboard.component')
-          .then(m=>m.AdminSalesDashboardComponent),
-      },
       {
         path: "vendors",
         loadComponent: ()=>import('src/app-admin-portal/pages/vendor-management/vendor-management.component')
@@ -149,7 +137,7 @@ export const AppRoutes: Routes = [
       },
       {
         path: "**",
-        redirectTo: "sales"
+        redirectTo: "vendors"
       }
     ]
   },
