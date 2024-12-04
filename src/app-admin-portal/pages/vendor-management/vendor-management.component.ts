@@ -1,12 +1,14 @@
 import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
 import {AdminService} from "../../services/admin.service";
 import {DatePipe} from "@angular/common";
+import { FancyButtonComponent } from "../../../components/fancy-button/fancy-button.component";
 
 @Component({
     selector: 'app-vendor-management',
     imports: [
-        DatePipe
-    ],
+    DatePipe,
+    FancyButtonComponent
+],
     templateUrl: './vendor-management.component.html',
     styleUrl: './vendor-management.component.scss'
 })
@@ -26,4 +28,12 @@ export class VendorManagementComponent implements OnInit{
     this.vendors.set(vendors);
   }
 
+  async sendEmails() {
+    try {
+      const emailsSent = await this.administration.sendNewsletterEmails();
+      console.log('Emails sent successfully:', emailsSent);
+    } catch (error) {
+      console.error('Error sending emails:', error);
+    }
+  }
 }

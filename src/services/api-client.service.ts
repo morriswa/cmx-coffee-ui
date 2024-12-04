@@ -63,6 +63,10 @@ export class ApiClient {
     return this.request<any[]>('GET', 's/admin/vendor-applications')
   }
 
+  sendNewsletterEmails(){
+    return this.request('POST', 's/admin/newsletter')
+  }
+
   processApplicant(application_id: number, action: "approve" | "reject"): Promise<void> {
     return this.request('PUT', `s/admin/vendor-application/${application_id}?action=${action}`)
   }
