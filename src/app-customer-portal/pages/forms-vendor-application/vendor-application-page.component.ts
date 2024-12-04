@@ -24,9 +24,9 @@ export class VendorApplicationPageComponent {
 
   // state
   pageState: WritableSignal<'form'|'success'|'error'> = signal('form');
-  businessNameForm = new FormControl("", Validators.required);
-  businessEmailForm = new FormControl("", Validators.required);
-  businessPhoneForm = new FormControl("", Validators.required);
+  businessNameForm = new FormControl("", [Validators.required, Validators.maxLength(256)]);
+  businessEmailForm = new FormControl("", [Validators.required, Validators.maxLength(256)]);
+  businessPhoneForm = new FormControl("", [Validators.required, Validators.maxLength(12)]);
 
 
   @ViewChild("addressForm") addressForm?: AddressFormComponent;

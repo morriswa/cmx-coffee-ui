@@ -1,11 +1,8 @@
-import {Component, inject, signal, WritableSignal} from "@angular/core";
+import {Component, inject} from "@angular/core";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {VendorAddressForm} from "src/types/address.type";
-import {TaggedInputComponent} from "src/components/tagged-input/tagged-input.component";
-import {CheckboxSelectorComponent} from "../checkbox-selector/checkbox-selector.component";
 import {
-  RadioButtonFormControl,
-  RadioButtonGroupComponent,
+  RadioButtonFormControl, RadioButtonGroupComponent,
 } from "../radio-button-group/radio-button-group.component";
 import {ApiClient} from "../../services/api-client.service";
 import {NgIf} from "@angular/common";
@@ -15,9 +12,9 @@ import {NgIf} from "@angular/common";
     selector: "app-address-form",
     templateUrl: "./address-form.component.html",
     imports: [
+        RadioButtonGroupComponent,
         ReactiveFormsModule,
         NgIf,
-        RadioButtonGroupComponent,
     ]
 })
 export class AddressFormComponent {
