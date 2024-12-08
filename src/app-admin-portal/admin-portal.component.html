@@ -27,12 +27,12 @@
     >
       <div class="app-account-menu-popup" (click)="accountMenuOpen.set(false)">
         <h4>Good afternoon</h4>
-        <h4>{{ accountName() }}</h4>
+        <h4>{{ login.user().name }}</h4>
         <hr>
         <a class="app-link" routerLink="/">Customer Page</a>
-        <a *ngIf="login.permissions.includes('cmx_coffee:vendor')" class="app-link" routerLink="/vendor">Vendor Portal</a>
+        <a *ngIf="login.permissions().includes('cmx_coffee:vendor')" class="app-link" routerLink="/vendor">Vendor Portal</a>
         <hr>
-        <a class="app-link" (click)="handleLogout()">Logout</a>
+        <a class="app-link" routerLink="/logout">Logout</a>
       </div>
     </ng-template>
   </div>

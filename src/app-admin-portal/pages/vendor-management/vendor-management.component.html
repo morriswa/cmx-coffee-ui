@@ -1,1 +1,27 @@
-<h1 style="text-align: center">Vendor Management</h1>
+<div class="flex-col align-items-center">
+  <h1 class="my-5">Vendor Management</h1>
+
+  <table class="app-table">
+    <thead>
+      <th>Business</th>
+      <th>Business Email</th>
+      <th>Business Phone</th>
+      <th>Business Address</th>
+      <th>Join Date</th>
+      <th>Approver</th>
+    </thead>
+    <tbody>
+      @for (vendor of vendors(); track vendor.vendor_id) {
+        <tr>
+          <td>{{vendor.business_name}}</td>
+          <td>{{vendor.business_email}}</td>
+          <td>{{vendor.phone}}</td>
+          <td>{{vendor.formatted_address}}</td>
+          <td>{{vendor.join_date | date }}</td>
+          <td>{{vendor.approver_email}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+</div>

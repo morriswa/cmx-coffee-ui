@@ -4,34 +4,25 @@ import {LoginService} from "src/services/login.service";
 import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedPosition} from "@angular/cdk/overlay";
 import {NgIf} from "@angular/common";
 
+
 @Component({
   selector: 'app-app-admin-portal',
   standalone: true,
-    imports: [
-        RouterOutlet,
-        RouterLink,
-        CdkConnectedOverlay,
-        CdkOverlayOrigin,
-        NgIf
-    ],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    CdkConnectedOverlay,
+    CdkOverlayOrigin,
+    NgIf
+  ],
   templateUrl: './admin-portal.component.html',
   styleUrl: './admin-portal.component.scss',
   host: {'class': 'flex-child'},
 })
-export class AdminPortalComponent implements OnInit{
-
-  // services
-  login = inject(LoginService);
+export class AdminPortalComponent implements OnInit {
 
 
-  // state
-  accountMenuOpen: WritableSignal<boolean> = signal(false)
-  accountName: WritableSignal<string|undefined> = signal(undefined);
-
-  async ngOnInit() {
-    this.accountName.set((await this.login.getUser()).name)
-  }
-
+  // const
   readonly accountMenuPosition: ConnectedPosition[] = [
     {
       offsetY: 35,
@@ -42,9 +33,17 @@ export class AdminPortalComponent implements OnInit{
     },
   ];
 
-  // logic
-  handleLogout() {
-    this.login.logout()
+
+  // services
+  login = inject(LoginService);
+
+
+  // state
+  accountMenuOpen: WritableSignal<boolean> = signal(false)
+
+
+  ngOnInit() {
+    this.login.refreshUserCache();
   }
 
 }

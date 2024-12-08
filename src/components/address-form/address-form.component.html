@@ -1,38 +1,16 @@
 
-<div class="flex-col">
-  <div class="flex-row mb-1">
-    <div class="flex-col mr-2">
-      <span>Address Line 1</span>
-      <input [formControl]="addressLineOneForm">
-    </div>
+<tagged-input label="Address Line 1" [form]="addressLineOneForm"/>
+<tagged-input label="Address Line 2" [form]="addressLineTwoForm"/>
+<tagged-input label="City" [form]="cityForm"/>
 
-    <div class="flex-col">
-      <span>Address Line 2</span>
-      <input [formControl]="addressLineTwoForm">
-    </div>
-  </div>
+<div class="flex-col app-form-wrapper">
+  <span class="app-form-label">State</span>
+  <input class="app-form-input" (keyup)="stateForm.set($any($event.target).value)">
+</div>
 
-  <div class="flex-row mb-1">
-    <div class="flex-col mr-2">
-      <span>City</span>
-      <input [formControl]="cityForm">
-    </div>
+<tagged-input label="Zip" [form]="zipForm"/>
 
-    <div class="flex-col">
-      <span>State</span>
-      <input (keyup)="stateForm.set($any($event.target).value)">
-    </div>
-  </div>
-
-  <div class="flex-row mb-1">
-    <div class="flex-col mr-2">
-      <span>Zip</span>
-      <input [formControl]="zipForm">
-    </div>
-
-    <div class="flex-col">
-      <span>Country</span>
-      <input (keyup)="countryForm.set($any($event.target).value)">
-    </div>
-  </div>
+<div class="flex-col app-form-wrapper">
+  <span class="app-form-label">Country</span>
+  <input class="app-form-input" (keyup)="countryForm.set($any($event.target).value)">
 </div>

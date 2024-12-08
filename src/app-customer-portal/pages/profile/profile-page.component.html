@@ -1,0 +1,8 @@
+
+<br>
+<img [ngSrc]="userSa.user().picture!" width="200" height="200" [alt]="userSa.user().name + '\'s profile'">
+<h3 class="mt-3">{{ userSa.user().name }}</h3>
+<h4>{{ userSa.user().email }}</h4>
+
+<br>
+<button class="app-button" (click)="openCoffeeQuestionnaire()">Edit taste profile</button>

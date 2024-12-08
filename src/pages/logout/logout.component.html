@@ -1,3 +1,3 @@
 
-<h1 *ngIf="!(loginStatus|async)">Successfully logged out...</h1>
+<h1 *ngIf="!login.isAuthenticated">Successfully logged out...</h1>
 <button (click)="handleGoHome()">Go Home</button>

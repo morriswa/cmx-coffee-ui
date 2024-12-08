@@ -14,4 +14,8 @@ export class AdminService {
   async processApplicant(application_id: number, action: 'approve' | 'reject') {
     return this.api.processApplicant(application_id, action);
   }
+
+  async getVendorsForAdmin() {
+    return this.api.getVendorsForAdmin()
+  }
 }
