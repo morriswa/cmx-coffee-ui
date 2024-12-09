@@ -6,17 +6,17 @@ import {LoginService} from "../services/login.service";
 
 
 @Component({
-    selector: 'app-app-vendor-portal',
-    imports: [
-        RouterOutlet,
-        CdkConnectedOverlay,
-        CdkOverlayOrigin,
-        NgIf,
-        RouterLink
-    ],
-    templateUrl: './vendor-portal.component.html',
-    styleUrl: './vendor-portal.component.scss',
-    host: { 'class': 'flex-child' }
+  selector: 'app-app-vendor-portal',
+  imports: [
+    RouterOutlet,
+    CdkConnectedOverlay,
+    CdkOverlayOrigin,
+    NgIf,
+    RouterLink
+  ],
+  templateUrl: './vendor-portal.component.html',
+  styleUrl: './vendor-portal.component.scss',
+  host: { 'class': 'flex-child' }
 })
 export class VendorPortalComponent implements OnInit {
 
